@@ -14,7 +14,7 @@ export default async function Index() {
   return (
     <>
     {entries.map((entry) => {
-      console.log(entry.properties.Image);
+      console.log(entry.properties);
       const title = entry.properties.Title.title[0]?.plain_text;
       const imgURL = entry.properties.Image.files[0]?.file.url;
       
