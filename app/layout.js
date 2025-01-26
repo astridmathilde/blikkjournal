@@ -28,7 +28,6 @@ export default function RootLayout({ children }) {
           <nav id="navigation">
             <ul>
               <li><Link href="blikkjournal">About</Link></li>
-              <li><Link href="kolofon">Colophon</Link></li>
             </ul>
           </nav>
         </footer>

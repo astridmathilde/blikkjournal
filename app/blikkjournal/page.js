@@ -6,6 +6,9 @@ export default function Blikkjournal() {
 
       <h2>Hvorfor blikkjournal?</h2>
       <p>Blikkjournalen fungerer som en motvekt til sosiale medier, følgere og likerklikk. Som en analog bildebok, ment for de som vil se.</p>
+
+      <h2>Kolofon</h2>
+        <p>Jeg har brukt <a href="https://www.notion.com/" rel="external" target="_blank">Notion</a> som CMS og hentet innholdet derfra med <a href="https://developers.notion.com/" rel="external" target="_blank">Notion API</a>. Resten av siden er bygd med <a href="https://nextjs.org/" rel="external" target="_blank">Next.js</a> og hostet på <a href="https://www.netlify.com/" rel="external" target="_blank">Netlify</a>.</p>
     </>
   );
 }
