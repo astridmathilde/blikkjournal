@@ -1,23 +1,18 @@
-import { Client } from "@notionhq/client";
+import { getDatabase } from "/lib/notion";
 
-export default async function Home() {
-  const notion = new Client ({ 
-    auth: process.env.NOTION_KEY
-  })
+const databaseId = process.env.NOTION_DATABASE_ID;
 
-  const data = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID
-  })
-
-  const entries = data.results;
-
-  console.log(entries);
-
+export default async function Index() {
+  const databaseEntries = await getDatabase(databaseId);
+  
   return (
+    <>
     <ul>
-     {entries.map((entry) => (
-        <li key={entry.id}>{entry.id}</li>
-      ))}
+    {databaseEntries.map((entry) => (
+      <li key={entry.id}>{entry.id}</li>
+    ))}
     </ul>
+    </>
   );
 }
+
