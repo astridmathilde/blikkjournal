@@ -25,11 +25,6 @@ export default function RootLayout({ children }) {
       </main>
         <footer>
           <p>© <a href="https://astridboberg.no" target="_blank" rel="external">Astrid Boberg</a> {(new Date().getFullYear())}</p>
-          <nav id="navigation">
-            <ul>
-              <li><Link href="blikkjournal">About</Link></li>
-            </ul>
-          </nav>
         </footer>
       </body>
     </html>
