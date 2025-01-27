@@ -26,18 +26,18 @@ export default async function Index() {
           year: 'numeric',
         },
       );
-
+      
       return (
-        <figure key={entry.id}>
-        <img src={image} alt={title} />
-        <figcaption>
+        <article key={entry.id}>
+        <h2>{title}</h2>
         <ul>
-        <li>{title}</li>
         {time ? <li><time dateTime={dateTime}>{date}</time></li> : <></> }
         {location ? <li>{location}</li> : <></> }
         </ul>
-        </figcaption>
+        <figure>
+        <img src={image} alt={title} />
         </figure>
+        </article>
       )
     })}
     </>
