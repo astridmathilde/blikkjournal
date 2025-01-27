@@ -7,7 +7,6 @@ async function getPosts() {
   return database;
 }
 
-
 export default async function Index() {
   const entries = await getPosts();
   
@@ -16,7 +15,7 @@ export default async function Index() {
     {entries.map((entry) => {
       const title = entry.properties.Title.title[0]?.plain_text;
       const image = entry.properties.Image.files[0]?.file.url;
-;
+      ;
       return (
         <figure key={entry.id}>
         <img src={image} alt={title} />
