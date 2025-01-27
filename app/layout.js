@@ -31,7 +31,6 @@ images.forEach(image => {
 });
 
 export default async function RootLayout({ children }) {
-  console.log(images);
   const properties = await displayProperties();
   const menuItems = properties.properties.Category.select.options;
   
