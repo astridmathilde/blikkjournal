@@ -25,8 +25,9 @@ export default async function RootLayout({ children }) {
     <h1><Link href="/">astrid.observer</Link></h1>
     <nav id="categories">
     <ul>
+    <li key="all"><Link href="/">all</Link></li>
     {menuItems.map((item) => (
-      <li key={item.id}><Link href={`/${item.name}`}>{item.name}</Link></li>
+      <li key={item.id}><Link href={`/category/${item.name}`}>{item.name}</Link></li>
     ))}
     </ul>
     </nav>

@@ -1,15 +1,26 @@
-import { getDatabase } from "/lib/notion";
+import { getProperties, getPostsByCategory } from "/lib/notion";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
-async function getPosts() {
-  const database = await getDatabase(databaseId);
-  return database;
+async function listProperties() {
+  const data = await getProperties(databaseId);
+  return data;
 }
 
-export default async function Index() {
-  const entries = await getPosts();
+export async function generateStaticParams() {
+  const response = await listProperties();
+  const properties = response.properties.Category.select.options;
+  
+  return properties?.map((property) => {
+    const slug = property.name;
+    return ({ id: property.id, slug });
+  });
+}
 
+export default async function Post({ params }) {
+  const category = params?.slug;
+  const entries = await getPostsByCategory(databaseId, category);
+  
   return (
     <>
     {entries.map((entry) => {
@@ -41,6 +52,5 @@ export default async function Index() {
       )
     })}
     </>
-  );
+  )
 }
-
