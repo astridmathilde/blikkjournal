@@ -8,3 +8,42 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+h2 {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 1em;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+
+  figure {
+    order: -1;
+    margin-bottom: 0;
+  }
+}
+
+article + article {
+  margin-top: 1.5em;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin-bottom: 2em;
+}
+
+footer {
+  margin-top: 2em;
+}
