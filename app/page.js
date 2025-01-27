@@ -35,7 +35,9 @@ export default async function Index() {
         {time ? <li><time dateTime={dateTime}>{date}</time></li> : <></> }
         {location ? <li>{location}</li> : <></> }
         </ul>
-        {image ? <figure><Image src={image} alt={title} fill={true} /> </figure> : <></>}
+        <figure>
+        <Image src={image} alt={title} fill={true} />
+        </figure> 
         </article>
       )
     })}

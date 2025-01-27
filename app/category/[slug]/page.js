@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getProperties, getPostsByCategory } from "/lib/notion";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
@@ -18,8 +19,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Post({ params }) {
-  const category = params?.slug;
-  const entries = await getPostsByCategory(databaseId, category);
+  const entries = await getPostsByCategory(databaseId, params?.slug);
   
   return (
     <>
@@ -46,7 +46,7 @@ export default async function Post({ params }) {
         {location ? <li>{location}</li> : <></> }
         </ul>
         <figure>
-        <img src={image} alt={title} />
+        <Image src={image} alt={title} fill={true} />
         </figure>
         </article>
       )
