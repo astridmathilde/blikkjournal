@@ -10,8 +10,24 @@ img {
 }
 
 figure {
+  position: relative;
+  height: 130vw;
   margin-left: 0;
   margin-right: 0;
+
+  @media all and (min-width: 600px) {
+    height: 700px;
+  }
+
+  img {
+    object-fit: cover;
+    object-position: center;
+
+    @media all and (min-width: 600px) {
+      object-fit: contain;
+      object-position: left;
+    }
+  }
 }
 
 h1 {

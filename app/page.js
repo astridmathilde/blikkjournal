@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getDatabase } from "/lib/notion";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
@@ -34,9 +35,7 @@ export default async function Index() {
         {time ? <li><time dateTime={dateTime}>{date}</time></li> : <></> }
         {location ? <li>{location}</li> : <></> }
         </ul>
-        <figure>
-        <img src={image} alt={title} />
-        </figure>
+        {image ? <figure><Image src={image} alt={title} fill={true} /> </figure> : <></>}
         </article>
       )
     })}
