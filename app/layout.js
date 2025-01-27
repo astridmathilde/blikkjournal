@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getProperties } from "/lib/notion";
+import { getDatabase } from "/lib/notion";
+import { downloadImage } from "/lib/download-image";
 import '../assets/scss/global.scss';
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
@@ -14,7 +16,22 @@ async function displayProperties() {
   return data;
 }
 
+async function getImages() {
+  const database = await getDatabase(databaseId);
+  return database;
+}
+
+const images = await getImages();
+
+images.forEach(image => {
+  const imgName = `${image.id}.jpg`;
+  const imgUrl = image.properties.Image.files[0]?.file.url;
+
+  downloadImage(imgUrl, `./public/images/${imgName}`);
+});
+
 export default async function RootLayout({ children }) {
+  console.log(images);
   const properties = await displayProperties();
   const menuItems = properties.properties.Category.select.options;
   
