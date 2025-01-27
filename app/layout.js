@@ -17,7 +17,6 @@ async function displayProperties() {
 export default async function RootLayout({ children }) {
   const properties = await displayProperties();
   const menuItems = properties.properties.Category.select.options;
-  console.log(menuItems);
   
   return (
     <html lang="en">

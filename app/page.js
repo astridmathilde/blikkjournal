@@ -15,11 +15,28 @@ export default async function Index() {
     {entries.map((entry) => {
       const title = entry.properties.Title.title[0]?.plain_text;
       const image = entry.properties.Image.files[0]?.file.url;
-      ;
+      const location = entry.properties.Location.rich_text[0]?.plain_text;
+      const time = entry.properties.Time.date?.start;    
+      const dateTime = new Date(time).toJSON();
+      const date = new Date(time).toLocaleString(
+        'en-US',
+        {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric',
+        },
+      );
+
       return (
         <figure key={entry.id}>
         <img src={image} alt={title} />
-        <figcaption>{title}</figcaption>
+        <figcaption>
+        <ul>
+        <li>{title}</li>
+        {time ? <li><time dateTime={dateTime}>{date}</time></li> : <></> }
+        {location ? <li>{location}</li> : <></> }
+        </ul>
+        </figcaption>
         </figure>
       )
     })}
