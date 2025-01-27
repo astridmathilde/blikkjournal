@@ -1,6 +1,6 @@
-import { downloadImage } from "/lib/download-image";
 import Image from "next/image";
 import { getDatabase } from "/lib/notion";
+import { downloadImage } from "/lib/download-image";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -9,9 +9,21 @@ async function getPosts() {
   return database;
 }
 
+/* Getting all the entries */
+const entries = await getPosts();
+
+/* Downloading the image for each entry */
+entries.forEach(image => {
+  const imgName = `${image.id}.jpg`;
+  const imgUrl = image.properties.Image.files[0]?.file.url;
+
+  downloadImage(imgUrl, `./public/images/${imgName}`);
+});
+
+/**
+ * Displaying the rest of the content normally
+ */
 export default async function Index() {
-  const entries = await getPosts();
-  
   return (
     <>
     {entries.map((entry) => {
@@ -27,10 +39,6 @@ export default async function Index() {
           year: 'numeric',
         },
       );
-
-      const imageUrl = entry.properties.Image.files[0]?.file.url;
-      const imageName = `${entry.id}.jpg`;
-      const getImage = downloadImage(imageUrl, imageName);
       
       return (
         <article key={entry.id}>
@@ -40,8 +48,7 @@ export default async function Index() {
         {location ? <li>{location}</li> : <></> }
         </ul>
         <figure>
-        {getImage}
-          <Image src={`/images/${imageName}`} alt={title} fill={true} />
+        <Image src={`/images/${entry.id}.jpg`} alt={title} fill={true} />
         </figure> 
         </article>
       )

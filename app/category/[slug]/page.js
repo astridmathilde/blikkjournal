@@ -25,7 +25,6 @@ export default async function Post({ params }) {
     <>
     {entries.map((entry) => {
       const title = entry.properties.Title.title[0]?.plain_text;
-      const image = entry.properties.Image.files[0]?.file.url;
       const location = entry.properties.Location.rich_text[0]?.plain_text;
       const time = entry.properties.Time.date?.start;    
       const dateTime = new Date(time).toJSON();
@@ -37,7 +36,7 @@ export default async function Post({ params }) {
           year: 'numeric',
         },
       );
-      
+
       return (
         <article key={entry.id}>
         <h2>{title}</h2>
@@ -46,7 +45,7 @@ export default async function Post({ params }) {
         {location ? <li>{location}</li> : <></> }
         </ul>
         <figure>
-        <Image src={image} alt={title} fill={true} />
+        <Image src={`/images/${entry.id}.jpg`} alt={title} fill={true} />
         </figure>
         </article>
       )
