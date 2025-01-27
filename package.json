@@ -1,17 +1,18 @@
 {
     "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "https": "next dev --experimental-https"
-  },
-  "dependencies": {
-    "@netlify/plugin-nextjs": "^5.9.4",
-    "@notionhq/client": "^2.2.15",
-    "next": "15.1.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "sass": "^1.83.4"
-  }
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "https": "next dev --experimental-https"
+    },
+    "dependencies": {
+        "@netlify/plugin-nextjs": "^5.9.4",
+        "@notionhq/client": "^2.2.15",
+        "next": "15.1.6",
+        "node-fetch": "^3.3.2",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "sass": "^1.83.4"
+    }
 }
