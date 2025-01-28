@@ -36,7 +36,8 @@ export default async function RootLayout({ children }) {
     {children}
     </main>
     <footer>
-    <p>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Mathilde Boberg</a> {(new Date().getFullYear())}</p>
+    <p>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Mathilde</a> {(new Date().getFullYear())}</p>
+    <p><Link href="#">Back to top</Link></p>
     </footer>
     </body>
     </html>
