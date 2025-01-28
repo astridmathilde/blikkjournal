@@ -26,7 +26,7 @@ figure {
   img {
     object-fit: cover;
     object-position: center;
-    image-orientation: inherit;
+    image-orientation: none;
 
     @media all and (min-width: 600px) {
       object-fit: contain;
