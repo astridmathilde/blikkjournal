@@ -41,7 +41,7 @@ export default async function Index() {
         <article key={entry.id}>
         <h2>{title}</h2>
         <ul>
-        {time ? <li key="time"><time dateTime={dateTime}>{date}</time></li> : <></> }
+        {time ? <li key="date"><time dateTime={dateTime}>{date}</time></li> : <></> }
         {location ? <li key="location">{location}</li> : <></> }
         </ul>
         <figure>
