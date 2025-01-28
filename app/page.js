@@ -17,7 +17,7 @@ export default async function Index() {
     const imgName = `${image.id}.jpg`;
     const imgUrl = image.properties.Image.files[0]?.file.url;
 
-    downloadImage(imgUrl, `./app/images/${imgName}`);
+    downloadImage(imgUrl, `./public/images/${imgName}`);
   });
   
   /* Displaying the content */
