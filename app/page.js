@@ -16,19 +16,19 @@ const entries = await getPosts();
 entries.forEach(image => {
   const imgName = `${image.id}.jpg`;
   const imgUrl = image.properties.Image.files[0]?.file.url;
-
+  
   downloadImage(imgUrl, `./public/images/${imgName}`);
 });
 
 /**
- * Displaying the rest of the content normally
- */
+* Displaying the rest of the content normally
+*/
 export default async function Index() {
   return (
     <>
     {entries.map((entry) => {
-      const title = entry.properties.Title.title[0]?.plain_text;
-      const location = entry.properties.Location.rich_text[0]?.plain_text;
+      const title = entry.properties?.Title?.title[0]?.plain_text || "";
+      const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
       const time = entry.properties.Time.date?.start;    
       const dateTime = new Date(time).toJSON();
       const date = new Date(time).toLocaleString(
