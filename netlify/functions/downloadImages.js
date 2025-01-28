@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import { downloadImage } from "../../lib/download-image";
+import path from "path";
 
 async function getImages() {
   const notion = new Client({
@@ -12,14 +13,19 @@ async function getImages() {
     database_id: databaseId,
   });
   
-  const entries = await response.results.json();
+  const entries = response.results;
   
-  entries.forEach(image => {
+  entries.forEach(async image => {
     const imgName = `${image.id}.jpg`;
     const imgUrl = image.properties.Image.files[0]?.file.url;
     
     if (imgUrl) {
-      downloadImage(imgUrl, `/tmp/${imgName}`);
+      const tmpPath = `/tmp/${imgName}`;
+      const publicPath = path.join(process.cwd(), "public/images", imgName);
+      
+      downloadImage(imgUrl, tmpPath).then(() => {
+        fs.renameSync(tmpPath, publicPath);
+      });
     }
   })
 }
