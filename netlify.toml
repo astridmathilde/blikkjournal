@@ -1,2 +1,9 @@
+[functions]
+  node_bundler = "esbuild"
+
+[[functions.schedule]]
+  path = "downloadImages"
+  cron = "0 */1 * * *" # Runs every hour
+  
 [[plugins]]
 package = "@netlify/plugin-nextjs"

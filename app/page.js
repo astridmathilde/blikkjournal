@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { getDatabase } from "/lib/notion";
-import { downloadImage } from "/lib/download-image";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -12,15 +11,6 @@ async function getPosts() {
 export default async function Index() {
   const entries = await getPosts();
   
-  /* Downloading the image for each entry */
-  entries.forEach(image => {
-    const imgName = `${image.id}.jpg`;
-    const imgUrl = image.properties.Image.files[0]?.file.url;
-
-    downloadImage(imgUrl, `./public/images/${imgName}`);
-  });
-  
-  /* Displaying the content */
   return (
     <>
     {entries.map((entry) => {
