@@ -1,4 +1,2 @@
-[[headers]]
-Content-Type = "application/json"
 [[plugins]]
 package = "@netlify/plugin-nextjs"
