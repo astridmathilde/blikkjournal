@@ -1,8 +1,2 @@
-[functions]
-
-[[functions.schedule]]
-function = "downloadImages" 
-cron = "5 4 * * *"
-  
 [[plugins]]
 package = "@netlify/plugin-nextjs"

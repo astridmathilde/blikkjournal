@@ -1,41 +1,18 @@
 import { Client } from "@notionhq/client";
+import { downloadImage } from "../../lib/download-image";
 
-const notion = new Client({
-  auth: process.env.NOTION_KEY,
-});
-
-const databaseId = process.env.NOTION_DATABASE_ID;
-
-import fs from "fs";
-import fetch from "node-fetch";
-
-async function downloadImage(url, filepath) {
-  try {
-    const response = await fetch(url);
-    const dest = fs.createWriteStream(filepath);
-    await new Promise((resolve, reject) => {
-      response.body.pipe(dest);
-      response.body.on("end", resolve);
-      dest.on("error", reject);
-    });
-    console.log(`${filepath.split("/")[3]} was downloaded successfully.`);
-  } catch (error) {
-    console.error(`Error downloading image: ${error}`);
-  }
-}
-
-export async function handler(event, context) {
-  const response = await notion.databases.query({
-    database_id: databaseId,
-    sorts: [
-      {
-        property: "Time",
-        direction: "descending"
-      }
-    ],
+async function getImages() {
+  const notion = new Client({
+    auth: process.env.NOTION_KEY,
   });
   
-  const entries = response.results;
+  const databaseId = process.env.NOTION_DATABASE_ID;
+  
+  const response = await notion.databases.query({
+    database_id: databaseId,
+  });
+  
+  const entries = await response.results.json();
   
   entries.forEach(image => {
     const imgName = `${image.id}.jpg`;
@@ -45,10 +22,14 @@ export async function handler(event, context) {
       downloadImage(imgUrl, `/tmp/${imgName}`);
     }
   })
-  
-  
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: "Images downloaded successfully" }),
-  };
+}
+
+export default async (req) => {
+  const { next_run } = await req.json()
+  await getImages();
+  console.log("Received event! Next invocation at:", next_run)
+}
+
+export const config = {
+  schedule: "@hourly"
 }
