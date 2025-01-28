@@ -1,7 +1,7 @@
 {
     "scripts": {
         "dev": "next dev",
-        "build": "next build",
+        "build": "node lib/prefetch-images.js && next build",
         "start": "next start",
         "lint": "next lint",
         "https": "next dev --experimental-https"
