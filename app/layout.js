@@ -15,6 +15,7 @@ async function displayProperties() {
 }
 
 export default async function RootLayout({ children }) {
+  console.log(images);
   const properties = await displayProperties();
   const menuItems = properties.properties.Category.select.options;
   
@@ -36,7 +37,7 @@ export default async function RootLayout({ children }) {
     {children}
     </main>
     <footer>
-    <p>© <a href="https://astridboberg.no" target="_blank" rel="external">Astrid Boberg</a> {(new Date().getFullYear())}</p>
+    <p>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Mathilde Boberg</a> {(new Date().getFullYear())}</p>
     </footer>
     </body>
     </html>
