@@ -35,14 +35,14 @@ export async function handler(event, context) {
     ],
   });
   
-  const entries = await response.results.json();
+  const entries = response.results;
   
   entries.forEach(image => {
     const imgName = `${image.id}.jpg`;
     const imgUrl = image.properties.Image.files[0]?.file.url;
     
     if (imgUrl) {
-      downloadImage(imgUrl, `./public/images/${imgName}`);
+      downloadImage(imgUrl, `/tmp/${imgName}`);
     }
   })
   
