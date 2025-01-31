@@ -12,18 +12,19 @@ export default async function Index() {
     const imgName = image.id;
     const imgUrl = image.properties.Image.files[0]?.file.url;
     
-    uploadFile(imgUrl, imgName);
+   // uploadFile(imgUrl, imgName);
   });
   
   return (
     <>
     {entries.map((entry) => {
       const image = retrieveFile(entry.id);
+
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
       const time = entry.properties.Time.date?.start;
       const createdTime = entry.created_time;
-
+     
       function entryDate() {
         if(time) {
           return time;
