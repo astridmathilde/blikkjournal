@@ -1,21 +1,24 @@
 import Image from "next/image";
 import { getDatabase } from "/lib/notion";
-import { uploadFile } from "/lib/subabase";
+import { uploadFile, retrieveFile } from "/lib/subabase";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default async function Index() {
   const entries = await getDatabase(databaseId);
-  
+
   /* Downloading the image for each entry */
-  entries.forEach(image => {
+    entries.forEach(image => {
+    const imgName = image.id;
     const imgUrl = image.properties.Image.files[0]?.file.url;
-    uploadFile(imgUrl);
+    
+    uploadFile(imgUrl, imgName);
   });
   
   return (
     <>
     {entries.map((entry) => {
+      const image = retrieveFile(entry.id);
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
       const time = entry.properties.Time.date?.start;    
@@ -28,6 +31,7 @@ export default async function Index() {
           year: 'numeric',
         },
       );
+
       return (
         <>
         <article key={entry.id}>
@@ -37,7 +41,7 @@ export default async function Index() {
         {location ? <li key="location">{location}</li> : <></> }
         </ul>
         <figure>
-        <Image src={`/images/${entry.id}.jpg`} alt={title} fill={true} />
+        <Image src={image} alt={title} fill={true} />
         </figure> 
         </article>
         </>
