@@ -1,15 +1,17 @@
 import Image from "next/image";
 import { getDatabase } from "/lib/notion";
+import { uploadFile } from "/lib/subabase";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
-async function getPosts() {
-  const database = await getDatabase(databaseId);
-  return database;
-}
-
 export default async function Index() {
-  const entries = await getPosts();
+  const entries = await getDatabase(databaseId);
+  
+  /* Downloading the image for each entry */
+  entries.forEach(image => {
+    const imgUrl = image.properties.Image.files[0]?.file.url;
+    uploadFile(imgUrl);
+  });
   
   return (
     <>
