@@ -21,9 +21,19 @@ export default async function Index() {
       const image = retrieveFile(entry.id);
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
-      const time = entry.properties.Time.date?.start;    
-      const dateTime = new Date(time).toJSON();
-      const date = new Date(time).toLocaleString(
+      const time = entry.properties.Time.date?.start;
+      const createdTime = entry.created_time;
+
+      function entryDate() {
+        if(time) {
+          return time;
+        } else {
+          return createdTime;
+        }
+      }
+
+      const dateTime = new Date(entryDate()).toJSON();
+      const date = new Date(entryDate()).toLocaleString(
         'en-US',
         {
           month: 'short',
@@ -37,7 +47,7 @@ export default async function Index() {
         <article key={entry.id}>
         <h2>{title}</h2>
         <ul>
-        {time ? <li key="date"><time dateTime={dateTime}>{date}</time></li> : <></> }
+        <li key="date"><time dateTime={dateTime}>{date}</time></li>
         {location ? <li key="location">{location}</li> : <></> }
         </ul>
         <figure>
