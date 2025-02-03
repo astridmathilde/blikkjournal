@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { changeProperty } from "/lib/notion";
 import { getProperties, getPostsByCategory } from "/lib/notion";
-import { retrieveFile } from "/lib/subabase";
+import { uploadFile, retrieveFile } from "/lib/subabase";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -17,6 +18,16 @@ export default async function Post({ params }) {
   const { slug } = await params;
   const entries = await getPostsByCategory(databaseId, slug);
   
+  /* Downloading the image for each entry */
+  entries.forEach(entry => {
+    const imgName = entry.id;
+    const imgUrl = entry.properties.Image.files[0]?.file.url;
+    
+    uploadFile(imgUrl, imgName);
+    
+  });
+  
+  /* Displaying each entry */
   return (
     <>
     {entries.map((entry) => {
@@ -24,13 +35,12 @@ export default async function Post({ params }) {
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
       const time = entry.properties.Time.date?.start;
-      const createdTime = entry.created_time;
       
       function entryDate() {
-        if(time) {
-          return time;
+        if(!time) {
+          return changeProperty(entry).properties?.Time.date?.start;
         } else {
-          return createdTime;
+          return time;
         }
       }
       

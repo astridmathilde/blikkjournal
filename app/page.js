@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getDatabase } from "/lib/notion";
+import { changeProperty } from "/lib/notion";
 import { uploadFile, retrieveFile } from "/lib/subabase";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
@@ -8,13 +9,15 @@ export default async function Index() {
   const entries = await getDatabase(databaseId);
   
   /* Downloading the image for each entry */
-  entries.forEach(image => {
-    const imgName = image.id;
-    const imgUrl = image.properties.Image.files[0]?.file.url;
+  entries.forEach(entry => {
+    const imgName = entry.id;
+    const imgUrl = entry.properties.Image.files[0]?.file.url;
     
-    // uploadFile(imgUrl, imgName);
+   uploadFile(imgUrl, imgName);
+    
   });
   
+  /* Displaying each entry */
   return (
     <>
     {entries.map((entry) => {
@@ -23,13 +26,12 @@ export default async function Index() {
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
       const time = entry.properties.Time.date?.start;
-      const createdTime = entry.created_time;
       
       function entryDate() {
-        if(time) {
-          return time;
+        if(!time) {
+          return changeProperty(entry).properties?.Time.date?.start;
         } else {
-          return createdTime;
+          return time;
         }
       }
       
