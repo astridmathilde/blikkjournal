@@ -8,26 +8,22 @@ export const databaseId = process.env.NOTION_DATABASE_ID;
 export default async function Index() {
   const entries = await getDatabase(databaseId);
   
-  /* Downloading the image for each entry */
-  entries.forEach(entry => {
-    const imgName = entry.id;
-    const imgUrl = entry.properties.Image.files[0]?.file.url;
-    
-   uploadFile(imgUrl, imgName);
-    
-  });
-  
   /* Displaying each entry */
   return (
     <>
     {entries.map((entry) => {
-      const image = retrieveFile(entry.id);
-      
-      const title = entry.properties?.Title?.title[0]?.plain_text || "";
-      const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
-      const time = entry.properties.Time.date?.start;
+      function addImage() {
+        const imgName = entry.id;
+        const imgUrl = entry.properties.Image.files[0]?.file.url;
+        const image = retrieveFile(entry.id);
+        
+        uploadFile(imgUrl, imgName);
+        return image;
+      }
       
       function entryDate() {
+        const time = entry.properties.Time.date?.start;
+        
         if(!time) {
           return changeProperty(entry).properties?.Time.date?.start;
         } else {
@@ -35,6 +31,8 @@ export default async function Index() {
         }
       }
       
+      const title = entry.properties?.Title?.title[0]?.plain_text || "";
+      const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
       const dateTime = new Date(entryDate()).toJSON();
       const date = new Date(entryDate()).toLocaleString(
         'en-US',
@@ -54,7 +52,7 @@ export default async function Index() {
         {location ? <li key="location">{location}</li> : <></> }
         </ul>
         <figure>
-        <Image src={image} alt={title} fill={true} />
+        <Image src={addImage()} alt={title} fill={true} />
         </figure> 
         </article>
         </>
