@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { changeProperty } from "/lib/notion";
 import { getProperties, getPostsByCategory } from "/lib/notion";
-import { uploadFile, retrieveFile } from "/lib/subabase";
+import { checkFiles, retrieveFile, uploadFile } from "/lib/subabase";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -17,18 +17,24 @@ export async function generateStaticParams() {
 export default async function Post({ params }) {
   const { slug } = await params;
   const entries = await getPostsByCategory(databaseId, slug);
+  const images = await checkFiles();
   
   return (
     <>
     {entries.map((entry) => {
-      function addImage() {
+      function getImage() {
+        const getImageIDs = images.map(image => `${image.name.replace(".jpg", "")}`);
+        
         const imgName = entry.id;
         const imgUrl = entry.properties.Image.files[0]?.file.url;
-        const image = retrieveFile(entry.id);
         
-        uploadFile(imgUrl, imgName);
-        return image;
-      }
+        if (! getImageIDs.includes(imgName)) {
+          uploadFile(imgUrl, imgName);
+          return retrieveFile(entry.id);
+        } else {
+          return retrieveFile(entry.id);
+        }
+      }    
       
       function entryDate() {
         const time = entry.properties.Time.date?.start;
@@ -60,7 +66,7 @@ export default async function Post({ params }) {
         {location ? <li key="location">{location}</li> : <></> }
         </ul>
         <figure>
-        <Image src={addImage()} alt={title} fill={true} />
+        <Image src={getImage()} alt={title} fill={true} />
         </figure>
         </article>
       );

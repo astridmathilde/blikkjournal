@@ -1,24 +1,34 @@
 import Image from "next/image";
 import { getDatabase } from "/lib/notion";
 import { changeProperty } from "/lib/notion";
-import { uploadFile, retrieveFile } from "/lib/subabase";
+import { retrieveFile, uploadFile, checkFiles } from "/lib/subabase";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
+async function displayEntries() {
+  const data = await getDatabase(databaseId);
+  return data.slice(0, 24);
+}
+
 export default async function Index() {
-  const entries = await getDatabase(databaseId);
+  const entries = await displayEntries();
+  const images = await checkFiles();
   
-  /* Displaying each entry */
   return (
     <>
     {entries.map((entry) => {
-      function addImage() {
+      function getImage() {
+        const getImageIDs = images.map(image => `${image.name.replace(".jpg", "")}`);
+        
         const imgName = entry.id;
         const imgUrl = entry.properties.Image.files[0]?.file.url;
-        const image = retrieveFile(entry.id);
         
-        uploadFile(imgUrl, imgName);
-        return image;
+        if (! getImageIDs.includes(imgName)) {
+          uploadFile(imgUrl, imgName);
+          return retrieveFile(entry.id);
+        } else {
+          return retrieveFile(entry.id);
+        }
       }
       
       function entryDate() {
@@ -52,7 +62,7 @@ export default async function Index() {
         {location ? <li key="location">{location}</li> : <></> }
         </ul>
         <figure>
-        <Image src={addImage()} alt={title} fill={true} />
+        <Image src={getImage()} alt={title} fill={true} />
         </figure> 
         </article>
         </>
