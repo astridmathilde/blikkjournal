@@ -19,7 +19,7 @@ export default async function Index() {
         const imgUrl = entry.properties.Image.files[0]?.file.url;
         
         if (! getImageIDs.includes(imgName)) {
-          uploadFile(imgUrl, imgName);
+         uploadFile(imgUrl, imgName);
         }
         return retrieveFile(entry.id);
       }

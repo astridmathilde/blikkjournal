@@ -4,8 +4,10 @@ import '../assets/scss/global.scss';
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
+export const siteTitle = "astrid's blikkjournal";
+
 export const metadata = {
-  title: "astrid.observer",
+  title: siteTitle,
   description: "a collection of things I have seen",
 };
 
@@ -24,7 +26,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
     <body>
     <header>
-    <h1><Link href="/">astrid.observer</Link></h1>
+    <h1><Link href="/">blikkjournal</Link></h1>
     <nav id="categories">
     <ul>
     <li key="all"><Link href="/">all</Link></li>

@@ -13,7 +13,7 @@ export default function Icon() {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 32,
+          fontSize: 40,
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -21,7 +21,7 @@ export default function Icon() {
           justifyContent: 'center',
         }}
       >
-       👀
+       📝
       </div>
     ),
     // ImageResponse options
