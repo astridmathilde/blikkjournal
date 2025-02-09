@@ -1,13 +1,12 @@
 import Link from "next/link";
-import { getProperties, getDatabase } from "/lib/notion";
-import { checkFiles } from "/lib/subabase";
+import { getProperties } from "/lib/notion";
 import '../assets/scss/global.scss';
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export const metadata = {
   title: "astrid.observer",
-  description: "a collection of things I have seen or noticed",
+  description: "a collection of things I have seen",
 };
 
 async function displayProperties() {
@@ -15,24 +14,12 @@ async function displayProperties() {
   return data;
 }
 
+
 export default async function RootLayout({ children }) {
   const properties = await displayProperties();
   const menuItems = properties.properties.Category.select.options;
-  const entries = await getDatabase(databaseId);
-  const images = await checkFiles();
   
-  // Check if the image is still in use, otherwise delete it
-  const getEntryIDs = entries.map(entry => `${entry.id}`);
-  
-  images.forEach((image) => {
-    const imgName = image.name;
-    const imgID = imgName.replace(".jpg", "");
-    
-    if (! getEntryIDs.includes(imgID)) {
-       console.log(`the image ${imgID + ".jpg"} should be deleted`);
-    }
-  });
-  
+
   return (
     <html lang="en">
     <body>

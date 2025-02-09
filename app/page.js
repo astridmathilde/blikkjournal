@@ -5,18 +5,13 @@ import { retrieveFile, uploadFile, checkFiles } from "/lib/subabase";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
-async function displayEntries() {
-  const data = await getDatabase(databaseId);
-  return data.slice(0, 24);
-}
-
 export default async function Index() {
-  const entries = await displayEntries();
+  const entries = await getDatabase(databaseId);
   const images = await checkFiles();
   
   return (
     <>
-    {entries.map((entry) => {
+    {entries.map((entry) => { 
       function getImage() {
         const getImageIDs = images.map(image => `${image.name.replace(".jpg", "")}`);
         
@@ -25,10 +20,8 @@ export default async function Index() {
         
         if (! getImageIDs.includes(imgName)) {
           uploadFile(imgUrl, imgName);
-          return retrieveFile(entry.id);
-        } else {
-          return retrieveFile(entry.id);
         }
+        return retrieveFile(entry.id);
       }
       
       function entryDate() {
@@ -41,6 +34,7 @@ export default async function Index() {
         }
       }
       
+      const image = retrieveFile(entry.id);
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
       const dateTime = new Date(entryDate()).toJSON();

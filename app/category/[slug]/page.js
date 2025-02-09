@@ -34,7 +34,7 @@ export default async function Post({ params }) {
         } else {
           return retrieveFile(entry.id);
         }
-      }    
+      }   
       
       function entryDate() {
         const time = entry.properties.Time.date?.start;
