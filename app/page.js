@@ -33,8 +33,7 @@ export default async function Index() {
           return time;
         }
       }
-      
-      const image = retrieveFile(entry.id);
+    
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
       const dateTime = new Date(entryDate()).toJSON();
