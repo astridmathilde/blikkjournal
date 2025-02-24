@@ -1,43 +1,87 @@
+import { unstable_cache } from "next/cache";
 import Image from "next/image";
-import { getDatabase } from "/lib/notion";
-import { changeProperty } from "/lib/notion";
-import { retrieveFile, uploadFile, checkFiles } from "/lib/subabase";
+import fetch from 'node-fetch';
 
-export const databaseId = process.env.NOTION_DATABASE_ID;
+/* Get data from Notion */
+import { Client } from "@notionhq/client";
 
+const databaseId = process.env.NOTION_DATABASE_ID;
+const notion = new Client({
+  auth: process.env.NOTION_KEY,
+});
+
+/* Access storage at Supabase */ 
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const getEntries = unstable_cache(
+  async() => {
+    const notionResponse = await notion.databases.query({
+      database_id: databaseId,
+      sorts: [
+        {
+          property: "Time",
+          direction: "descending"
+        }
+      ]
+    });
+    return notionResponse.results.slice(0, 24);
+  },
+  ['entries'],
+  { revalidate: 86400, tags: ['entries']}
+);
+
+/* Display content */
 export default async function Index() {
-  const entries = await getDatabase(databaseId);
-  const images = await checkFiles();
+  const entries = await getEntries();
   
   return (
+    /* Display properties */ 
+    
     <>
-    {entries.map((entry) => { 
-      function getImage() {
-        const getImageIDs = images.map(image => `${image.name.replace(".jpg", "")}`);
-        
+    {entries.map((entry) => {
+      /* Upload images */
+      async function uploadImage() {
         const imgName = entry.id;
         const imgUrl = entry.properties.Image.files[0]?.file.url;
         
-        if (! getImageIDs.includes(imgName)) {
-         uploadFile(imgUrl, imgName);
+        const fileName = `/public/${imgName}.jpg`;
+        const supaResponse = fetch(imgUrl); 
+        const fileData = supaResponse.arrayBuffer();
+        
+        const { error } = supabase.storage.from('images').upload(fileName, fileData, {
+          cacheControl: '86400',
+          contentType: 'image/webp'
+        });
+        if (error) {
+          // no nothing
+        } else {
+          console.log(`Succesfully uploaded ${fileName}`);
         }
-        return retrieveFile(entry.id);
       }
       
-      function entryDate() {
-        const time = entry.properties.Time.date?.start;
+      /* Retrieve images */
+      function getImage() {
+        const imgName = entry.id;
+        const {data, error} = supabase.storage.from('images').getPublicUrl(`public/${imgName}.jpg`);
         
-        if(!time) {
-          return changeProperty(entry).properties?.Time.date?.start;
+        if (error) {
+          uploadImage();
         } else {
-          return time;
+          return data.publicUrl;
         }
       }
-    
+      
+      /* Display entry content */
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
-      const dateTime = new Date(entryDate()).toJSON();
-      const date = new Date(entryDate()).toLocaleString(
+      const time = entry.properties.Time.date?.start;
+      const dateTime = new Date(time).toJSON();
+      const date = new Date(time).toLocaleString(
         'en-US',
         {
           month: 'short',
@@ -47,7 +91,6 @@ export default async function Index() {
       );
       
       return (
-        <>
         <article key={entry.id}>
         <h2>{title}</h2>
         <ul>
@@ -58,9 +101,9 @@ export default async function Index() {
         <Image src={getImage()} alt={title} fill={true} />
         </figure> 
         </article>
-        </>
-      )
+      );
     })}
     </>
   );
+  
 }
