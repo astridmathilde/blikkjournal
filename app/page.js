@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import Image from "next/image";
 import fetch from 'node-fetch';
+import styles from '../assets/scss/entry.module.scss';
 
 /* Access data from Notion */
 import { Client } from "@notionhq/client";
@@ -90,8 +91,8 @@ export default async function Index() {
       
       if (getImage()) {
       return (
-        <article key={entry.id}>
-        <h2>{title}</h2>
+        <article key={entry.id} className={styles.entry}>
+        <h2 className={styles.caption}>{title}</h2>
         <ul>
         <li key="date"><time dateTime={dateTime}>{date}</time></li>
         {location ? <li key="location">{location}</li> : <></> }

@@ -1,1 +1,31 @@
-@import "base/base";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #111111;
+  color: #f7f7f7;
+  font-family: "Montserrat", sans-serif;
+  text-transform: lowercase;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
