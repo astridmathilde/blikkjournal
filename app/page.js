@@ -1,7 +1,8 @@
 import { unstable_cache } from "next/cache";
 import Image from "next/image";
 import fetch from 'node-fetch';
-import styles from '../assets/scss/entry.module.scss';
+import grid from '../assets/scss/grid.module.scss';
+import entryStyle from '../assets/scss/entry.module.scss';
 
 /* Access data from Notion */
 import { Client } from "@notionhq/client";
@@ -59,7 +60,7 @@ export default async function Index() {
   const entries = await getEntries();
   
   return (
-    <>
+    <div className={grid.grid}>
     {entries.map((entry) => {
       /* Retrieve images */
       function getImage() {
@@ -69,8 +70,9 @@ export default async function Index() {
         const {data, error} = supabase.storage.from('images').getPublicUrl(`public/${imgName}.jpg`);
         
         if (error) {
-          uploadImage(imgName, imgUrl);
+          console.log(error);
         } else {
+          uploadImage(imgName, imgUrl);
           return data.publicUrl;
         }
       }
@@ -91,8 +93,8 @@ export default async function Index() {
       
       if (getImage()) {
       return (
-        <article key={entry.id} className={styles.entry}>
-        <h2 className={styles.caption}>{title}</h2>
+        <article key={entry.id} className={entryStyle.entry}>
+        <h2 className={entryStyle.caption}>{title}</h2>
         <ul>
         <li key="date"><time dateTime={dateTime}>{date}</time></li>
         {location ? <li key="location">{location}</li> : <></> }
@@ -104,7 +106,7 @@ export default async function Index() {
       );
       }
     })}
-    </>
+    </div>
   );
   
 }

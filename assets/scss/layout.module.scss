@@ -1,6 +1,6 @@
 .header {
   z-index: 1000;
-  position: fixed;
+  //position: fixed;
   top: 0;
   margin-left: 0.8vw;
   margin-right: 0.8vw;
@@ -9,16 +9,14 @@
   }
 
   .title {
-    position: fixed;
     margin: 0;
-    font-family: "Nyght Serif", serif;
     font-size: 18vw;
     line-height: 1;
   }
 }
 
 .content {
-  margin: 25vw 2vw;
+  margin: 2vw;
 }
 
 .footer {

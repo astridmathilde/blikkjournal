@@ -3,14 +3,10 @@
   display: flex;
   flex-direction: column;
 
-  + .entry {
-    margin-top: 1.5em;
-  }
-
   .caption {
     margin: 0;
-    font-weight: 400;
-    font-size: 0.9em;
+    font-weight: 600;
+    font-size: 1em;
   }
 
   figure {

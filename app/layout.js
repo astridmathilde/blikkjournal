@@ -50,7 +50,7 @@ export default async function RootLayout({ children }) {
     <main className={Ronzino.className + " " + styles.content}>
     {children}
     </main>
-    <footer className={styles.footer}>
+    <footer className={Ronzino.className + " " + styles.footer}>
     <p>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Mathilde</a> {(new Date().getFullYear())}</p>
     <p><Link href="#">Back to top</Link></p>
     </footer>
