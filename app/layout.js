@@ -2,13 +2,18 @@ import Link from "next/link";
 import localFont from 'next/font/local';
 import '../assets/scss/global.scss';
 import styles from '../assets/scss/layout.module.scss'
+import { getProperties } from "/lib/notion";
 
-export const siteTitle = "astrid's blikkjournal";
+export const siteTitle = "blikkjournal";
+export const siteDescription = "A collection of things and thoughts.";
 
 export const metadata = {
+  metadataBase: new URL('https://astrid.observer'),
   title: siteTitle,
-  description: "a collection of moments",
+  description: siteDescription,
 };
+
+const databaseId = process.env.NOTION_DATABASE_ID;
 
 const NyghtSerif = localFont({
   src: [
@@ -38,22 +43,40 @@ const Ronzino = localFont({
       style: 'normal',
     },
   ]
-})
+});
+
+async function displayProperties() {
+  const data = await getProperties(databaseId);
+  return data;
+}
 
 export default async function RootLayout({ children }) {
+  const properties = await displayProperties();
+  const menuItems = properties.properties.Category.select.options;
+  
   return (
     <html lang="en">
     <body>
+    <div className={styles.wrapper}>
     <header className={styles.header}>
-    <h1 className={NyghtSerif.className + " " + styles.title}><Link href="/">blikkjournal</Link></h1>
+    <h1 className={NyghtSerif.className + " " + styles.title}><Link href="/">{siteTitle}</Link></h1>
+    <nav className={Ronzino.className + " " + styles.categories} id="categories">
+    <ul>
+    <li key="all"><Link href="/">all</Link></li>
+    {menuItems.map((item) => (
+      <li key={item.id}><Link href={`/${item.name}`}>{item.name}</Link></li>
+    ))}
+    </ul>
+    </nav>
     </header>
     <main className={Ronzino.className + " " + styles.content}>
     {children}
     </main>
     <footer className={Ronzino.className + " " + styles.footer}>
-    <p>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Mathilde</a> {(new Date().getFullYear())}</p>
-    <p><Link href="#">Back to top</Link></p>
+    <p className={styles.colophon}>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Boberg</a> 2018–{(new Date().getFullYear())}</p>
+    <p className={styles.backtotop}><Link href="#">Back to top</Link></p>
     </footer>
+    </div>
     </body>
     </html>
   );

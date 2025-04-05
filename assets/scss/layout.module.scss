@@ -1,28 +1,84 @@
-.header {
-  z-index: 1000;
-  //position: fixed;
-  top: 0;
-  margin-left: 0.8vw;
-  margin-right: 0.8vw;
-  a {
-    text-decoration: none;
+.wrapper {
+  max-width: 650px;
+  margin: 0 auto;
+
+  @media all and (min-width: 1200px) {
+    max-width: 50vw;
   }
 
-  .title {
-    margin: 0;
-    font-size: 18vw;
-    line-height: 1;
+  .header {
+    width: 100%;
+
+    .title {
+      margin-top: 0;
+      font-size: 3em;
+      line-height: 1;
+
+      @media all and (min-width: 1200px) {
+        z-index: 1000;
+        position: fixed;
+        top: 10px;
+        margin-left: -1.6vw;
+        font-size: 10.181vw;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    .categories {
+      @media all and (min-width: 1200px) {
+        position: fixed;
+        top: 1em;
+        left: 1em;
+
+        a {
+          text-decoration: none;
+
+          &:hover,
+          &:focus {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
-}
 
-.content {
-  margin: 2vw;
-}
+  .content {
+    @media all and (min-width: 1200px) {
+      margin-top: 8.5vw;
+    }
+  }
 
-.footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2em;
-  margin-left: 2vw;
-  margin-right: 2vw;
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+
+    @media all and (min-width: 1200px) {
+      .colophon,
+      .backtotop {
+        bottom: 0;
+
+        a {
+          text-decoration: none;
+
+          &:hover,
+          &:focus {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .colophon {
+        position: fixed;
+        left: 1em;
+      }
+
+      .backtotop {
+        display: none;
+      }
+    }
+  }
 }

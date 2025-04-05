@@ -1,8 +1,8 @@
 import Image from "next/image";
-import entryStyle from '../assets/scss/entry.module.scss';
+import entryStyle from '../../assets/scss/entry.module.scss';
 
 /* Get data from Notion */
-import { getEntries } from "/lib/notion";
+import { getProperties, getPostsByCategory } from "/lib/notion";
 const databaseId = process.env.NOTION_DATABASE_ID;
 
 /* Get images from Supabase */
@@ -12,9 +12,18 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-/* Display content */
-export default async function Index() {
-  const entries = await getEntries(databaseId);
+export async function generateStaticParams() {
+  const response = await getProperties(databaseId);
+  const properties = response?.properties?.Category?.select?.options || [];
+  
+  return properties.map((property) => ({
+    slug: property.name
+  }));
+}
+
+export default async function Post({ params }) {
+  const { slug } = await params;
+  const entries = await getPostsByCategory(databaseId, slug);
   
   entries.forEach(entry => {
     const imgName = entry.id;
@@ -35,7 +44,6 @@ export default async function Index() {
           return data.publicUrl;
         }
       }
-      
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
       const time = entry.properties.Time.date?.start;
@@ -66,5 +74,4 @@ export default async function Index() {
     })}
     </>
   );
-  
 }

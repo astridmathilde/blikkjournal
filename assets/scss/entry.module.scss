@@ -2,36 +2,23 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-top: 2em;
 
   .caption {
-    margin: 0;
+    margin: 0.5em 0 0 0;
     font-weight: 600;
     font-size: 1em;
   }
 
   figure {
     position: relative;
+    margin: 0;
     order: -1;
-    display: flex;
-    flex-direction: column;
-    height: 130vw;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 1em;
-
-    @media all and (min-width: 600px) {
-      height: 700px;
-    }
 
     img {
-      object-fit: cover;
-      object-position: center;
-      image-orientation: none;
-
-      @media all and (min-width: 600px) {
-        object-fit: contain;
-        object-position: left;
-      }
+      position: relative !important;
+      max-width: 100% !important;
+      height: auto;
     }
   }
 }
