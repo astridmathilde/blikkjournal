@@ -37,7 +37,8 @@ export default async function Index() {
       }
       
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
-      const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
+      const city = entry.properties?.City?.select?.name || "";
+      const country = entry.properties?.Country?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       const dateTime = new Date(time).toJSON();
       const date = new Date(time).toLocaleString(
@@ -55,7 +56,7 @@ export default async function Index() {
           <h2 className={entryStyle.caption}>{title}</h2>
           <ul>
           <li key="date"><time dateTime={dateTime}>{date}</time></li>
-          {location ? <li key="location">{location}</li> : <></> }
+          {city || country ? <li key="location">{city}, {country}</li> : <></> }
           </ul>
           <figure>
           <Image src={getImage()} alt={title} fill={true} />
