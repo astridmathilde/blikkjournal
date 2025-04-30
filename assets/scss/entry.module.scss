@@ -12,13 +12,22 @@
 
   figure {
     position: relative;
-    margin: 0;
     order: -1;
+    display: flex;
+    flex-direction: column;
+    height: 130vw;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1em;
+
+    @media all and (min-width: 600px) {
+      height: 60vw;
+    }
 
     img {
-      position: relative !important;
-      max-width: 100% !important;
-      height: auto;
+      object-fit: cover;
+      object-position: center;
+      image-orientation: none;
     }
   }
 }
