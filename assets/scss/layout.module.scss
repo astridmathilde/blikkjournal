@@ -2,7 +2,7 @@
   max-width: 650px;
   margin: 0 auto;
 
-  @media all and (min-width: 1200px) {
+  @media all and (min-width: 600px) {
     max-width: 50vw;
   }
 
@@ -11,11 +11,11 @@
 
     .title {
       margin-top: 0;
-      font-size: 3em;
+      font-size: 10.181vw;
       line-height: 1;
-      color: #f7f7f7;
+      color: #e8e8e8;
 
-      @media all and (min-width: 1200px) {
+      @media all and (min-width: 600px) {
         z-index: 1000;
         position: fixed;
         top: 10px;
@@ -29,7 +29,7 @@
     }
 
     .categories {
-      @media all and (min-width: 1200px) {
+      @media all and (min-width: 600px) {
         position: fixed;
         top: 1em;
         left: 1em;
@@ -47,7 +47,7 @@
   }
 
   .content {
-    @media all and (min-width: 1200px) {
+    @media all and (min-width: 600px) {
       margin-top: 8.5vw;
     }
   }
@@ -56,12 +56,16 @@
     display: flex;
     justify-content: space-between;
     margin-top: 2em;
+    color: #7f7f7f;
 
-    @media all and (min-width: 1200px) {
+    @media all and (min-width: 600px) {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+
       .colophon,
       .backtotop {
-        bottom: 0;
-
         a {
           text-decoration: none;
 
@@ -73,8 +77,12 @@
       }
 
       .colophon {
-        position: fixed;
-        left: 1em;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 1em;
+        margin-right: 1em;
+        width: 100%;
+        font-size: 0.7em;
       }
 
       .backtotop {

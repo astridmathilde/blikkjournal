@@ -5,7 +5,7 @@ import styles from '../assets/scss/layout.module.scss'
 import { getProperties } from "/lib/notion";
 
 export const siteTitle = "blikkjournal";
-export const siteDescription = "A collection of things and thoughts.";
+export const siteDescription = "a collection of things and thoughts";
 
 export const metadata = {
   metadataBase: new URL('https://astrid.observer'),
@@ -73,7 +73,7 @@ export default async function RootLayout({ children }) {
     {children}
     </main>
     <footer className={Ronzino.className + " " + styles.footer}>
-    <p className={styles.colophon}>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Boberg</a> 2018–{(new Date().getFullYear())}</p>
+    <p className={styles.colophon}><span className={styles.author}>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Mathilde</a></span> <span className={styles.period}>2018–{(new Date().getFullYear())}</span></p>
     <p className={styles.backtotop}><Link href="#">Back to top</Link></p>
     </footer>
     </div>

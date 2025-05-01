@@ -6,13 +6,25 @@
 
 body {
   margin: 1.5em;
-  background: #080808;
-  color: #eeeeee;
+  background: #131313;
+  color: #d4d4d4;
   text-transform: lowercase;
-  font-size: 14px;
+  font-size: 3.7vw;
+
+  @media all and (min-width: 500px) {
+    font-size: 3vw;
+  }
 
   @media all and (min-width: 600px) {
-    font-size: 16px;
+    font-size: 2.5vw;
+  }
+
+  @media all and (min-width: 854px) {
+    font-size: 2vw;
+  }
+
+  @media all and (min-width: 1200px) {
+    font-size: 1.6vw;
   }
 }
 

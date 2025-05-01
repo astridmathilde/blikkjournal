@@ -2,7 +2,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 2em;
+  margin-top: 2.4vw;
+  font-size: 0.8em;
 
   .caption {
     margin: 0.5em 0 0 0;
@@ -18,7 +19,7 @@
     height: 130vw;
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 1em;
+    margin-bottom: 1vw;
 
     @media all and (min-width: 600px) {
       height: 60vw;
