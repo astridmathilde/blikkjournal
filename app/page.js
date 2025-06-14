@@ -1,6 +1,15 @@
 import Image from "next/image";
 import entryStyle from '../assets/scss/entry.module.scss';
 
+/* Get colors from image */
+import { useExtractColors } from "react-extract-colors";
+
+  const src = "https://zyogtonhvhmvovtskbnr.supabase.co/storage/v1/object/public/images/public/1ef83ae9-ec68-8063-8cd7-f2b4b04d1540.jpg";
+  const { colors, dominantColor, darkerColor, lighterColor, loading, error } =
+  useExtractColors(src);
+  
+  console.log(dominantColor);
+
 /* Get data from Notion */
 import { getEntries } from "/lib/notion";
 const databaseId = process.env.NOTION_DATABASE_ID;
@@ -22,6 +31,8 @@ export default async function Index() {
     
     uploadImage(imgName, imgUrl);
   });
+  
+  getColors();
   
   return (
     <>
@@ -59,7 +70,7 @@ export default async function Index() {
           {city || country ? <li key="location">{city}, {country}</li> : <></> }
           </ul>
           <figure>
-          <Image src={getImage()} alt={title} fill={true} />
+          <Image src={getImage()} alt={title} fill={true} priority={Index === 0} placeholder="blur" />
           </figure> 
           </article>
         );
