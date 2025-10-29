@@ -1,5 +1,5 @@
 import entryStyle from '../../assets/scss/entry.module.scss';
-import EntryImage from '../../components/entry-image';
+import Image from 'next/image';
 
 /* Get data from Notion */
 import { getProperties, getPostsByCategory } from "/lib/notion";
@@ -36,7 +36,8 @@ export default async function Post({ params }) {
           year: 'numeric',
         },
       );
-
+      
+      if (imgUrl) {
         return (
           <article key={entry.id} className={entryStyle.entry}>
           <h2 className={entryStyle.caption}>{title}</h2>
@@ -45,10 +46,11 @@ export default async function Post({ params }) {
           {city || country ? <li key="location">{city}, {country}</li> : <></> }
           </ul>
           <figure>
-          <EntryImage src={imgUrl} alt={title} entryID={entry.id} databaseId={databaseId} />
+          <Image src={imgUrl} alt={title} fill={true} />
           </figure> 
           </article>
         );
+      }
       
     })}
     </>
