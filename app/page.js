@@ -1,5 +1,5 @@
-import Image from "next/image";
-import entryStyle from '../assets/scss/entry.module.scss';
+import entryStyle from '/assets/scss/entry.module.scss';
+import EntryImage from '/components/entry-image';
 
 /* Get data from Notion */
 import { getEntries } from "/lib/notion";
@@ -26,22 +26,20 @@ export default async function Index() {
           year: 'numeric',
         },
       );
-      if (imgUrl) {
-        return (
-          <article key={entry.id} className={entryStyle.entry}>
-          <h2 className={entryStyle.caption}>{title}</h2>
-          <ul>
-          <li key="date"><time dateTime={dateTime}>{date}</time></li>
-          {city || country ? <li key="location">{city}, {country}</li> : <></> }
-          </ul>
-          <figure>
-          <Image src={imgUrl} alt={title} fill={true} priority={Index === 0} />
-          </figure> 
-          </article>
-        );
-      }
+      return (
+        <article key={entry.id} className={entryStyle.entry}>
+        <h2 className={entryStyle.caption}>{title}</h2>
+        <ul>
+        <li key="date"><time dateTime={dateTime}>{date}</time></li>
+        {city || country ? <li key="location">{city}, {country}</li> : <></> }
+        </ul>
+        <figure>
+        <EntryImage src={imgUrl} alt={title} entryId={entry.id} databaseId={databaseId} priority={Index === 0} />
+        </figure> 
+        </article>
+      );
     })}
     </>
   );
-    
+  
 }
