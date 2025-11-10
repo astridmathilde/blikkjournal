@@ -24,7 +24,7 @@ export default async function Post({ params }) {
   console.log(result);
   
   return (
-    <>
+    <div key="entries">
     {entries.map((entry) => {
       const imgUrl = entry.properties.Image.files[0]?.file.url;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
@@ -34,6 +34,6 @@ export default async function Post({ params }) {
       
       return <Entry img={imgUrl} title={title} city={city} country={country} time={time} />
     })}
-    </>
+    </div>
   );
 }

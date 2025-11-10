@@ -17,6 +17,8 @@ export default function EntryImage({src, alt, priority, entryId, databaseId}) {
       const singleEntry = allEntries.find((entry) => entry.id === entryId);
       
       if(singleEntry?.imageSrc) setImageSrc(singleEntry.properties.Image.files[0]?.file.url);
+
+      console.log("reloaded image")
     } catch(err) {
       console.error("woopsie");
     }
