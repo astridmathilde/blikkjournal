@@ -6,16 +6,19 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { getSingleEntry } from '/lib/notion';
+import { getEntriesNoCache } from '/lib/notion';
 
-
-export default function EntryImage({src, alt, priority,entryId, databaseId}) {
+export default function EntryImage({src, alt, priority, entryId, databaseId}) {
   const [imageSrc, setImageSrc] = useState(src);
 
   const reloadOnError = async() => {
     try {
-      const res = await getSingleEntry(databaseId, entryId);
-      if(res?.imageSrc) setImageSrc(res.properties.Image.files[0]?.file.url);
+      const allEntries = await getEntriesNoCache(databaseId);
+      const singleEntry = allEntries.find((entry) => entry.id === entryId);
+      
+      if(singleEntry?.imageSrc) setImageSrc(singleEntry.properties.Image.files[0]?.file.url);
+
+      console.log("reloaded image")
     } catch(err) {
       console.error("woopsie");
     }

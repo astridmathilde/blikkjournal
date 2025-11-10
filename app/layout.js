@@ -2,7 +2,7 @@ import Link from "next/link";
 import localFont from 'next/font/local';
 import '../assets/scss/global.scss';
 import styles from '../assets/scss/layout.module.scss'
-import { getProperties } from "/lib/notion";
+import { getDatabase } from "/lib/notion";
 
 export const siteTitle = "blikkjournal";
 export const siteDescription = "a collection of things and thoughts";
@@ -46,7 +46,7 @@ const Ronzino = localFont({
 });
 
 async function displayProperties() {
-  const data = await getProperties(databaseId);
+  const data = await getDatabase(databaseId);
   return data;
 }
 
