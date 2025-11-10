@@ -1,10 +1,9 @@
-import entryStyle from '../../assets/scss/entry.module.scss';
-import EntryImage from '../../components/entry-image';
 
 /* Get data from Notion */
 import { getDatabase } from "/lib/notion";
 import { getEntries } from "/lib/notion";
 const databaseId = process.env.NOTION_DATABASE_ID;
+import Entry from "/components/entry";
 
 /* Generate one page for each category */
 export async function generateStaticParams() {
@@ -32,29 +31,8 @@ export default async function Post({ params }) {
       const city = entry.properties?.City?.select?.name || "";
       const country = entry.properties?.Country?.select?.name || "";
       const time = entry.properties.Time.date?.start;
-      const dateTime = new Date(time).toJSON();
-      const date = new Date(time).toLocaleString(
-        'en-US',
-        {
-          month: 'short',
-          day: '2-digit',
-          year: 'numeric',
-        },
-      );
       
-      return (
-        <article key={entry.id} className={entryStyle.entry}>
-        <h2 className={entryStyle.caption}>{title}</h2>
-        <ul>
-        <li key="date"><time dateTime={dateTime}>{date}</time></li>
-        {city || country ? <li key="location">{city}, {country}</li> : <></> }
-        </ul>
-        <figure>
-        <EntryImage src={imgUrl} alt={title} entryID={entry.id} databaseId={databaseId} />
-        </figure> 
-        </article>
-      );
-      
+      return <Entry img={imgUrl} title={title} city={city} country={country} time={time} />
     })}
     </>
   );
