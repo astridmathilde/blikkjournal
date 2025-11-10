@@ -2,11 +2,13 @@ import entryStyle from '../../assets/scss/entry.module.scss';
 import EntryImage from '../../components/entry-image';
 
 /* Get data from Notion */
-import { getProperties, getPostsByCategory } from "/lib/notion";
+import { getDatabase } from "/lib/notion";
+import { getEntries } from "/lib/notion";
 const databaseId = process.env.NOTION_DATABASE_ID;
 
+/* Generate one page for each category */
 export async function generateStaticParams() {
-  const response = await getProperties(databaseId);
+  const response = await getDatabase(databaseId);
   const properties = response?.properties?.Category?.select?.options || [];
   
   return properties.map((property) => ({
@@ -17,7 +19,10 @@ export async function generateStaticParams() {
 /* Display the content */
 export default async function Post({ params }) {
   const { slug } = await params;
-  const entries = await getPostsByCategory(databaseId, slug);
+  
+  const result = await getEntries(databaseId);
+  const entries = result.filter((entry) => entry.properties?.Category?.select?.name === slug);
+  console.log(result);
   
   return (
     <>
@@ -36,19 +41,19 @@ export default async function Post({ params }) {
           year: 'numeric',
         },
       );
-
-        return (
-          <article key={entry.id} className={entryStyle.entry}>
-          <h2 className={entryStyle.caption}>{title}</h2>
-          <ul>
-          <li key="date"><time dateTime={dateTime}>{date}</time></li>
-          {city || country ? <li key="location">{city}, {country}</li> : <></> }
-          </ul>
-          <figure>
-          <EntryImage src={imgUrl} alt={title} entryID={entry.id} databaseId={databaseId} />
-          </figure> 
-          </article>
-        );
+      
+      return (
+        <article key={entry.id} className={entryStyle.entry}>
+        <h2 className={entryStyle.caption}>{title}</h2>
+        <ul>
+        <li key="date"><time dateTime={dateTime}>{date}</time></li>
+        {city || country ? <li key="location">{city}, {country}</li> : <></> }
+        </ul>
+        <figure>
+        <EntryImage src={imgUrl} alt={title} entryID={entry.id} databaseId={databaseId} />
+        </figure> 
+        </article>
+      );
       
     })}
     </>
