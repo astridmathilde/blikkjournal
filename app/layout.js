@@ -13,8 +13,6 @@ export const metadata = {
   description: siteDescription,
 };
 
-const databaseId = process.env.NOTION_DATABASE_ID;
-
 const NyghtSerif = localFont({
   src: [
     {
@@ -46,7 +44,7 @@ const Ronzino = localFont({
 });
 
 async function displayProperties() {
-  const data = await getDatabase(databaseId);
+  const data = await getDatabase();
   return data;
 }
 
