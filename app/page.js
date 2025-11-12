@@ -1,6 +1,5 @@
 /* Get data from Notion */
 import { getEntries } from "/lib/notion";
-import { getEntry } from "/lib/notion";
 import Entry from "/components/entry";
 
 /* Display content */
