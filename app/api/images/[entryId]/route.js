@@ -13,8 +13,8 @@ export async function GET(request, { params }) {
   const { entryId } = await params;
   
   try {
-    const singleEntry = await getEntry(entryId); 
-    const imgUrl = singleEntry.properties.Image.files[0]?.file.url;     
+    const entry = await getEntry(entryId); 
+    const imgUrl = entry.properties.Image.files[0]?.file.url;     
     const imageResponse = await fetch(imgUrl);
     
     const headers = {

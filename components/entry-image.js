@@ -5,7 +5,7 @@
 import Image from 'next/image';
 
 export default function EntryImage({ entryId, alt, priority }) {
-  const proxySrc = `/api/${entryId}`;
+  const proxySrc = `/api/images/${entryId}`;
   
   return (
     <Image 
