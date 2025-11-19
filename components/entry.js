@@ -21,9 +21,8 @@ export default function Entry(entry) {
   
   return (
     <article key={entryId} className={styles.entry}>
-    <h2 className={styles.caption}>{title}</h2>
+    <h2 className={styles.caption}><time dateTime={dateTime}>{date}</time></h2>
     <ul>
-    <li key="date"><time dateTime={dateTime}>{date}</time></li>
     {city || country ? <li key="location">{city}, {country}</li> : <></> }
     </ul>
     <figure>
