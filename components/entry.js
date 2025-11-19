@@ -23,7 +23,7 @@ export default function Entry(entry) {
     <article key={entryId} className={styles.entry}>
     <h2 className={styles.caption}>{title}</h2>
     <ul>
-    <li key="time"><time dateTime={dateTime}>{date}</time></li>
+    <li className={styles.date} key="time"><time dateTime={dateTime}>{date}</time></li>
     {place ? <li className={styles.place} key="place">{place}</li> : <></> }
     {city && place !==  "Oslo School of Architecture and Design" ? <li className={styles.city} key="city">{city}</li> : <></> }
     </ul>

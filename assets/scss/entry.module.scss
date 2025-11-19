@@ -5,10 +5,18 @@
   margin-top: 2.4vw;
   font-size: 0.8em;
 
+  @media all and (min-width: 600px) {
+    margin-top: 1.8vw;
+  }
+
   .caption {
     margin: 0.5em 0 0 0;
     font-weight: 600;
     font-size: 1em;
+
+    @media all and (min-width: 600px) {
+      margin-top: 0.1em;
+    }
   }
 
   figure {
@@ -33,13 +41,25 @@
   }
 
   ul {
-    li.place,
-    li.city {
+    @media all and (min-width: 600px) {
+      margin-top: 0.1em;
+    }
+
+    li {
       display: inline;
 
-      + li {
-        &:before {
-          content: ", ";
+      &.place,
+      &.city {
+        + li {
+          &:before {
+            content: ", ";
+          }
+        }
+      }
+
+      &.date {
+        &:after {
+          content: " @ ";
         }
       }
     }
