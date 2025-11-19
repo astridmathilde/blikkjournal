@@ -31,4 +31,17 @@
       image-orientation: none;
     }
   }
+
+  ul {
+    li.place,
+    li.city {
+      display: inline;
+
+      + li {
+        &:before {
+          content: ", ";
+        }
+      }
+    }
+  }
 }

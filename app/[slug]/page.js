@@ -19,7 +19,6 @@ export default async function Post({ params }) {
   
   const result = await getEntries();
   const entries = result.filter((entry) => entry.properties?.Category?.select?.name === slug);
-  console.log(result);
   
   return (
     <div key="entries">
@@ -27,11 +26,12 @@ export default async function Post({ params }) {
       const entryId = entry.id;
       const imgUrl = entry.properties.Image.files[0]?.file.url;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
+      const place = entry.properties?.Place?.select?.name || "";
       const city = entry.properties?.City?.select?.name || "";
       const country = entry.properties?.Country?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       
-      return <Entry key={entryId} id={entryId} img={imgUrl} title={title} city={city} country={country} time={time} />
+      return <Entry key={entryId} id={entryId} img={imgUrl} title={title} city={city} place={place} country={country} time={time} />
     })}
     </div>
   );
