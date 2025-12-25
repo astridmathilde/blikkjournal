@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import styles from '../assets/scss/entry.module.scss';
+import EntryImage from './entry-image';
 
 export default function Entry(entry) {
   const entryId = entry.id;
@@ -30,7 +30,7 @@ export default function Entry(entry) {
     </ul>
     </div>
     <figure>
-    <Image src={imgUrl} alt={title} fill={true}  />
+    <EntryImage src={imgUrl} alt={title} entryId={entryId}/>
     </figure> 
     </article>
   );

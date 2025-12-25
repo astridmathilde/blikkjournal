@@ -1,3 +1,7 @@
+/**
+ * App -> layout.js
+ */
+
 import Link from "next/link";
 import '../assets/scss/global.scss';
 import styles from '../assets/scss/layout.module.scss'
