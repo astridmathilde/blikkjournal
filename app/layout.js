@@ -16,7 +16,6 @@ export const metadata = {
   description: siteDescription,
 };
 
-
 async function displayProperties() {
   const data = await getDatabase();
   return data;
