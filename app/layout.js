@@ -6,6 +6,10 @@ import { getDatabase } from "/lib/notion";
 export const siteTitle = "blikk.directory";
 export const siteDescription = "a collection of things and thoughts and everyday observations";
 
+export const viewport = {
+  colorScheme: 'light dark',
+}
+
 export const metadata = {
   metadataBase: new URL('https://blikk.directory'),
   title: siteTitle,
