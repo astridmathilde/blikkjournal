@@ -4,17 +4,15 @@
 * @url https://developers.notion.com/reference/webhooks
 */
 
-import { revalidatePath, revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
-export async function POST() {
-  revalidateTag('entries');
-  revalidateTag('singleEntry');
-  revalidateTag('properties')
-  revalidatePath('/');
+export async function POST(request) {
+  const response = JSON.parse(await request.text());
   
-  return NextResponse.json({ 
-    revalidated: true, 
-    now: Date.now() 
-  });
+  if (response) {
+    console.log(response);
+    return NextResponse.json({ 
+      message: 'hei:)' 
+    });
+  }
 }
