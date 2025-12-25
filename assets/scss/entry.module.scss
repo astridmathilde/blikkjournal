@@ -2,16 +2,22 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 2.4vw;
-  font-size: 0.8em;
+
+  + .entry {
+    margin-top: 1em;
+  }
+
+  @media all and (min-width: 600px) {
+    font-size: 0.9em;
+  }
 
   @media all and (min-width: 600px) {
     margin-top: 1.8vw;
   }
 
   .caption {
-    margin: 0.5em 0 0 0;
-    font-weight: 600;
+    margin: 0;
+    font-weight: 400;
     font-size: 1em;
 
     @media all and (min-width: 600px) {
@@ -25,9 +31,7 @@
     display: flex;
     flex-direction: column;
     height: 130vw;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 1vw;
+    margin: 0 0 1vw 0;
 
     @media all and (min-width: 600px) {
       height: 60vw;
