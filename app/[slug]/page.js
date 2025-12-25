@@ -1,7 +1,7 @@
 /* Get data from Notion */
-import { getDatabase } from "/lib/notion";
-import { getEntries } from "/lib/notion";
-import Entry from "/components/entry";
+import { getDatabase } from "../../lib/notion";
+import { getEntries } from "../../lib/notion";
+import Entry from "../../components/entry";
 
 /* Generate one page for each category */
 export async function generateStaticParams() {

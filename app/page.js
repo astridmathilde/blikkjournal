@@ -1,6 +1,6 @@
 /* Get data from Notion */
-import { getEntries } from "/lib/notion";
-import Entry from "/components/entry";
+import { getEntries } from "../lib/notion";
+import Entry from "../components/entry";
 
 /* Display content */
 export default async function Index() {

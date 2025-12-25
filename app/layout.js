@@ -1,7 +1,7 @@
 import Link from "next/link";
 import '../assets/scss/global.scss';
 import styles from '../assets/scss/layout.module.scss'
-import { getDatabase } from "/lib/notion";
+import { getDatabase } from "../lib/notion";
 
 export const siteTitle = "blikk.directory";
 export const siteDescription = "a collection of things and thoughts and everyday observations";
