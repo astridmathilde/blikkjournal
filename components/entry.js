@@ -8,7 +8,7 @@ export default function Entry(entry) {
   const city = entry.city;
   const country = entry.country;
   const time = entry.time;
-
+  
   const dateTime = new Date(time).toJSON();
   const date = new Date(time).toLocaleString(
     'en-US',
@@ -21,11 +21,13 @@ export default function Entry(entry) {
   
   return (
     <article key={entryId} className={styles.entry}>
+    <div className={styles.content}>
     <h2 className={styles.caption}>{title}</h2>
     <ul>
     <li key="date"><time dateTime={dateTime}>{date}</time></li>
     {city || country ? <li key="location">{city}, {country}</li> : <></> }
     </ul>
+    </div>
     <figure>
     <EntryImage src={imgUrl} alt={title} entryId={entryId}/>
     </figure> 
