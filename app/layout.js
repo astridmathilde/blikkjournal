@@ -7,7 +7,7 @@ export const siteTitle = "blikk.directory";
 export const siteDescription = "a collection of things and thoughts and everyday observations";
 
 export const viewport = {
-  colorScheme: 'light dark',
+  colorScheme: 'light',
 }
 
 export const metadata = {
