@@ -15,6 +15,11 @@ export async function GET(request, { params }) {
   try {
     const entry = await getEntry(entryId); 
     const imgUrl = entry.properties.Image.files[0]?.file.url;     
+    
+    if (!entry || !imgUrl) {
+      return new NextResponse(JSON.stringify({ error: 'Image not found' }), { status: 404 });
+    }
+
     const imageResponse = await fetch(imgUrl);
     
     const headers = {
@@ -27,6 +32,7 @@ export async function GET(request, { params }) {
   } catch (error) {
     console.error("API proxy error:", error);
     return new NextResponse(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
+    
   }
 }
 
