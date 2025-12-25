@@ -8,13 +8,25 @@ import { NextResponse } from 'next/server';
 export async function POST(request) {
   try {
     const response = JSON.parse(await request.text());
+    
     /* receiving things from the webhook here */
     if (response) {
       console.log(response);
+      return NextResponse.json({ 
+        message: 'hei:)' 
+      });
+    }
+    return NextResponse.json({ 
+      received: true,
+      event_type: response.type 
+    });
+  }
+    /* error handling stuff */
+    catch (error) {
+      console.error(error);
+      return NextResponse.json({ 
+        error: 'neeei:(',
+        message: error.message 
+      }, { status: 500 });
     }
   }
-  /* error handling stuff */
-  catch (error) {
-    console.error(error);
-  }
-}
