@@ -16,17 +16,27 @@ export async function POST(request) {
         message: 'hei:)' 
       });
     }
+    
+    /* revalidating the cache if there is any changes */
+    if (response.type === 'page.properties_updated' || response.type === 'page.created') {
+      revalidateTag('entries');
+      revalidateTag('singleEntry');
+      
+      console.log('cache revalidated for', response.type);
+    }
+    
+    /* response thing */
     return NextResponse.json({ 
       received: true,
       event_type: response.type 
     });
   }
-    /* error handling stuff */
-    catch (error) {
-      console.error(error);
-      return NextResponse.json({ 
-        error: 'neeei:(',
-        message: error.message 
-      }, { status: 500 });
-    }
+  /* error handling stuff */
+  catch (error) {
+    console.error(error);
+    return NextResponse.json({ 
+      error: 'neeei:(',
+      message: error.message 
+    }, { status: 500 });
   }
+}
