@@ -3,7 +3,7 @@
 * @url https://developers.notion.com/reference/webhooks
 */
 
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {
@@ -12,9 +12,9 @@ export async function POST(request) {
     
     /* revalidating the cache if there is any changes */
     if (response.type === 'page.properties_updated' || response.type === 'page.created' || response.type === 'page.deleted' || response.type === 'page.undeleted') {
-      updateTag('entries');
-      updateTag('singleEntry');
-      updateTag('properties');
+      revalidateTag('entries', 'max');
+      revalidateTag('singleEntry', 'max');
+      revalidateTag('properties', 'max');
       /* logging everything for debugging */
       console.log('cache revalidated for', response.type);
     }
@@ -25,7 +25,7 @@ export async function POST(request) {
       event_type: response.type 
     });
   }
-
+  
   /* error handling stuff */
   catch (error) {
     console.error(error);
