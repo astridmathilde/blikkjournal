@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic'; 
 
-export async function GET({ params }) {
+export async function GET(request, { params }) {
   const { entryId } = await params;
   
   try {
