@@ -9,22 +9,17 @@ import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic'; 
 
-export async function GET(request, { params }) {
+export async function GET({ params }) {
   const { entryId } = await params;
   
   try {
     const entry = await getEntry(entryId); 
     const imgUrl = entry.properties.Image.files[0]?.file.url;     
-    
-    if (!entry || !imgUrl) {
-      return new NextResponse(JSON.stringify({ error: 'Image not found' }), { status: 404 });
-    }
-
     const imageResponse = await fetch(imgUrl);
     
     const headers = {
       'Content-Type': imageResponse.headers.get('content-type'),
-      'Cache-Control': 'public, max-age=60, immutable', // 30 days
+      'Cache-Control': 'public, max-age=2592000, immutable', // 30 days
     };
     
     return new NextResponse(imageResponse.body, { headers });
@@ -32,7 +27,6 @@ export async function GET(request, { params }) {
   } catch (error) {
     console.error("API proxy error:", error);
     return new NextResponse(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
-    
   }
 }
 
