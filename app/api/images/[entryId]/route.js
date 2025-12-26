@@ -24,7 +24,7 @@ export async function GET(request, { params }) {
     
     const headers = {
       'Content-Type': imageResponse.headers.get('content-type'),
-      'Cache-Control': 'public, max-age=2592000, immutable', // 30 days
+      'Cache-Control': 'public, max-age=60, immutable', // 30 days
     };
     
     return new NextResponse(imageResponse.body, { headers });
