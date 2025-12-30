@@ -34,28 +34,6 @@ export default async function RootLayout({ children }) {
   const properties = await displayProperties();
   const menuItems = properties.properties.Category.select.options;
   const entries = await getDatabase(databaseId); 
-  const images = await checkFiles();
-  
-  /* Check if the images are still in use and delete if it's no longer there, but upload it if the storage does not already contain an image for the post */
-  entries.forEach((entry) => {
-    const entryID = entry.id;
-    const imgUrl = entry.properties.Image.files[0]?.file.url;
-    
-    uploadFile(imgUrl, entryID);
-  });
-  
-  images.forEach((image) => {
-    const imgName = image.name;
-    const imgID = imgName.replace(".jpg", "");
-    
-    entries.map((entry) => {
-      const entryID = entry.id;
-      
-      if (! entryID.includes(imgID)) {
-        deleteFile(imgName);
-      } 
-    });
-  });
   
   return (
     <html lang="en">
