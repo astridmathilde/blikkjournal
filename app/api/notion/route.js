@@ -13,6 +13,7 @@ export async function POST(request) {
     /* revalidating the cache if there is any changes */
     if (response.type === 'page.properties_updated' || response.type === 'page.created' || response.type === 'page.deleted' || response.type === 'page.undeleted') {
       revalidateTag('entries', 'max');
+      revalidateTag('singleEntry', 'max');
       revalidateTag('properties', 'max');
       /* logging everything for debugging */
       console.log('cache revalidated for', response.type);

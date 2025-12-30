@@ -14,6 +14,7 @@ export default function EntryImage({ entryId, alt, priority }) {
     alt={alt}
     fill={true}
     priority={priority}
+    unoptimized
     />
   );
 }
