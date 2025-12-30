@@ -1,0 +1,71 @@
+.entry {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  + .entry {
+    margin-top: 2em;
+  }
+
+  @media all and (min-width: 600px) {
+    font-size: 0.9em;
+  }
+
+  @media all and (min-width: 600px) {
+    margin-top: 1.8vw;
+  }
+
+  .caption {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1em;
+
+    @media all and (min-width: 600px) {
+      margin-top: 0.1em;
+    }
+  }
+
+  figure {
+    position: relative;
+    order: -1;
+    display: flex;
+    flex-direction: column;
+    height: 130vw;
+    margin: 0 0 1vw 0;
+
+    @media all and (min-width: 600px) {
+      height: 60vw;
+    }
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      image-orientation: none;
+    }
+  }
+
+  ul {
+    @media all and (min-width: 600px) {
+      margin-top: 0.1em;
+    }
+
+    li {
+      display: inline;
+
+      &.place,
+      &.city {
+        + li {
+          &:before {
+            content: ", ";
+          }
+        }
+      }
+
+      &.date {
+        &:after {
+          content: " @ ";
+        }
+      }
+    }
+  }
+}

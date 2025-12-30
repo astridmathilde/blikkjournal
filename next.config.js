@@ -7,10 +7,11 @@ const nextConfig = {
  
 module.exports = {
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.supabase.co'
+        hostname: '**.amazonaws.com'
       }
     ],
   },

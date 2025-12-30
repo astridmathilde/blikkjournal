@@ -1,54 +1,29 @@
-import Image from "next/image";
-import { getDatabase } from "/lib/notion";
-import { changeProperty } from "/lib/notion";
-import { retrieveFile } from "/lib/subabase";
+/**
+* App -> page.js
+*/
 
-export const databaseId = process.env.NOTION_DATABASE_ID;
+/* Get data from Notion */
+import { getEntries } from "../lib/notion";
+import Entry from "../components/entry";
 
+/* Display content */
 export default async function Index() {
-  const entries = await getDatabase(databaseId);
+  const entries = await getEntries();
+  
   return (
-    <>
-    {entries.map((entry) => {
-      const image = retrieveFile(entry.id);
-      
+    <div key="entries">
+    {entries.map((entry) => {      
+      const entryId = entry.id;
+      const proxySrc = `/api/images/${entryId}`;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
-      const location = entry.properties?.Location?.rich_text[0]?.plain_text || "";
+      const place = entry.properties?.Place?.select?.name || "";
+      const city = entry.properties?.City?.select?.name || "";
+      const country = entry.properties?.Country?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       
-      function entryDate() {
-        if(!time) {
-          return changeProperty(entry).properties?.Time.date?.start;
-        } else {
-          return time;
-        }
-      }
-      
-      const dateTime = new Date(entryDate()).toJSON();
-      const date = new Date(entryDate()).toLocaleString(
-        'en-US',
-        {
-          month: 'short',
-          day: '2-digit',
-          year: 'numeric',
-        },
-      );
-      
-      return (
-        <>
-        <article key={entry.id}>
-        <h2>{title}</h2>
-        <ul>
-        <li key="date"><time dateTime={dateTime}>{date}</time></li>
-        {location ? <li key="location">{location}</li> : <></> }
-        </ul>
-        <figure>
-        <Image src={image} alt={title} fill={true} />
-        </figure> 
-        </article>
-        </>
-      )
+      return <Entry key={entryId} id={entryId} place={place} img={proxySrc} title={title} city={city} country={country} time={time} />
     })}
-    </>
+    </div>
   );
+  
 }

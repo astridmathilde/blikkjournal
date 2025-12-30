@@ -1,1 +1,48 @@
-@import "base/base";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 1.5em;
+  text-transform: lowercase;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 3.7vw;
+
+  @media all and (min-width: 500px) {
+    font-size: 3vw;
+  }
+
+  @media all and (min-width: 600px) {
+    font-size: 2.5vw;
+  }
+
+  @media all and (min-width: 854px) {
+    font-size: 2vw;
+  }
+
+  @media all and (min-width: 1200px) {
+    font-size: 1.6vw;
+  }
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
