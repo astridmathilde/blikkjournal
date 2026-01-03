@@ -1,6 +1,6 @@
 .wrapper {
   max-width: 650px;
-  margin: 0 0 0 auto;
+  margin: 0 auto;
 
   @media all and (min-width: 600px) {
     max-width: 60vw;
@@ -8,20 +8,6 @@
 
   .header {
     width: 100%;
-
-    .title {
-      margin-top: 0;
-      line-height: 1;
-      font-size: 1em;
-      font-weight: 400;
-    }
-
-    @media all and (min-width: 600px) {
-      z-index: 1000;
-      position: fixed;
-      top: 1em;
-      left: 1em;
-    }
   }
 
   .content {
@@ -29,32 +15,6 @@
 
     @media all and (min-width: 600px) {
       margin-top: 1em;
-    }
-  }
-
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2em;
-
-    @media all and (min-width: 600px) {
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      font-size: 0.9em;
-
-      .colophon {
-        display: flex;
-        justify-content: space-between;
-        margin-left: 1em;
-        margin-right: 1em;
-        width: 100%;
-      }
-
-      .backtotop {
-        display: none;
-      }
     }
   }
 }

@@ -1,0 +1,40 @@
+.entry {
+  position: relative;
+  display: flex;
+
+  @media all and (min-width: 600px) {
+    font-size: 0.9em;
+  }
+
+  .caption {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1em;
+  }
+
+  figure {
+    position: relative;
+    order: -2;
+    margin: 0;
+  }
+
+  .name {
+    order: -1;
+    margin: 0;
+  }
+
+  .metadata {
+    .place,
+    .city,
+    .country {
+      display: inline;
+
+      + .city,
+      + .country {
+        &:before {
+          content: ", ";
+        }
+      }
+    }
+  }
+}

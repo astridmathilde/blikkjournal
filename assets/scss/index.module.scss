@@ -1,0 +1,39 @@
+.index {
+  display: flex;
+  flex-direction: column;
+  overflow-x: scroll;
+  margin-top: 2em;
+  font-size: 0.9em;
+  gap: 1em;
+
+  @media all and (min-width: 600px) {
+    margin-top: 1em;
+  }
+
+  article {
+    min-width: 250vw;
+    gap: 1em;
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+
+    ul {
+      display: flex;
+      gap: 1em;
+      width: 50%;
+
+      li {
+        display: inline-flex;
+
+        + li {
+          &:before {
+            content: none !important;
+          }
+        }
+      }
+    }
+  }
+}
