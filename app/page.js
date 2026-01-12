@@ -14,7 +14,6 @@ export default async function Index() {
   
   return (
     <>
-    <Filter />
     <div key="entries" className={styles.gallery}>
     {entries.map((entry) => {      
       const entryId = entry.id;

@@ -8,7 +8,6 @@ export default async function Index() {
   
   return (
     <>
-    <Filter />
     <table className={styles.index}>
     <thead>
     <tr>
