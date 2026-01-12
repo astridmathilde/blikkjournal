@@ -7,6 +7,7 @@ import Link from "next/link";
 import '../assets/scss/global.scss';
 import styles from '../assets/scss/layout.module.scss'
 import utils from '../assets/scss/utils.module.scss' 
+import Navigation from '../components/navigation';
 
 export const siteTitle = "blikkjournal";
 export const siteDescription = "a collection of moments and everyday observations";
@@ -47,12 +48,7 @@ export default async function RootLayout({ children }) {
     <h1 className={utils.screen_reader_text}><Link href="/">{siteTitle}</Link></h1>
     <p className={styles.description}><em>blikkjournal</em> is a collection of moments 
     and everyday observations.</p>
-    <nav className={styles.navigation} id="navigation">
-    <ul>
-    <li key="album"><Link href="/">album</Link></li>
-    <li key="index"><Link href="index">index</Link></li>
-    </ul>
-    </nav>
+    <Navigation />
     </header>
     
     <main className={styles.content}>
