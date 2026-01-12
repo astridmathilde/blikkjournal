@@ -2,12 +2,20 @@
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   gap: 10vw;
   margin-top: 5vw;
   margin-left: 5vw;
   margin-right: 5vw;
+
+  @media all and (min-width: variables.$screen-sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media all and (min-width: variables.$screen-md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
   article {
     flex-direction: column;

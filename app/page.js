@@ -5,8 +5,8 @@
 /* Get data from Notion */
 import { getEntries } from "../lib/notion";
 import Entry from "../components/entry";
-import Filter from "../components/filter";
 import styles from '../assets/scss/views/gallery.module.scss'
+import utils from '../assets/scss/utils.module.scss'
 
 /* Display content */
 export default async function Index() {
@@ -14,6 +14,7 @@ export default async function Index() {
   
   return (
     <>
+    <h2 className={utils.screen_reader_text}>Gallery</h2>
     <div key="entries" className={styles.gallery}>
     {entries.map((entry) => {      
       const entryId = entry.id;
