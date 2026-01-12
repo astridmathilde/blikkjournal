@@ -10,7 +10,6 @@ export default async function Index() {
   return (
     <>
     <h2 className={utils.screen_reader_text}>Index</h2>
-    <Filter />
     <table className={styles.index}>
     <thead>
     <tr>
