@@ -1,5 +1,4 @@
 import { getEntries } from "../../lib/notion";
-import Filter from "../../components/filter";
 import EntryImage from "../../components/entry-image";
 import styles from "../../assets/scss/views/index.module.scss";
 import utils from '../../assets/scss/utils.module.scss'
@@ -34,7 +33,6 @@ export default async function Index() {
       const camera = entry.properties?.Camera?.select?.name || "";
       const category = entry.properties?.Category?.select?.name || "";  
       
-      const dateTime = new Date(time).toJSON();
       const date = new Date(time).toLocaleString(
         'en-US',
         {
@@ -45,6 +43,7 @@ export default async function Index() {
       );   
       
       return (
+        <>
         <tr key={entryId}>
         <td colSpan="2" headers="image">
         <figure>
@@ -59,6 +58,7 @@ export default async function Index() {
         <td headers="camera">{camera}</td>
         <td headers="date">{date}</td>
         </tr>
+        </>
       );
     })}
     </tbody>
