@@ -5,10 +5,10 @@
 import Link from "next/link";
 import '../assets/scss/global.scss';
 import styles from '../assets/scss/layout.module.scss'
-import { getDatabase } from "../lib/notion";
+import utils from '../assets/scss/utils.module.scss' 
 
-export const siteTitle = "blikk.directory";
-export const siteDescription = "a collection of things and thoughts and everyday observations";
+export const siteTitle = "blikkjournal";
+export const siteDescription = "a collection of moments and everyday observations";
 
 export const viewport = {
   colorScheme: 'light',
@@ -20,44 +20,35 @@ export const metadata = {
   description: siteDescription,
 };
 
-/* Get the database */
-const databaseId = process.env.NOTION_DATABASE_ID;
-
-/* Get the categories */
-async function displayProperties() {
-  const data = await getDatabase();
-  return data;
-}
-
-/* Display the content */
 export default async function RootLayout({ children }) {
-  const properties = await displayProperties();
-  const menuItems = properties.properties.Category.select.options;
-  const entries = await getDatabase(databaseId); 
   
   return (
     <html lang="en">
     <body>
     <div className={styles.wrapper}>
+
     <header className={styles.header}>
-    <h1 className={styles.title}><Link href="/">{siteTitle}</Link></h1>
-    <p className={styles.description}>{siteDescription}</p>
-    <nav className={styles.categories} id="categories">
+    <h1 className={utils.screen_reader_text}><Link href="/">{siteTitle}</Link></h1>
+    <p className={styles.description}><em>blikkjournal</em> is a collection of moments 
+and everyday observations.</p>
+    <nav className={styles.navigation} id="navigation">
     <ul>
-    <li key="all"><Link href="/">all</Link></li>
-    {menuItems.map((item) => (
-      <li key={item.id}><Link href={`/${item.name}`}>{item.name}</Link></li>
-    ))}
+    <li key="album"><Link href="/">album</Link></li>
+    <li key="index"><Link href="index">index</Link></li>
     </ul>
     </nav>
     </header>
+
     <main className={styles.content}>
     {children}
     </main>
+
     <footer className={styles.footer}>
-    <p className={styles.colophon}><span className={styles.author}>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Boberg</a></span> <span className={styles.period}>2018–{(new Date().getFullYear())}</span></p>
+    <p className={styles.author}>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Boberg</a> 2018–{(new Date().getFullYear())}</p>
+    <p className={styles.colophob}><Link href="colophon">Colophon</Link></p>
     <p className={styles.backtotop}><Link href="#">Back to top</Link></p>
     </footer>
+
     </div>
     </body>
     </html>

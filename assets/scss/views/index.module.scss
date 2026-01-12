@@ -1,0 +1,75 @@
+@use "../base/variables";
+@use "../utils.module.scss";
+
+.index {
+  overflow-x: scroll;
+  max-width: 100vw;
+  margin-top: 2em;
+  border-collapse: collapse;
+
+  @media all and (min-width: variables.$screen-sm) {
+    margin-top: 1em;
+  }
+
+  @media all and (min-width: variables.$screen-lg) {
+    overflow-x: hidden;
+  }
+
+  figure {
+    margin: 0;
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+  }
+
+  thead {
+    tr {
+      th {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        text-align: left;
+        font-weight: normal;
+
+        + th {
+          padding-left: 1.5em;
+        }
+      }
+    }
+  }
+
+  tbody {
+    th,
+    td {
+      vertical-align: middle;
+    }
+
+    tr {
+      border-top: variables.$border-size solid variables.$text-color;
+    }
+
+    td {
+      padding-top: 1em;
+      padding-bottom: 1em;
+
+      + td {
+        padding-left: 1.5em;
+      }
+    }
+
+    td[headers="image"] {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    td[headers="location"],
+    td[headers="camera"],
+    td[headers="city"],
+    td[headers="date"] {
+      width: 12vw;
+    }
+  }
+}
