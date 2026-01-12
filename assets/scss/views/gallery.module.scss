@@ -5,11 +5,9 @@
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
   gap: 10vw;
-  margin-top: 2em;
-
-  @media all and (min-width: variables.$screen-sm) {
-    margin-top: 1em;
-  }
+  margin-top: 5vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
 
   article {
     flex-direction: column;

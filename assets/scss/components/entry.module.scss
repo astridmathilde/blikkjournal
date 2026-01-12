@@ -9,7 +9,12 @@
     font-size: 0.9em;
   }
 
-  .caption {
+  ul,
+  li {
+    margin: 0;
+  }
+
+  .date {
     margin: 0;
     font-weight: 400;
     font-size: 1em;
@@ -25,22 +30,7 @@
     margin: 0;
   }
 
-  .title {
-    order: -1;
-    margin: 0;
-  }
-
-  .name {
-    display: none;
-    margin: 0;
-  }
-
-  .camera {
-    display: none;
-  }
-
   .metadata {
-    .place,
     .city,
     .country {
       display: inline;
@@ -52,5 +42,12 @@
         }
       }
     }
+  }
+
+  .camera,
+  .place,
+  .city,
+  .country {
+    display: none !important;
   }
 }
