@@ -27,15 +27,14 @@ export default function Entry(entry) {
   if (hasImg ) {
     return (
       <article key={entryId} className={styles.entry}>
-      <h2 className={styles.caption}>{title}</h2>
-      {name ? <p className={styles.name}>{name}</p> : <></>}
+      <h2 className={styles.caption}><span className={styles.label}>Description: </span>{title}</h2>
+      {name ? <p className={styles.name}><span className={styles.label}>File name: </span>{name}</p> : <></>}
       <ul className={styles.metadata}>
-        {place ? <li className={styles.place} key="place">{place}</li> : <></> }
-      <li className={styles.city} key="city">{city}</li>
-      <li className={styles.country} key="country">{country}</li>
-      {category ? <li className={styles.category} key="category">{category}</li> : <></> }
-      {camera ? <li className={styles.camera} key="camera">{camera}</li> : <></> }
-      <li className={styles.date} key="time"><time dateTime={dateTime}>{date}</time></li>
+      {place ? <li className={styles.place} key="place"><span className={styles.label}>Location: </span>{place}</li> : <></> }
+      <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li>
+      {category ? <li className={styles.category} key="category"><span className={styles.label}>Category: </span>{category}</li> : <></> }
+      {camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : <></> }
+      <li className={styles.date} key="time"><span className={styles.label}>Date: </span><time dateTime={dateTime}>{date}</time></li>
       </ul>
       <figure>
       <EntryImage alt={title} entryId={entryId}/>

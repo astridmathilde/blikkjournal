@@ -1,17 +1,27 @@
 import { getEntries } from "../../lib/notion";
 import Filter from "../../components/filter";
-import Entry from "../../components/entry";
-import styles from "../../assets/scss/index.module.scss";
+import EntryImage from "../../components/entry-image";
+import styles from "../../assets/scss/views/index.module.scss";
 
 export default async function Index() {
   const entries = await getEntries();
   
-  console.log(entries);
-  
   return (
     <>
     <Filter />
-    <div key="entries" className={styles.index}>
+    <table className={styles.index}>
+    <thead>
+    <tr>
+    <th id="image">Image</th>
+    <th id="description">Description</th>
+    <th id="location">Location</th>
+    <th id="city">City, country</th>
+    <th id="category">Category</th>
+    <th id="camera">Camera</th>
+    <th id="date">Date</th>
+    </tr>
+    </thead>
+    <tbody>
     {entries.map((entry) => {      
       const entryId = entry.id;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
@@ -21,12 +31,37 @@ export default async function Index() {
       const country = entry.properties?.Country?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       const camera = entry.properties?.Camera?.select?.name || "";
-      const category = entry.properties?.Category?.select?.name || "";
+      const category = entry.properties?.Category?.select?.name || "";  
       
-      return <Entry key={entryId} id={entryId} place={place} title={title} name={name} city={city} country={country} camera={camera} category={category} time={time} />
+      const dateTime = new Date(time).toJSON();
+      const date = new Date(time).toLocaleString(
+        'en-US',
+        {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric',
+        },
+      );   
       
+      return (
+        <tr key={entryId}>
+        <td colSpan="2" headers="image">
+        <figure>
+        <EntryImage alt={title} entryId={entryId}/>
+        </figure> 
+        <span className={styles.fileName}>{name}</span>
+        </td>
+        <td headers="description">{title}</td>
+        <td headers="location">{place}</td>
+        <td headers="city">{city}, {country}</td>
+        <td headers="category">{category}</td>
+        <td headers="camera">{camera}</td>
+        <td headers="date">{date}</td>
+        </tr>
+      );
     })}
-    </div>
+    </tbody>
+    </table>
     </>
   )
 }

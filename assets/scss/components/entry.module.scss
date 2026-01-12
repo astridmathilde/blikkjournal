@@ -1,8 +1,11 @@
+@use "../base/variables";
+@use "../utils.module.scss";
+
 .entry {
   position: relative;
   display: flex;
 
-  @media all and (min-width: 600px) {
+  @media all and (min-width: variables.$screen-sm) {
     font-size: 0.9em;
   }
 
@@ -12,15 +15,28 @@
     font-size: 1em;
   }
 
+  .label {
+    @extend .screen_reader_text;
+  }
+
   figure {
     position: relative;
     order: -2;
     margin: 0;
   }
 
-  .name {
+  .title {
     order: -1;
     margin: 0;
+  }
+
+  .name {
+    display: none;
+    margin: 0;
+  }
+
+  .camera {
+    display: none;
   }
 
   .metadata {

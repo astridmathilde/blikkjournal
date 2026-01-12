@@ -1,0 +1,29 @@
+@use "../base/variables";
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  gap: 10vw;
+  margin-top: 2em;
+
+  @media all and (min-width: variables.$screen-sm) {
+    margin-top: 1em;
+  }
+
+  article {
+    flex-direction: column;
+    text-align: center;
+
+    figure {
+      margin-top: 0;
+      margin-bottom: 1vw;
+    }
+
+    ul {
+      @media all and (variables.$screen-sm) {
+        margin-top: 0.1em;
+      }
+    }
+  }
+}
