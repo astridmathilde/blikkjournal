@@ -1,8 +1,13 @@
 @use "../base/variables";
 
 .filter {
+  text-align: right;
+
   select {
+    font-family: "Ronzino", system-ui, -apple-system, sans-serif;
+    appearance: menulist-button;
     margin-left: 0.5em;
+    font-size: 1em;
 
     &:first-of-type {
       margin-left: 0;
