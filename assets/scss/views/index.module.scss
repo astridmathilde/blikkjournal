@@ -65,6 +65,10 @@
       gap: 0.5em;
     }
 
+    td[headers="category"] {
+      width: 9vw;
+    }
+
     td[headers="location"],
     td[headers="camera"],
     td[headers="city"],
