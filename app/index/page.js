@@ -43,9 +43,8 @@ export default async function Index() {
       );   
       
       return (
-        <>
         <tr key={entryId}>
-        <td colSpan="2" headers="image">
+        <td headers="image">
         <figure>
         <EntryImage alt={title} entryId={entryId}/>
         </figure> 
@@ -58,7 +57,6 @@ export default async function Index() {
         <td headers="camera">{camera}</td>
         <td headers="date">{date}</td>
         </tr>
-        </>
       );
     })}
     </tbody>
