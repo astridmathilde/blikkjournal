@@ -1,8 +1,8 @@
 import { getEntries } from "../../lib/notion";
 import Filter from "../../components/filter";
 import EntryImage from "../../components/entry-image";
-import styles from "../../assets/scss/views/index.module.scss";
-import utils from '../../assets/scss/utils.module.scss'
+import styles from "../assets/scss/views/index.module.scss";
+import utils from '../assets/scss/utils.module.scss'
 
 export default async function Index() {
   const entries = await getEntries();

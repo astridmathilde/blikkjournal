@@ -1,9 +1,8 @@
-import styles from '../assets/scss/components/entry.module.scss';
+import styles from '../app/assets/scss/components/entry.module.scss';
 import EntryImage from './entry-image';
 
 export default function Entry(entry) {
   const entryId = entry.id;
-  const name = entry.name;
   const title = entry.title;
   const place = entry.place;
   const city = entry.city;

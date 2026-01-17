@@ -1,0 +1,111 @@
+@use "../base/variables";
+@use "../utils.module.scss";
+
+.index {
+  overflow-x: scroll;
+  width: 100%;
+  margin-top: 2em;
+  border-collapse: collapse;
+
+  @media all and (max-width: variables.$screen-sm) {
+    min-width: 100vw;
+  }
+
+  @media all and (min-width: variables.$screen-sm) {
+    margin-top: 1em;
+  }
+
+  @media all and (min-width: variables.$screen-lg) {
+    overflow-x: hidden;
+  }
+
+  figure {
+    margin: 0;
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+  }
+
+  thead {
+    tr {
+      th {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        text-align: left;
+        font-weight: normal;
+
+        + th {
+          padding-left: 1.5em;
+        }
+
+        &[id="camera"] {
+          display: none;
+        }
+      }
+    }
+  }
+
+  tbody {
+    th,
+    td {
+      vertical-align: middle;
+    }
+
+    tr {
+      border-top: variables.$border-size solid variables.$text-color;
+    }
+
+    td {
+      padding-top: 1em;
+      padding-bottom: 1em;
+
+      + td {
+        padding-left: 1.5em;
+      }
+
+      &[headers="description"] {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 20vw;
+      }
+
+      &[headers="image"] {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+      }
+
+      &[headers="category"] {
+        width: 9vw;
+      }
+
+      &[headers="location"] {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 15vw;
+      }
+
+      &[headers="camera"],
+      &[headers="city"] {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 12vw;
+      }
+
+      &[headers="date"] {
+        width: 12vw;
+      }
+
+      &[headers="image"] span,
+      &[headers="camera"] {
+        display: none;
+      }
+    }
+  }
+}
