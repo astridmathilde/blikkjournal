@@ -5,15 +5,15 @@
 
 import Image from 'next/image';
 
-export default function EntryImage({ entryId, alt }) {
+export default function EntryImage({ entryId, alt, width, height }) {
   const proxySrc = `/api/images/${entryId}`;
   
   return (
     <Image 
     src={proxySrc}
     alt={alt}
-    width={300}
-    height={300}
+    width={width}
+    height={height}
     unoptimized
     />
   );

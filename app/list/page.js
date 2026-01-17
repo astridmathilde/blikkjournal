@@ -1,7 +1,7 @@
 import { getEntries } from "../../lib/notion";
 import EntryImage from "../../components/entry-image";
-import styles from "../../assets/scss/views/index.module.scss";
-import utils from '../../assets/scss/utils.module.scss'
+import styles from "../assets/scss/views/index.module.scss";
+import utils from '../assets/scss/utils.module.scss'
 
 export default async function Index() {
   const entries = await getEntries();
@@ -46,7 +46,7 @@ export default async function Index() {
         <tr key={entryId}>
         <td headers="image">
         <figure>
-        <EntryImage alt={title} entryId={entryId}/>
+        <EntryImage alt={title} entryId={entryId} width="40" height="40" />
         </figure> 
         <span className={styles.fileName}>{name}</span>
         </td>

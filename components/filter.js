@@ -1,6 +1,6 @@
 import { getDatabase } from "../lib/notion";
-import styles from '../assets/scss/components/filter.module.scss';
-import utils from '../assets/scss/utils.module.scss';
+import styles from '../app/assets/scss/components/filter.module.scss';
+import utils from '../app/assets/scss/utils.module.scss';
 
 /* Get categories */
 async function displayProperties() {

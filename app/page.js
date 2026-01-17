@@ -5,8 +5,9 @@
 /* Get data from Notion */
 import { getEntries } from "../lib/notion";
 import Entry from "../components/entry";
-import styles from '../assets/scss/views/gallery.module.scss'
-import utils from '../assets/scss/utils.module.scss'
+import Filter from "../components/filter";
+import styles from './assets/scss/views/gallery.module.scss'
+import utils from './assets/scss/utils.module.scss'
 
 /* Display content */
 export default async function Index() {
