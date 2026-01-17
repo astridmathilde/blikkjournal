@@ -35,7 +35,7 @@ export default function Entry(entry) {
       {camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : <></> }
       </ul>
       <figure>
-      <EntryImage alt={title} entryId={entryId}/>
+      <EntryImage alt={title} entryId={entryId} width="300" height="600"/>
       </figure> 
       </article>
     );

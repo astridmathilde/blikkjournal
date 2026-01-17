@@ -49,7 +49,7 @@ export default async function Index() {
         <tr key={entryId}>
         <td colSpan="2" headers="image">
         <figure>
-        <EntryImage alt={title} entryId={entryId}/>
+        <EntryImage alt={title} entryId={entryId} width="40" height="40" />
         </figure> 
         <span className={styles.fileName}>{name}</span>
         </td>
