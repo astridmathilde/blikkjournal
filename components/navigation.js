@@ -12,7 +12,7 @@ export default function NavLink(href, children) {
     <nav className={styles.navigation} id="navigation">
     <ul>
     <li key="album"><Link href="/" className={isActive ? 'active' : ''}>album</Link></li>
-    <li key="index"><Link href="/index" className={isActive ? 'active' : ''}>index</Link></li>
+    <li key="index"><Link href="/list" className={isActive ? 'active' : ''}>index</Link></li>
     </ul>
     </nav>
   )
