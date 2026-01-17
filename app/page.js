@@ -15,6 +15,7 @@ export default async function Index() {
   return (
     <>
     <h2 className={utils.screen_reader_text}>Gallery</h2>
+
     <div key="entries" className={styles.gallery}>
     {entries.map((entry) => {      
       const entryId = entry.id;

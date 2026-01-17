@@ -32,7 +32,8 @@ a {
   color: inherit;
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     text-decoration: none;
   }
 }
