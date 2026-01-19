@@ -7,11 +7,8 @@
         "https": "next dev --experimental-https"
     },
     "dependencies": {
-        "@netlify/functions": "^3.0.0",
-        "@netlify/plugin-nextjs": "^5.15.3",
         "@notionhq/client": "^2.2.15",
-        "next": "^16.1.1",
-        "node-fetch": "^3.3.2",
+        "next": "^16.1.",
         "react": "^19.2.3",
         "react-dom": "^19.2.3",
         "sass": "^1.97.2"

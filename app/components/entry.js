@@ -1,4 +1,4 @@
-import styles from '../app/assets/scss/components/entry.module.scss';
+import styles from '../assets/scss/components/entry.module.scss';
 import EntryImage from './entry-image';
 
 export default function Entry(entry) {

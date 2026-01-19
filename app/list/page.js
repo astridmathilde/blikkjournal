@@ -1,14 +1,12 @@
-import { getEntries } from "../../lib/notion";
-import EntryImage from "../../components/entry-image";
+import { getEntries } from "../lib/notion";
+import EntryImage from "../components/entry-image";
 import styles from "../assets/scss/views/index.module.scss";
-import utils from '../assets/scss/utils.module.scss'
 
 export default async function Index() {
   const entries = await getEntries();
   
   return (
     <>
-    <h2 className={utils.screen_reader_text}>Index</h2>
     <table className={styles.index}>
     <thead>
     <tr>

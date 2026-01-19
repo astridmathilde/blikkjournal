@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
-import styles from "../app/assets/scss/components/navigation.module.scss";
+import styles from "../assets/scss/components/navigation.module.scss";
 
 export default function NavLink(href, children) {
   const pathname = usePathname();
@@ -12,7 +12,7 @@ export default function NavLink(href, children) {
     <nav className={styles.navigation} id="navigation">
     <ul>
     <li key="album"><Link href="/" className={isActive ? 'active' : ''}>album</Link></li>
-    <li key="index"><Link href="/list" className={isActive ? 'active' : ''}>index</Link></li>
+    <li key="list"><Link href="/list" className={isActive ? 'active' : ''}>list</Link></li>
     </ul>
     </nav>
   )
