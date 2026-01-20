@@ -1,0 +1,26 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import EntryImage from "./image";
+import styles from "@/assets/scss/components/entry/list.module.scss";
+
+export default function ListEntry(entry) {
+  const router = useRouter();
+  
+  return (
+    <tr className={styles.listEntry} key={entry.id} onClick={() => router.push(`/entry/${entry.id}`)} >
+    <td colSpan="2" headers="image">
+    <figure className={styles.image}>
+    <EntryImage alt={entry.title} entryId={entry.id} width="40" height="40" />
+    </figure> 
+    <span>{entry.fileName}</span>
+    </td>
+    <td headers="description">{entry.title}</td>
+    <td headers="location">{entry.location}</td>
+    <td headers="city">{entry.city}, {entry.country}</td>
+    <td headers="category">{entry.category}</td>
+    <td headers="camera">{entry.camera}</td>
+    <td headers="date">{entry.date}</td>
+    </tr>
+  )
+}

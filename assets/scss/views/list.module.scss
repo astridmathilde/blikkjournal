@@ -19,16 +19,6 @@
     overflow-x: hidden;
   }
 
-  figure {
-    margin: 0;
-
-    img {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-    }
-  }
-
   thead {
     tr {
       th {
@@ -44,72 +34,6 @@
         &[id="camera"] {
           display: none;
         }
-      }
-    }
-  }
-
-  tbody {
-    th,
-    td {
-      vertical-align: middle;
-    }
-
-    tr {
-      border-top: variables.$border-size solid variables.$text-color;
-    }
-
-    td {
-      padding-top: 1em;
-      padding-bottom: 1em;
-
-      &:hover,
-      &:focus {
-        background-color: variables.$background-hover;
-      }
-
-      + td {
-        padding-left: 1.5em;
-      }
-
-      &[headers="description"] {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 20vw;
-      }
-
-      &[headers="image"] {
-        display: flex;
-        align-items: center;
-        gap: 0.5em;
-      }
-
-      &[headers="category"] {
-        width: 9vw;
-      }
-
-      &[headers="location"] {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 15vw;
-      }
-
-      &[headers="camera"],
-      &[headers="city"] {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 12vw;
-      }
-
-      &[headers="date"] {
-        width: 12vw;
-      }
-
-      &[headers="image"] figure,
-      &[headers="camera"] {
-        display: none !important;
       }
     }
   }

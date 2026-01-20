@@ -3,9 +3,8 @@
 */
 
 import { getEntries } from "@/lib/notion";
-import Link from "next/link";
 import Filter from "@/components/filter";
-import EntryImage from "@/components/entry-image";
+import ListEntry from "@/components/entry/list";
 import styles from "@/assets/scss/views/list.module.scss";
 
 export default async function List() {
@@ -30,15 +29,14 @@ export default async function List() {
     {entries.map((entry) => {      
       const entryId = entry.id;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
-      const name = entry.properties?.Image?.files[0]?.name || "";
-      const place = entry.properties?.Place?.select?.name || "";
+      const fileName = entry.properties?.Image?.files[0]?.name || "";
+      const location = entry.properties?.Place?.select?.name || "";
       const city = entry.properties?.City?.select?.name || "";
       const country = entry.properties?.Country?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       const camera = entry.properties?.Camera?.select?.name || "";
       const category = entry.properties?.Category?.select?.name || "";  
       
-      const dateTime = new Date(time).toJSON();
       const date = new Date(time).toLocaleString(
         'en-US',
         {
@@ -47,27 +45,8 @@ export default async function List() {
           year: 'numeric',
         },
       );   
-      
-      const entryUrl = `/entry/${entryId}`;
-      
-      return (
-        <tr key={entryId}>
-        <td colSpan="2" headers="image">
-        <figure>
-        <Link href={entryUrl} style={{cursor: "zoom-in"}}>
-        <EntryImage alt={title} entryId={entryId} width="40" height="40" />
-        </Link>
-        </figure> 
-        <span className={styles.fileName}>{name}</span>
-        </td>
-        <td headers="description"><Link href={entryUrl}>{title}</Link></td>
-        <td headers="location">{place}</td>
-        <td headers="city">{city}, {country}</td>
-        <td headers="category">{category}</td>
-        <td headers="camera">{camera}</td>
-        <td headers="date">{date}</td>
-        </tr>
-      );
+    
+      return <ListEntry id={entryId} title={title} fileName={fileName} location={location} city={city} country={country} category={category} camera={camera} date={date} />
     })}
     </tbody>
     </table>
