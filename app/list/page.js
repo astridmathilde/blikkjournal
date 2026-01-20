@@ -1,15 +1,15 @@
-import { getEntries } from "../lib/notion";
-import Filter from "../components/filter";
-import EntryImage from "../components/entry-image";
-import styles from "../assets/scss/views/index.module.scss";
+import { getEntries } from "@/lib/notion";
+import Filter from "@/components/filter";
+import EntryImage from "@/components/entry-image";
+import styles from "@/assets/scss/views/list.module.scss";
 
-export default async function Index() {
+export default async function List() {
   const entries = await getEntries();
   
   return (
     <>
     <Filter />
-    <table className={styles.index}>
+    <table className={styles.list}>
     <thead>
     <tr>
     <th id="image">Image</th>
