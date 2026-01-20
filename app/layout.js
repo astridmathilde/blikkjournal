@@ -4,10 +4,10 @@
 
 import localFont from 'next/font/local';
 import Link from "next/link";
-import './assets/scss/global.scss';
-import styles from './assets/scss/layout.module.scss'
-import utils from './assets/scss/utils.module.scss' 
-import Navigation from './components/navigation';
+import '../assets/scss/global.scss';
+import styles from '@/assets/scss/layout.module.scss'
+import utils from '@/assets/scss/utils.module.scss' 
+import Navigation from '@/components/navigation';
 
 export const siteTitle = "blikkjournal";
 export const siteDescription = "a collection of moments and everyday observations";
@@ -25,12 +25,12 @@ export const metadata = {
 const ronzino = localFont({
   src: [
     {
-      path: 'assets/fonts/Ronzino-Regular.woff2',
+      path: '../assets/fonts/Ronzino-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: 'assets/fonts/Ronzino-Oblique.woff2',
+      path: '../assets/fonts/Ronzino-Oblique.woff2',
       weight: '400',
       style: 'italic',
     }

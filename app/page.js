@@ -3,9 +3,9 @@
 */
 
 /* Get data from Notion */
-import { getEntries } from "./lib/notion";
-import Entry from "./components/entry";
-import styles from './assets/scss/views/gallery.module.scss'
+import { getEntries } from "../lib/notion";
+import Entry from "@/components/entry";
+import styles from '@/assets/scss/views/gallery.module.scss'
 
 /* Display content */
 export default async function Index() {

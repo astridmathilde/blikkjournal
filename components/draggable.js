@@ -3,7 +3,7 @@
 "use client"; 
 
 import { useState, useEffect } from 'react';
-import styles from "../app/assets/scss/components/draggable.module.scss"
+import styles from "@/assets/scss/components/draggable.module.scss"
 
 export default function Draggable({children}) {
   const [position, setPosition] = useState({ x: 0, y: 0});

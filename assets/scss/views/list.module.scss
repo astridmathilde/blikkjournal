@@ -1,7 +1,7 @@
 @use "../base/variables";
 @use "../utils.module.scss";
 
-.index {
+.list {
   overflow-x: scroll;
   width: 100%;
   margin-top: 2em;
@@ -102,9 +102,9 @@
         width: 12vw;
       }
 
-      &[headers="image"] span,
+      &[headers="image"] figure,
       &[headers="camera"] {
-        display: none;
+        display: none !important;
       }
     }
   }
