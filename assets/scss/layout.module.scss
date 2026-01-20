@@ -30,13 +30,13 @@
     }
 
     .colophon {
-      position: absolute;
+      position: fixed;
       right: 1em;
     }
   }
 
   .colophonContent {
-    //display: none;
+    display: none;
     position: absolute;
     bottom: 3em;
     right: 0;
