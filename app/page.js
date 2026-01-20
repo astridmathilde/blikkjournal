@@ -4,7 +4,7 @@
 
 /* Get data from Notion */
 import { getEntries } from "../lib/notion";
-import Entry from "@/components/entry";
+import GalleryEntry from "@/components/entry/gallery";
 import styles from '@/assets/scss/views/gallery.module.scss'
 
 /* Display content */
@@ -24,7 +24,7 @@ export default async function Index() {
       const camera = entry.properties?.Camera?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       
-      return <Entry key={entryId} id={entryId} place={place} title={title} city={city} country={country} time={time} camera={camera} name={name} />
+      return <GalleryEntry key={entryId} id={entryId} place={place} title={title} city={city} country={country} time={time} camera={camera} name={name} />
       
     })}
     </div>
