@@ -2,10 +2,8 @@
 * App -> List -> page.js
 */
 
-import dynamic from 'next/dynamic';
-
 import { getEntries } from "@/lib/notion";
-const ListEntry = dynamic(() => import("@/components/entry/list"))
+import ListEntry from "@/components/entry/list";
 import styles from "@/assets/scss/views/list.module.scss";
 
 export default async function List() {
@@ -26,7 +24,9 @@ export default async function List() {
     </tr>
     </thead>
     <tbody>
-    {entries.map((entry) => {      
+    {entries.map((entry, index) => { 
+      const isAboveTheFold = index < 15;   
+
       const entryId = entry.id;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const fileName = entry.properties?.Image?.files[0]?.name || "";
@@ -45,8 +45,8 @@ export default async function List() {
           year: 'numeric',
         },
       );   
-    
-      return <ListEntry id={entryId} title={title} fileName={fileName} location={location} city={city} country={country} category={category} camera={camera} date={date} />
+      
+      return <ListEntry id={entryId} title={title} fileName={fileName} location={location} city={city} country={country} category={category} camera={camera} date={date} priority={isAboveTheFold ? "true" : ""}/>
     })}
     </tbody>
     </table>

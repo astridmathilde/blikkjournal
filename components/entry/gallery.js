@@ -3,6 +3,7 @@ import styles from '@/assets/scss/components/entry/gallery.module.scss';
 import EntryImage from './image';
 
 export default function GalleryEntry(entry) {
+
   const entryId = entry.id;
   const title = entry.title;
   const place = entry.place;
@@ -34,10 +35,10 @@ export default function GalleryEntry(entry) {
     {category ? <li className={styles.category} key="category"><span className={styles.label}>Category: </span>{category}</li> : <></> }
     {camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : <></> }
     </ul>
-
+    
     <figure>
     <Link href={entryUrl} style={{cursor: "zoom-in"}}>
-    <EntryImage alt={title} entryId={entryId} width="300" height="600" fill={false} loading="lazy" />
+    <EntryImage alt={title} entryId={entryId} width="300" height="600" fill={false} preload={entry.priority === "true" ? true : false} />
     </Link>
     </figure> 
     
