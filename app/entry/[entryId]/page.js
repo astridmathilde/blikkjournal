@@ -21,7 +21,7 @@ export default async function Post({ params }) {
     <h2 className={utils.screen_reader_text}>{title}</h2>
     </header>
     <figure className={styles.image}>
-    <EntryImage alt={title} entryId={entryId} width="600" height="600"/>
+    <EntryImage alt={title} entryId={entryId} width="600" height="600" preload="true" loading="eager" />
     </figure>
     </article>
     </NavBack>

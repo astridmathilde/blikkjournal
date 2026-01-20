@@ -37,7 +37,7 @@ export default function GalleryEntry(entry) {
 
     <figure>
     <Link href={entryUrl} style={{cursor: "zoom-in"}}>
-    <EntryImage alt={title} entryId={entryId} width="300" height="600" fill={false} />
+    <EntryImage alt={title} entryId={entryId} width="300" height="600" fill={false} loading="lazy" />
     </Link>
     </figure> 
     

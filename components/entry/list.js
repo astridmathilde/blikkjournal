@@ -11,7 +11,7 @@ export default function ListEntry(entry) {
     <tr className={styles.listEntry} key={entry.id} onClick={() => router.push(`/entry/${entry.id}`)} >
     <td colSpan="2" headers="image">
     <figure className={styles.image}>
-    <EntryImage alt={entry.title} entryId={entry.id} width="40" height="40" />
+    <EntryImage alt={entry.title} entryId={entry.id} width="40" height="40" loading="lazy" />
     </figure> 
     <span>{entry.fileName}</span>
     </td>

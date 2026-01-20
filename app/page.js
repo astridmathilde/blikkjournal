@@ -2,9 +2,12 @@
 * App -> page.js
 */
 
+import dynamic from 'next/dynamic';
+
 /* Get data from Notion */
 import { getEntries } from "../lib/notion";
-import GalleryEntry from "@/components/entry/gallery";
+const GalleryEntry = dynamic(() => import("@/components/entry/gallery"));
+
 import Filter from "@/components/filter";
 import styles from '@/assets/scss/views/gallery.module.scss'
 

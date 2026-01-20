@@ -2,9 +2,11 @@
 * App -> List -> page.js
 */
 
+import dynamic from 'next/dynamic';
+
 import { getEntries } from "@/lib/notion";
 import Filter from "@/components/filter";
-import ListEntry from "@/components/entry/list";
+const ListEntry = dynamic(() => import("@/components/entry/list"))
 import styles from "@/assets/scss/views/list.module.scss";
 
 export default async function List() {
