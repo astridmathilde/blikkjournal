@@ -4,6 +4,7 @@
 .entry {
   position: relative;
   display: flex;
+  text-decoration: none !important;
 
   @media all and (min-width: variables.$screen-sm) {
     font-size: 0.9em;

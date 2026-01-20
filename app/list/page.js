@@ -1,4 +1,9 @@
+/**
+* App -> List -> page.js
+*/
+
 import { getEntries } from "@/lib/notion";
+import Link from "next/link";
 import Filter from "@/components/filter";
 import EntryImage from "@/components/entry-image";
 import styles from "@/assets/scss/views/list.module.scss";
@@ -43,15 +48,19 @@ export default async function List() {
         },
       );   
       
+      const entryUrl = `/entry/${entryId}`;
+      
       return (
         <tr key={entryId}>
         <td colSpan="2" headers="image">
         <figure>
+        <Link href={entryUrl} style={{cursor: "zoom-in"}}>
         <EntryImage alt={title} entryId={entryId} width="40" height="40" />
+        </Link>
         </figure> 
         <span className={styles.fileName}>{name}</span>
         </td>
-        <td headers="description">{title}</td>
+        <td headers="description"><Link href={entryUrl}>{title}</Link></td>
         <td headers="location">{place}</td>
         <td headers="city">{city}, {country}</td>
         <td headers="category">{category}</td>

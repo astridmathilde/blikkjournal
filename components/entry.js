@@ -1,9 +1,11 @@
+import Link from 'next/link';
 import styles from '@/assets/scss/components/entry.module.scss';
 import EntryImage from './entry-image';
 
 export default function Entry(entry) {
   const entryId = entry.id;
   const title = entry.title;
+  const name = entry.name;
   const place = entry.place;
   const city = entry.city;
   const country = entry.country;
@@ -21,23 +23,23 @@ export default function Entry(entry) {
     },
   );
   
-  const hasImg = `/api/images/${entry.id}`;
+  const entryUrl = `/entry/${entryId}`;
   
-  if (hasImg ) {
-    return (
-      <article key={entryId} className={styles.entry}>
-      <h2 className={styles.date}><time dateTime={dateTime}>{date}</time></h2>
-      <ul className={styles.metadata}>
-      <li className={styles.caption}><span className={styles.label}>Description: </span>{title}</li>
-      {place ? <li className={styles.place} key="place"><span className={styles.label}>Location: </span>{place}</li> : <></> }
-      <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li>
-      {category ? <li className={styles.category} key="category"><span className={styles.label}>Category: </span>{category}</li> : <></> }
-      {camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : <></> }
-      </ul>
-      <figure>
-      <EntryImage alt={title} entryId={entryId} width="300" height="600"/>
-      </figure> 
-      </article>
-    );
-  } 
-}
+  return (
+    <Link href={entryUrl} style={{cursor: "zoom-in"}}>
+    <article key={entryId} className={styles.entry}>
+    <h2 className={styles.date}><time dateTime={dateTime}>{date}</time></h2>
+    <ul className={styles.metadata}>
+    <li className={styles.caption}><span className={styles.label}>Description: </span>{title}</li>
+    {place ? <li className={styles.place} key="place"><span className={styles.label}>Location: </span>{place}</li> : <></> }
+    <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li>
+    {category ? <li className={styles.category} key="category"><span className={styles.label}>Category: </span>{category}</li> : <></> }
+    {camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : <></> }
+    </ul>
+    <figure>
+    <EntryImage alt={title} entryId={entryId} width="300" height="600" fill={false} />
+    </figure> 
+    </article>
+    </Link>
+  );
+} 

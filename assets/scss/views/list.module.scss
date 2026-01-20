@@ -62,6 +62,11 @@
       padding-top: 1em;
       padding-bottom: 1em;
 
+      &:hover,
+      &:focus {
+        background-color: variables.$background-hover;
+      }
+
       + td {
         padding-left: 1.5em;
       }
