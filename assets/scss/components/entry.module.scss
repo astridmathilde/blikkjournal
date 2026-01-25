@@ -1,0 +1,53 @@
+@use "../../base/variables";
+@use "../../utils.module.scss";
+
+.galleryEntry {
+  position: relative;
+  display: flex;
+
+  @media all and (min-width: variables.$screen-sm) {
+    font-size: 0.9em;
+  }
+
+  ul,
+  li {
+    margin: 0;
+  }
+
+  .date {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1em;
+  }
+
+  .label {
+    @extend .screen_reader_text;
+  }
+
+  figure {
+    position: relative;
+    order: -2;
+    margin: 0;
+  }
+
+  .metadata {
+    .city,
+    .country {
+      display: inline;
+
+      + .city,
+      + .country {
+        &:before {
+          content: ", ";
+        }
+      }
+    }
+  }
+
+  .camera,
+  .place,
+  .city,
+  .country {
+    display: none !important;
+  }
+}

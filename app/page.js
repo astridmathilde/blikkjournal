@@ -2,13 +2,9 @@
 * App -> page.js
 */
 
-import dynamic from 'next/dynamic';
-
 /* Get data from Notion */
 import { getEntries } from "../lib/notion";
-const GalleryEntry = dynamic(() => import("@/components/entry/gallery"));
-
-import Filter from "@/components/filter";
+import GalleryEntry from "@/components/entry/gallery";
 import styles from '@/assets/scss/views/gallery.module.scss'
 
 /* Display content */
@@ -17,9 +13,10 @@ export default async function Index() {
   
   return (
     <>
-    <Filter />
     <div key="entries" className={styles.gallery}>
-    {entries.map((entry) => {      
+    {entries.map((entry, index) => { 
+      const isAboveTheFold = index < 10;
+
       const entryId = entry.id;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const name = entry.properties?.Image?.files[0]?.name || "";
@@ -29,7 +26,7 @@ export default async function Index() {
       const camera = entry.properties?.Camera?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       
-      return <GalleryEntry key={entryId} id={entryId} place={place} title={title} city={city} country={country} time={time} camera={camera} name={name} />
+      return <GalleryEntry key={entryId} id={entryId} place={place} title={title} city={city} country={country} time={time} camera={camera} name={name} priority={isAboveTheFold ? "true" : ""} />
       
     })}
     </div>
