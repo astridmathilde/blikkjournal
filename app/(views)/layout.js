@@ -1,14 +1,10 @@
-/**
-* App -> layout.js
-*/
-
 import localFont from 'next/font/local';
 import Link from "next/link";
 import '../assets/scss/global.scss';
-import Draggable from '@/components/draggable';
-import styles from '@/assets/scss/layout.module.scss'
-import utils from '@/assets/scss/utils.module.scss' 
-import Navigation from '@/components/navigation';
+import Draggable from '../components/draggable';
+import styles from '../assets/scss/layout.module.scss'
+import utils from '../assets/scss/utils.module.scss' 
+import Navigation from '../components/navigation';
 
 export const siteTitle = "blikkjournal";
 export const siteDescription = "a collection of moments and everyday observations";
@@ -58,7 +54,6 @@ export default function RootLayout({ children }) {
     
     <footer className={styles.footer}>
     <p className={styles.colophon}><Link href="colophon">Colophon</Link></p>
-    <p className={styles.backtotop}><Link href="#">Back to top</Link></p>
     
     <Draggable>
     <div className={styles.colophonContent}>

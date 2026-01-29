@@ -1,12 +1,8 @@
-/**
-* App -> List -> page.js
-*/
+import { getEntries } from "../lib/notion";
+import ListEntry from "../components/entry/index";
+import styles from "../assets/scss/views/index.module.scss";
 
-import { getEntries } from "@/lib/notion";
-import ListEntry from "@/components/entry/list";
-import styles from "@/assets/scss/views/list.module.scss";
-
-export default async function List() {
+export default async function Index() {
   const entries = await getEntries();
   
   return (
@@ -46,7 +42,7 @@ export default async function List() {
         },
       );   
       
-      return <ListEntry id={entryId} title={title} fileName={fileName} location={location} city={city} country={country} category={category} camera={camera} date={date} priority={isAboveTheFold ? "true" : ""}/>
+      return <ListEntry key={entryId} id={entryId} title={title} fileName={fileName} location={location} city={city} country={country} category={category} camera={camera} date={date} priority={isAboveTheFold ? "true" : ""}/>
     })}
     </tbody>
     </table>

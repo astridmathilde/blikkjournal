@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '@/assets/scss/components/entry/gallery.module.scss';
+import styles from '../../assets/scss/components/entry/gallery.module.scss';
 import EntryImage from './image';
 
 export default function GalleryEntry(entry) {

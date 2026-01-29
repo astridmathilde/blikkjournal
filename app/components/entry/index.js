@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import styles from "@/assets/scss/components/entry/list.module.scss";
+import styles from "../../assets/scss/components/entry/index.module.scss";
 
 export default function ListEntry(entry) {
   const router = useRouter();

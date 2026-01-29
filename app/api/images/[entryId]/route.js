@@ -4,7 +4,7 @@
 * 
 */
 
-import { getEntry } from '@/lib/notion';
+import { getEntry } from '@/app/lib/notion';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic'; 

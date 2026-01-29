@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import styles from "@/assets/scss/components/nav-back.module.scss"
+import styles from "../assets/scss/components/nav-back.module.scss"
 
 export default function NavBack({children}) {
   const router = useRouter(); 

@@ -21,6 +21,13 @@
     flex-direction: column;
     text-align: center;
 
+    &:hover,
+    &:focus {
+      > figure {
+        box-shadow: variables.$shadow-hover;
+      }
+    }
+
     figure {
       margin-top: 0;
       margin-bottom: 1vw;
