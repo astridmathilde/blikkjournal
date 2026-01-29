@@ -1,4 +1,5 @@
 import { getEntry } from "../../../lib/notion"; 
+import SingleEntry from "../../../components/entry/single";
 import NavBack from "../../../components/nav-back";
 import EntryImage from "../../../components/entry/image";
 import utils from "../../../assets/scss/utils.module.scss";
@@ -24,9 +25,10 @@ export default async function Post({ params }) {
       year: 'numeric',
     },
   );   
-  
+
   return (
-    <article key={entryId} className={styles.singleEntry}>
+    <SingleEntry entryId={entryId}>
+
     <header>
     <div>
     <h2>{title}</h2>
@@ -36,8 +38,8 @@ export default async function Post({ params }) {
     <div>
     <p><span className={utils.screen_reader_text}>Location: </span>{location}<br />{city}, {country}</p>
     </div>
-    
     </header>
+
     <NavBack>
     <figure className={styles.image}>
     <EntryImage alt={title} entryId={entryId} width="600" height="600" preload={true} loading="eager" />
@@ -49,7 +51,8 @@ export default async function Post({ params }) {
     </figcaption>
     </figure>
     </NavBack>
-    </article>
+
+    </SingleEntry>
   )
   
 }

@@ -38,9 +38,7 @@ export default function RootLayout({ children }) {
   
   return (
     <html lang="en" className={ronzino.className}>
-    <body>
-    <div className={styles.wrapper}>
-    
+    <body className={styles.wrapper}>    
     <header className={styles.header}>
     <h1 className={utils.screen_reader_text}><Link href="/">{siteTitle}</Link></h1>
     <p className={styles.description}><em>blikkjournal</em> is a collection of moments 
@@ -68,9 +66,7 @@ export default function RootLayout({ children }) {
     </div>
     </Draggable>
     </footer>
-    
-    
-    </div>
+  
     </body>
     </html>
   );

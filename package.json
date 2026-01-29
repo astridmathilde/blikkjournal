@@ -10,7 +10,8 @@
         "@notionhq/client": "^2.2.15",
         "next": "^16.1.4",
         "react": "^19.2.3",
-        "react-dom": "^19.2.3"
+        "react-dom": "^19.2.3",
+        "react-extract-colors": "^1.5.1"
     },
     "devDependencies": {
         "sass": "^1.97.3"

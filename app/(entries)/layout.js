@@ -1,10 +1,8 @@
 import localFont from 'next/font/local';
 import Link from "next/link";
 import '../assets/scss/global.scss';
-import Draggable from '../components/draggable';
 import styles from '../assets/scss/layout.module.scss'
 import utils from '../assets/scss/utils.module.scss' 
-import Navigation from '../components/navigation';
 
 export const siteTitle = "blikkjournal";
 export const siteDescription = "a collection of moments and everyday observations";
@@ -34,13 +32,11 @@ const ronzino = localFont({
   ]
 })
 
-export default function RootLayout({ children }) {
+export default function EntryLayout({ children }) {
   
   return (
     <html lang="en" className={ronzino.className}>
-    <body>
-    <div className={styles.wrapper}>
-    
+    <body className={styles.wrapper}> 
     <header className={styles.header}>
     <h1 className={utils.screen_reader_text}><Link href="/">{siteTitle}</Link></h1>
     </header>
@@ -51,7 +47,6 @@ export default function RootLayout({ children }) {
     
     <footer className={styles.footer}>
     </footer>
-    </div>
     </body>
     </html>
   );

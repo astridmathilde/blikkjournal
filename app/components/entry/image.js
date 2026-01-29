@@ -1,8 +1,3 @@
-/**
-* Components -> entry.js
-* Image component with function for reloading image on error
-*/
-
 import Image from 'next/image';
 
 export default function EntryImage({ entryId, alt, fill, width, height, style, preload, loading}) {

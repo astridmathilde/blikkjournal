@@ -1,7 +1,9 @@
 @use "../../base/variables";
 
 .singleEntry {
-  color: blue;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   header {
     display: flex;
