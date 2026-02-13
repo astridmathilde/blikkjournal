@@ -1,5 +1,5 @@
-import Draggable from "./draggable"
-import styles from "../assets/scss/components/colophon-content.module.scss";
+import Draggable from "../draggable"
+import styles from "../../assets/scss/components/colophon/content.module.scss";
 
 export default function ColophonContent({children}) {
   return (

@@ -1,0 +1,13 @@
+.link {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}

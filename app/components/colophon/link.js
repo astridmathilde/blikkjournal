@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import styles from "../assets/scss/components/colophon-link.module.scss";
+import styles from "../../assets/scss/components/colophon/link.module.scss";
 
 
 export default function ColophonLink() {
