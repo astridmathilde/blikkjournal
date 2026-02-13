@@ -1,0 +1,3 @@
+export default function IconArrowLeft() {
+  return <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="54" height="54" fill="none" viewBox="0 0 54 54"><path fill="inherit" d="M22.018 13.5 9.768 25.75H48.5v2.5H9.768l12.25 12.25-1.768 1.768L4.982 27 20.25 11.732z"/></svg>
+}

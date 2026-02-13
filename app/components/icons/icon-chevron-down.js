@@ -1,0 +1,3 @@
+export default function IconChevronDown() {
+  return <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="29" fill="none" viewBox="0 0 28 29"><path fill="inherit" d="M14 20.768 3.232 10 5 8.232l9 9 9-9L24.768 10z"/></svg>
+}
