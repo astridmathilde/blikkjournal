@@ -5,9 +5,19 @@
   background: none;
   border: none;
   cursor: pointer;
+  font-size: 0.9em;
+  text-transform: lowercase;
 
   &:hover,
   &:focus {
     text-decoration: underline;
+  }
+
+  &:before {
+    content: "( ";
+  }
+
+  &:after {
+    content: " )";
   }
 }

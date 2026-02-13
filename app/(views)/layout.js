@@ -1,8 +1,7 @@
 import localFont from 'next/font/local';
 import Link from "next/link";
 import '../assets/scss/global.scss';
-import ColophonLink from '../components/colophon/link';
-import ColophonContent from '../components/colophon/content';
+import Colophon from '../components/colophon';
 import styles from '../assets/scss/layout.module.scss'
 import utils from '../assets/scss/utils.module.scss' 
 import Navigation from '../components/navigation';
@@ -15,9 +14,9 @@ export const viewport = {
 }
 /*
 export const metadata = {
-  metadataBase: new URL('https://blikk.directory'),
-  title: siteTitle,
-  description: siteDescription,
+metadataBase: new URL('https://blikk.directory'),
+title: siteTitle,
+description: siteDescription,
 };*/
 
 const ronzino = localFont({
@@ -52,8 +51,7 @@ export default function RootLayout({ children }) {
     </main>
     
     <footer className={styles.footer}>
-    <ColophonLink>(Colophon)</ColophonLink>
-    <ColophonContent>
+    <Colophon button="Colophon">
     <h2>Colophon</h2>
     <p>The site is coded by hand using the React framework <a href="https://nextjs.org" target="_blank" rel="external">Next.js</a>. Generative AI has not been used except for research and solving wicked problems. In those cases, the language model has been run locally using the application <a href="https://osaurus.ai" rel="external" target="_blank">Osaurus</a>, minimizing carbon emissions and resource usage.</p>
     
@@ -61,10 +59,10 @@ export default function RootLayout({ children }) {
     
     <p>The typeface is <a href="https://www.collletttivo.it/typefaces/ronzino" target="_blank" rel="external">Ronzino</a> from <a href="https://www.collletttivo.it" target="_blank" rel="external">Collletttivo</a>. The icons are from <a href="https://ikonate.com" target="_blank" rel="external">Iconate</a>.</p>
     
-    <p>© <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Boberg</a> 2018–{(new Date().getFullYear())} (including design, code, photos & content)</p>
-    </ColophonContent>
+    <p>design, code and photos © <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Boberg</a> 2018–{(new Date().getFullYear())}</p>
+    </Colophon>
     </footer>
-  
+    
     </body>
     </html>
   );
