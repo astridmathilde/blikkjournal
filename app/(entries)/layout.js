@@ -10,13 +10,13 @@ export const siteDescription = "a collection of moments and everyday observation
 export const viewport = {
   colorScheme: 'light',
 }
-
+/*
 export const metadata = {
   metadataBase: new URL('https://blikk.directory'),
   title: siteTitle,
   description: siteDescription,
 };
-
+*/
 const ronzino = localFont({
   src: [
     {

@@ -28,28 +28,5 @@
         display: none;
       }
     }
-
-    .colophon {
-      position: fixed;
-      right: 1em;
-    }
-  }
-
-  .colophonContent {
-    display: none;
-    position: absolute;
-    bottom: 3em;
-    right: 0;
-    background: variables.$background-color;
-    width: 46vw;
-    margin: 0 auto;
-    border: variables.$border-size solid variables.$text-color;
-    padding: 1em;
-  }
-
-  h2 {
-    margin-top: 0;
-    font-size: 1em;
-    font-weight: 400;
   }
 }
