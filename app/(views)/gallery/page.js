@@ -1,5 +1,5 @@
 /* Get data from Notion */
-import { siteTitle, siteDescription } from "@/app/layout";
+import { siteTitle, siteDescription } from "../layout";
 import { getEntries } from "../../lib/notion";
 import GalleryEntry from "../../components/entry/gallery";
 import styles from '../../assets/scss/views/gallery.module.scss'

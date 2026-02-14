@@ -1,5 +1,5 @@
 import { getEntries } from "../lib/notion";
-import { siteTitle, siteDescription } from "../layout";
+import { siteTitle, siteDescription } from "./layout";
 import ListEntry from "../components/entry/index";
 import styles from "../assets/scss/views/index.module.scss";
 
