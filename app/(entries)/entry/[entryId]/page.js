@@ -1,12 +1,13 @@
 import { getEntry } from "../../../lib/notion"; 
 import SingleEntry from "../../../components/entry/single";
+import SingleEntryNav from "@/app/components/entry/single-nav";
 import NavBack from "../../../components/nav-back";
 import EntryImage from "../../../components/entry/image";
 import utils from "../../../assets/scss/utils.module.scss";
 import styles from "../../../assets/scss/components/entry/single.module.scss";
 
 export default async function Post({ params }) {
-  const { entryId } = await params
+  const { entryId } = await params;
   const entry = await getEntry(entryId);
   
   const title = entry.properties?.Title?.title[0]?.plain_text || "";
@@ -24,8 +25,8 @@ export default async function Post({ params }) {
       day: '2-digit',
       year: 'numeric',
     },
-  );   
-  
+  );
+
   return (
     <SingleEntry entryId={entryId}>
     
@@ -53,6 +54,9 @@ export default async function Post({ params }) {
     </figure>
     </NavBack>
     </div>
+
+    <SingleEntryNav entryId={entryId} />
+
     </SingleEntry>
   )
   
