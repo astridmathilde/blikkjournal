@@ -57,6 +57,17 @@
         width: auto;
         max-height: 70vh;
         box-shadow: variables.$shadow;
+        transition: variables.$transition-out;
+        -webkit-transition: variables.$transition-out;
+        -moz-transition: variables.$transition-out;
+
+        &:hover,
+        &:focus {
+          box-shadow: variables.$shadow-hover;
+          transition: variables.$transition-in;
+          -webkit-transition: variables.$transition-in;
+          -moz-transition: variables.$transition-in;
+        }
       }
     }
 

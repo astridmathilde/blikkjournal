@@ -24,12 +24,21 @@
     &:hover,
     &:focus {
       > figure img {
-        box-shadow: variables.$shadow-hover;
+        box-shadow: variables.$small-shadow;
+        transition: variables.$transition-md-in;
+        -webkit-transition: variables.$transition-md-in;
+        -moz-transition: variables.$transition-md-in;
       }
     }
 
     figure {
       margin: 0 0 0.5em 0;
+
+      img {
+        transition: variables.$transition-md-out;
+        -webkit-transition: variables.$transition-md-out;
+        -moz-transition: variables.$transition-md-out;
+      }
     }
   }
 }

@@ -4,10 +4,16 @@
   cursor: pointer !important;
   vertical-align: middle;
   border-top: variables.$border-size solid variables.$text-color;
+  transition: variables.$transition-out;
+  -webkit-transition: variables.$transition-out;
+  -moz-transition: variables.$transition-out;
 
   &:hover,
   &:focus {
     background-color: variables.$background-hover;
+    transition: variables.$transition-in;
+    -webkit-transition: variables.$transition-in;
+    -moz-transition: variables.$transition-in;
   }
 
   .image {
