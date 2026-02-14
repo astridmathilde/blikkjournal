@@ -23,20 +23,13 @@
 
     &:hover,
     &:focus {
-      > figure {
+      > figure img {
         box-shadow: variables.$shadow-hover;
       }
     }
 
     figure {
-      margin-top: 0;
-      margin-bottom: 1vw;
-    }
-
-    ul {
-      @media all and (variables.$screen-sm) {
-        margin-top: 0.1em;
-      }
+      margin: 0 0 0.5em 0;
     }
   }
 }

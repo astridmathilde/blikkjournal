@@ -1,6 +1,14 @@
 .navigation {
   .link {
-    text-decoration: none !important;
-    color: blue !important;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+
+    &.active {
+      text-decoration: underline;
+    }
   }
 }
