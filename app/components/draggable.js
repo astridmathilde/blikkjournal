@@ -20,15 +20,11 @@ export default function Draggable({children}) {
     const up = () => setDrag(null);
 
     window.addEventListener('mousemove', move);
-    window.addEventListener('touchmove', move);
     window.addEventListener('mouseup', up);
-    window.addEventListener('touchend', up);
 
     return () => {
       window.removeEventListener('mousemove', move);
-      window.removeEventListener('touchmove', move);
       window.removeEventListener('mouseup', up);
-      window.removeEventListener('touchend', up);
     }
   }, [drag]);
 
@@ -38,7 +34,7 @@ export default function Draggable({children}) {
   }
 
   return (
-    <div className={styles.container} style={{left: position.x, top: position.y}} onMouseDown={down} onTouchStart={down}>
+    <div className={styles.container} style={{left: position.x, top: position.y}} onMouseDown={down}>
       {children}
     </div>
   )
