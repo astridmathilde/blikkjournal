@@ -85,41 +85,4 @@
       }
     }
   }
-
-  .navigation {
-    ul {
-      .prev,
-      .next {
-        position: fixed;
-        bottom: variables.$margin;
-        opacity: 0.6;
-        filter: alpha(opacity=60);
-        transition: variables.$transition-out;
-        -webkit-transition: variables.$transition-out;
-        -moz-transition: variables.$transition-out;
-
-        svg {
-          fill: variables.$text-color;
-          width: 2em;
-          height: auto;
-        }
-
-        &:hover {
-          opacity: 1;
-          filter: alpha(opacity=100);
-          transition: variables.$transition-in;
-          -webkit-transition: variables.$transition-in;
-          -moz-transition: variables.$transition-in;
-        }
-      }
-
-      .prev {
-        left: variables.$margin;
-      }
-
-      .next {
-        right: variables.$margin;
-      }
-    }
-  }
 }
