@@ -1,27 +1,30 @@
  "use client";
-
+ 
  import { useState, useEffect } from "react";
+ import { useRouter } from "next/navigation";
  import Link from "next/link";
  import styles from "../../assets/scss/components/entry/single-nav.module.scss";
  
  import IconArrowLeft from "@/app/components/icons/icon-arrow-left";
  import IconArrowRight from "@/app/components/icons/icon-arrow-right";
+ import { userAgent } from "next/server";
  
  export default function SingleEntryNav({entryId, prevEntry, nextEntry}) {
   /* Enable keyboard navigation */ 
-  const [currentEntry, setEntryId] = useState(entryId);
+  const [currentEntryId, setCurrentEntryId] = useState(entryId);
+  const router = useRouter();
   
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'ArrowLeft') {
         event.preventDefault();
         if (prevEntry) {
-          setEntryId(prevEntry.id);
+          setCurrentEntryId(prevEntry.id);
         }
       } else if (event.key === 'ArrowRight') {
         event.preventDefault();
         if (nextEntry) {
-          setEntryId(nextEntry.id);
+          setCurrentEntryId(nextEntry.id);
         }
       }
     };
@@ -29,7 +32,13 @@
     
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevEntry, nextEntry]);
-  
+
+  useEffect(() => {
+    if (currentEntryId !== entryId) {
+      router.push(`/entry/${currentEntryId}`);
+    }
+  }, [currentEntryId, router]);
+
   return (
     <nav className={styles.navigation}>
     <ul>
