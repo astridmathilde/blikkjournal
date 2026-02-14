@@ -36,7 +36,7 @@ export default async function Post({ params }) {
     </div>
     
     <div className={styles.location}>
-    <p><span className={utils.screen_reader_text}>Location: </span>{location}<br />{city}, {country}</p>
+    <p><span className={utils.screen_reader_text}>Location: </span>{location ? location : ""}{location ? <br /> : ""} {city}, {country}</p>
     </div>
     </header>
     

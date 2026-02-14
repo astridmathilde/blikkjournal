@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { useExtractColors } from "react-extract-colors";
 import styles from "../../assets/scss/components/entry/single.module.scss";
 
