@@ -6,26 +6,29 @@
   left: 0;
   width: 100%;
   min-height: 100%;
-  padding: 1em;
+  padding: variables.$margin;
 
+  .navigation,
   .header {
     position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 1em;
+    margin-bottom: variables.$margin;
+  }
 
+  .header {
     .title,
     .location {
       position: fixed;
     }
 
     .title {
-      left: 1em;
+      left: variables.$margin;
     }
 
     .location {
-      right: 1em;
+      right: variables.$margin;
     }
 
     .entryTitle,
@@ -73,12 +76,49 @@
 
     .caption {
       width: 100%;
-      font-size: 0.9em;
+      font-size: variables.$font-size-small;
 
       ul {
         display: inline-flex;
         justify-content: space-between;
         width: 100%;
+      }
+    }
+  }
+
+  .navigation {
+    ul {
+      .prev,
+      .next {
+        position: fixed;
+        bottom: variables.$margin;
+        opacity: 0.6;
+        filter: alpha(opacity=60);
+        transition: variables.$transition-out;
+        -webkit-transition: variables.$transition-out;
+        -moz-transition: variables.$transition-out;
+
+        svg {
+          fill: variables.$text-color;
+          width: 2em;
+          height: auto;
+        }
+
+        &:hover {
+          opacity: 1;
+          filter: alpha(opacity=100);
+          transition: variables.$transition-in;
+          -webkit-transition: variables.$transition-in;
+          -moz-transition: variables.$transition-in;
+        }
+      }
+
+      .prev {
+        left: variables.$margin;
+      }
+
+      .next {
+        right: variables.$margin;
       }
     }
   }

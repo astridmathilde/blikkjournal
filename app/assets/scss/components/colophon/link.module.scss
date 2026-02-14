@@ -2,12 +2,12 @@
 
 .link {
   position: fixed;
-  bottom: 1em;
-  right: 1em;
+  bottom: variables.$margin;
+  right: variables.$margin;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 0.9em;
+  font-size: variables.$font-size-small;
   text-transform: lowercase;
   color: variables.$text-color;
 

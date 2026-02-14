@@ -10,10 +10,10 @@
   margin: 0 auto;
   border: variables.$border-size solid variables.$text-color;
   border-radius: variables.$border-radius-md;
-  padding: 1em;
+  padding: variables.$margin;
 
   @media all and (min-width: variables.$screen-sm) {
-    font-size: 0.9em;
+    font-size: variables.$font-size-small;
   }
 
   @media all and (min-width: variables.$screen-md) {
@@ -65,7 +65,7 @@
 
   h2 {
     margin-top: 0;
-    font-size: 1em;
+    font-size: variables.$font-size-base;
     font-weight: 400;
   }
 }

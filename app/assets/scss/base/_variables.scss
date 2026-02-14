@@ -11,7 +11,9 @@ $background-color: #fbfaf8;
 $background-hover: #f3f0ec;
 $text-color: #111111;
 
-$margin: 8em;
+$margin-01: 1.4em;
+$margin-02: 3.2em;
+$margin: $margin-01;
 
 $small-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.2);
 $shadow: 20px 20px 60px 5px rgba(0, 0, 0, 0.1);
@@ -23,5 +25,6 @@ $transition-out: all 0.1s ease-in-out;
 $transition-md-in: all 0.35s ease-in-out;
 $transition-md-out: all 0.2s ease-in-out;
 
+$font-size-small: 0.9em;
 $font-size-base: 1em;
 $font-size-large: 1.2em;

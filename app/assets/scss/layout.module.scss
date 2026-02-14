@@ -8,18 +8,18 @@
   }
 
   .content {
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin-top: calc(variables.$margin * 2);
+    margin-bottom: calc(variables.$margin * 2);
 
     @media all and (min-width: variables.$screen-md) {
-      margin-top: 1em;
+      margin-top: variables.$margin;
     }
   }
 
   .footer {
     position: fixed;
     bottom: 0;
-    right: 1em;
+    right: variables.$margin;
     display: flex;
     justify-content: space-between;
 

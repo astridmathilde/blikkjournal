@@ -1,8 +1,14 @@
 import { getEntry } from "../../../lib/notion"; 
+import { getEntries } from "../../../lib/notion"; 
+
+import Link from "next/link";
 import SingleEntry from "../../../components/entry/single";
-import SingleEntryNav from "@/app/components/entry/single-nav";
 import NavBack from "../../../components/nav-back";
 import EntryImage from "../../../components/entry/image";
+
+import IconArrowLeft from "@/app/components/icons/icon-arrow-left";
+import IconArrowRight from "@/app/components/icons/icon-arrow-right";
+
 import utils from "../../../assets/scss/utils.module.scss";
 import styles from "../../../assets/scss/components/entry/single.module.scss";
 
@@ -26,7 +32,14 @@ export default async function Post({ params }) {
       year: 'numeric',
     },
   );
-
+  
+  /* Get prev and next entries */
+  const entries = await getEntries();
+  const currentIndex = entries.findIndex(entry => entry.id === entryId);
+  
+  const prevEntry = currentIndex > 0 ? entries[currentIndex - 1] : null;
+  const nextEntry = currentIndex< entries.length - 1 ? entries[currentIndex + 1] : null;
+  
   return (
     <SingleEntry entryId={entryId}>
     
@@ -54,9 +67,17 @@ export default async function Post({ params }) {
     </figure>
     </NavBack>
     </div>
-
-    <SingleEntryNav entryId={entryId} />
-
+    
+    <nav className={styles.navigation}>
+    <ul>
+    {prevEntry && (
+      <li className={styles.prev}><Link href={`/entry/${prevEntry.id}`} aria-label="Go to previous entry"><IconArrowLeft /></Link></li>
+    )}
+    {nextEntry && (
+      <li className={styles.next}><Link href={`/entry/${nextEntry.id}`} aria-label="Go to next entry"><IconArrowRight /></Link></li>
+    )}
+    </ul>
+    </nav>
     </SingleEntry>
   )
   

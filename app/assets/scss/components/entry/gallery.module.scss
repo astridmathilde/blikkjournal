@@ -6,7 +6,7 @@
   display: flex;
 
   @media all and (min-width: variables.$screen-sm) {
-    font-size: 0.9em;
+    font-size: variables.$font-size-small;
   }
 
   ul,
@@ -17,7 +17,7 @@
   .date {
     margin: 0;
     font-weight: 400;
-    font-size: 1em;
+    font-size: variables.$font-size-base;
   }
 
   .label {
