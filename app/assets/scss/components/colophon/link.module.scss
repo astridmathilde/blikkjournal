@@ -1,3 +1,5 @@
+@use "../../base/variables";
+
 .link {
   position: fixed;
   bottom: 1em;
@@ -7,6 +9,7 @@
   cursor: pointer;
   font-size: 0.9em;
   text-transform: lowercase;
+  color: variables.$text-color;
 
   &:hover,
   &:focus {
