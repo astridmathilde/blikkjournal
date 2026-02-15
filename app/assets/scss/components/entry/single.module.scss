@@ -60,16 +60,16 @@
         width: auto;
         max-height: 70vh;
         box-shadow: variables.$shadow;
-        transition: box-shadow variables.$transition-out;
-        -webkit-transition: box-shadow variables.$transition-out;
-        -moz-transition: box-shadow variables.$transition-out;
+        transition: all variables.$transition-out;
+        -webkit-transition: all variables.$transition-out;
+        -moz-transition: all variables.$transition-out;
 
         &:hover,
         &:focus {
-          box-shadow: box-shadow variables.$shadow-hover;
-          transition: box-shadow variables.$transition-in;
-          -webkit-transition: box-shadow variables.$transition-in;
-          -moz-transition: box-shadow variables.$transition-in;
+          box-shadow: all variables.$shadow-hover;
+          transition: all variables.$transition-in;
+          -webkit-transition: all variables.$transition-in;
+          -moz-transition: all variables.$transition-in;
         }
       }
     }
