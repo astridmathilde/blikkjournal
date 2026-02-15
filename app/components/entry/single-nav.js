@@ -1,3 +1,7 @@
+ /**
+  * Navigation between entries
+  */
+
  "use client";
  
  import { useState, useEffect } from "react";
@@ -7,7 +11,6 @@
  
  import IconArrowLeft from "@/app/components/icons/icon-arrow-left";
  import IconArrowRight from "@/app/components/icons/icon-arrow-right";
- import { userAgent } from "next/server";
  
  export default function SingleEntryNav({entryId, prevEntry, nextEntry}) {
   /* Enable keyboard navigation */ 
