@@ -8,23 +8,20 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export function useReturnPath() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  
+
   useEffect(() => {
-    const fullPath = searchParams.toString() 
-      ? `${pathname}?${searchParams.toString()}`
-      : pathname;
+    const fullPath = pathname;
     
     const isSingleEntry = pathname.match(/^\/entry\/[^/]+$/);
     
     if (!isSingleEntry) {
       sessionStorage.setItem('returnPath', fullPath);
     }
-  }, [pathname, searchParams]);
+  }, [pathname]);
 }
 
 export function getReturnPath() {

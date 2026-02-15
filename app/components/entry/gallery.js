@@ -1,6 +1,6 @@
 "use client";
 
-import { useReturnPath } from '@/app/hooks/back-navigation';
+import { useReturnPath } from '@/app/hooks/use-return-path';
 import Link from 'next/link';
 import styles from '../../assets/scss/components/entry/gallery.module.scss';
 import EntryImage from './image';

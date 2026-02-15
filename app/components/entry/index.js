@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useReturnPath } from '@/app/hooks/back-navigation';
+import { useReturnPath } from '@/app/hooks/use-return-path';
 import styles from "../../assets/scss/components/entry/index.module.scss";
 
 export default function ListEntry(entry) {
@@ -21,7 +21,7 @@ export default function ListEntry(entry) {
   }
   
   return (
-    <tr className={styles.listEntry} key={entry.id} tabindex="0" onClick={() => handleClick()} onKeyDown={(event) => handleKeyEnter(event)}>
+    <tr className={styles.listEntry} key={entry.id} tabIndex="0" onClick={() => handleClick()} onKeyDown={(event) => handleKeyEnter(event)}>
     <td headers="image">
     <span>{entry.fileName}</span>
     </td>
