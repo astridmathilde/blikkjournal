@@ -8,6 +8,9 @@
   margin-top: 5vw;
   margin-left: 5vw;
   margin-right: 5vw;
+  transition: all variables.$transition-md-in;
+  -webkit-transition: all variables.$transition-md-in;
+  -moz-transition: all variables.$transition-md-in;
 
   @media all and (min-width: variables.$screen-sm) {
     grid-template-columns: repeat(3, 1fr);
@@ -25,9 +28,9 @@
     &:focus {
       > figure img {
         box-shadow: variables.$small-shadow;
-        transition: variables.$transition-md-in;
-        -webkit-transition: variables.$transition-md-in;
-        -moz-transition: variables.$transition-md-in;
+        transition: box-shadow variables.$transition-md-in;
+        -webkit-transition: box-shadow variables.$transition-md-in;
+        -moz-transition: box-shadow variables.$transition-md-in;
       }
     }
 
@@ -35,9 +38,9 @@
       margin: 0 0 0.5em 0;
 
       img {
-        transition: variables.$transition-md-out;
-        -webkit-transition: variables.$transition-md-out;
-        -moz-transition: variables.$transition-md-out;
+        transition: box-shadow variables.$transition-md-out;
+        -webkit-transition: box-shadow variables.$transition-md-out;
+        -moz-transition: box-shadow variables.$transition-md-out;
       }
     }
   }

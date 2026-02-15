@@ -51,7 +51,6 @@
     position: relative;
     width: 100%;
     height: 90vh;
-    transition: variables.$transition-md-in;
 
     .image {
       padding-top: 5vh;
@@ -61,16 +60,16 @@
         width: auto;
         max-height: 70vh;
         box-shadow: variables.$shadow;
-        transition: variables.$transition-out;
-        -webkit-transition: variables.$transition-out;
-        -moz-transition: variables.$transition-out;
+        transition: box-shadow variables.$transition-out;
+        -webkit-transition: box-shadow variables.$transition-out;
+        -moz-transition: box-shadow variables.$transition-out;
 
         &:hover,
         &:focus {
-          box-shadow: variables.$shadow-hover;
-          transition: variables.$transition-in;
-          -webkit-transition: variables.$transition-in;
-          -moz-transition: variables.$transition-in;
+          box-shadow: box-shadow variables.$shadow-hover;
+          transition: box-shadow variables.$transition-in;
+          -webkit-transition: box-shadow variables.$transition-in;
+          -moz-transition: box-shadow variables.$transition-in;
         }
       }
     }
