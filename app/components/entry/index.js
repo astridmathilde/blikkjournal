@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useReturnPath } from '@/app/hooks/back-navigation';
 import styles from "../../assets/scss/components/entry/index.module.scss";
@@ -8,8 +9,19 @@ export default function ListEntry(entry) {
   useReturnPath(); // storing current url 
   const router = useRouter(); // for navigating to single post
   
+  const handleClick = () => {
+    router.push(`/entry/${entry.id}`)
+  }
+  
+  const handleKeyEnter = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      router.push(`/entry/${entry.id}`)
+    }
+  }
+  
   return (
-    <tr className={styles.listEntry} key={entry.id} onClick={() => router.push(`/entry/${entry.id}`)} >
+    <tr className={styles.listEntry} key={entry.id} tabindex="0" onClick={() => handleClick()} onKeyDown={(event) => handleKeyEnter(event)}>
     <td headers="image">
     <span>{entry.fileName}</span>
     </td>
