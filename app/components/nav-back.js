@@ -2,16 +2,17 @@
 
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { getReturnPath } from "../hooks/back-navigation";
 import styles from "../assets/scss/components/nav-back.module.scss"
 
 export default function NavBack({children}) {
-  const router = useRouter(); 
+  const router = useRouter();
+  const returnPath = getReturnPath();
 
   return (
-  <Link onClick={() => router.back()} href="#" className={styles.navBack}>
+  <a onClick={() => router.push(returnPath)} href="#" className={styles.navBack}>
   {children}
-  </Link>
+  </a>
   );
 }

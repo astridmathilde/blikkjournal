@@ -1,10 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
+import { useReturnPath } from '@/app/hooks/back-navigation';
 import styles from "../../assets/scss/components/entry/index.module.scss";
 
 export default function ListEntry(entry) {
-  const router = useRouter();
+  useReturnPath(); // storing current url 
+  const router = useRouter(); // for navigating to single post
   
   return (
     <tr className={styles.listEntry} key={entry.id} onClick={() => router.push(`/entry/${entry.id}`)} >

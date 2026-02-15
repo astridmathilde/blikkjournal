@@ -9,7 +9,6 @@ title: siteTitle,
 description: siteDescription,
 };
 
-
 export default async function Index() {
   const entries = await getEntries();
   

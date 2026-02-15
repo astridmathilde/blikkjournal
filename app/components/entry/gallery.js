@@ -1,8 +1,12 @@
+"use client";
+
+import { useReturnPath } from '@/app/hooks/back-navigation';
 import Link from 'next/link';
 import styles from '../../assets/scss/components/entry/gallery.module.scss';
 import EntryImage from './image';
 
 export default function GalleryEntry(entry) {
+  useReturnPath(); // storing current url
 
   const entryId = entry.id;
   const title = entry.title;
@@ -24,7 +28,7 @@ export default function GalleryEntry(entry) {
   );
   
   const entryUrl = `/entry/${entryId}`;
-  
+
   return (
     <article key={entryId} className={styles.galleryEntry}>
     <h2 className={styles.date}><time dateTime={dateTime}>{date}</time></h2>
