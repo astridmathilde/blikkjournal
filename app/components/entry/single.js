@@ -12,7 +12,7 @@ export default function SingleEntry({entryId, children}) {
   const adjustedColor = imageColor.replace('rgb', 'rgba').replace(')', `, ${opacity})`);
   
   return (
-    <article key={entryId} className={styles.singleEntry} style={{backgroundColor: `${adjustedColor}`}}>
+    <article className={styles.singleEntry} style={{backgroundColor: `${adjustedColor}`}}>
     {children}
     </article>
   )
