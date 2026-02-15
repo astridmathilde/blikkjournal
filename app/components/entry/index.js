@@ -21,7 +21,7 @@ export default function ListEntry(entry) {
   }
   
   return (
-    <tr className={styles.listEntry} key={entry.id} onClick={() => handleClick()} onKeyDown={(event) => handleKeyEnter(event)}>
+    <tr className={styles.listEntry} key={entry.id} tabIndex="3" onClick={() => handleClick()} onKeyDown={(event) => handleKeyEnter(event)}>
     <td headers="image">
     <span>{entry.fileName}</span>
     </td>
