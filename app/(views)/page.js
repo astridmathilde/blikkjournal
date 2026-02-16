@@ -1,7 +1,9 @@
 import { getEntries } from "../lib/notion";
 import { siteTitle, siteDescription } from "./layout";
+import Filter from "../components/filter";
 import ListEntry from "../components/entry/index";
 import styles from "../assets/scss/views/index.module.scss";
+import utils from "../assets/scss/views/utils.module.scss";
 
 export const metadata = {
 metadataBase: new URL('https://blikk.directory'),
@@ -14,6 +16,8 @@ export default async function Index() {
   
   return (
     <>
+    <h2 className={utils.screen_reader_text}>Index</h2>
+    <Filter />
     <table className={styles.list}>
     <thead>
     <tr>

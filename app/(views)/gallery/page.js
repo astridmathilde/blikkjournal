@@ -2,7 +2,9 @@
 import { siteTitle, siteDescription } from "../layout";
 import { getEntries } from "../../lib/notion";
 import GalleryEntry from "../../components/entry/gallery";
-import styles from '../../assets/scss/views/gallery.module.scss'
+import Filter from "@/app/components/filter";
+import styles from '../../assets/scss/views/gallery.module.scss';
+import utils from "../assets/scss/views/utils.module.scss";
 
 export const metadata = {
 metadataBase: new URL('https://blikk.directory/gallery'),
@@ -16,6 +18,8 @@ export default async function Gallery() {
   
   return (
     <>
+    <Filter />
+    <h2 className={utils.screen_reader_text}>Gallery</h2>
     <div key="entries" className={styles.gallery}>
     {entries.map((entry, index) => { 
       const isAboveTheFold = index < 10;
