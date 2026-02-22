@@ -8,9 +8,6 @@
   margin-top: 5vw;
   margin-left: 5vw;
   margin-right: 5vw;
-  transition: all variables.$transition-md-in;
-  -webkit-transition: all variables.$transition-md-in;
-  -moz-transition: all variables.$transition-md-in;
 
   @media all and (min-width: variables.$screen-sm) {
     grid-template-columns: repeat(3, 1fr);

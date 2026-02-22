@@ -12,6 +12,13 @@
       -webkit-transition: all variables.$transition-out;
       -moz-transition: all variables.$transition-out;
 
+      a {
+        display: flex;
+        justify-content: center;
+        min-width: 48px;
+        min-height: 48px;
+      }
+
       svg {
         fill: variables.$text-color;
         width: 2em;
@@ -28,11 +35,11 @@
     }
 
     .prev {
-      left: variables.$margin;
+      left: calc(variables.$margin - (24px - 1em));
     }
 
     .next {
-      right: variables.$margin;
+      right: calc(variables.$margin - (24px - 1em));
     }
   }
 }

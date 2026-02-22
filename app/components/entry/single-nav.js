@@ -16,6 +16,10 @@
   /* Enable keyboard navigation */ 
   const [currentEntryId, setCurrentEntryId] = useState(entryId);
   const router = useRouter();
+
+  useEffect(() => {
+    setCurrentEntryId(entryId)
+  }, [entryId]);
   
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -40,7 +44,7 @@
     if (currentEntryId !== entryId) {
       router.push(`/entry/${currentEntryId}`);
     }
-  }, [currentEntryId, router]);
+  }, [currentEntryId, entryId, router]);
 
   return (
     <nav className={styles.navigation}>
