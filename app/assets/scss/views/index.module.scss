@@ -2,21 +2,13 @@
 @use "../utils.module.scss";
 
 .list {
-  overflow-x: scroll;
+  overflow-x: hidden;
   width: 100%;
   margin-top: 2em;
   border-collapse: collapse;
 
-  @media all and (max-width: variables.$screen-sm) {
-    min-width: 100vw;
-  }
-
   @media all and (min-width: variables.$screen-sm) {
     margin-top: 1em;
-  }
-
-  @media all and (min-width: variables.$screen-lg) {
-    overflow-x: hidden;
   }
 
   thead {
@@ -31,8 +23,34 @@
           padding-left: 1.5em;
         }
 
-        &[id="camera"] {
-          display: none;
+        &[id="date"] {
+          text-align: right;
+        }
+
+        &[id="camera"],
+        &[id="category"] {
+          @media all and (max-width: variables.$screen-md) {
+            display: none;
+          }
+        }
+
+        &[id="location"],
+        &[id="city"] {
+          @media all and (max-width: variables.$screen-xs) {
+            display: none;
+          }
+        }
+
+        &[id="image"] {
+          @media all and (max-width: variables.$screen-xxs) {
+            display: none;
+          }
+        }
+
+        &[id="description"] {
+          @media all and (max-width: variables.$screen-xxs) {
+            padding-left: 0 !important;
+          }
         }
       }
     }

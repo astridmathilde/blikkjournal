@@ -1,6 +1,7 @@
 @use "../../base/variables";
 
 .listEntry {
+  width: 100%;
   cursor: pointer !important;
   vertical-align: middle;
   border-top: variables.$border-size solid variables.$text-color;
@@ -39,6 +40,10 @@
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 20vw;
+
+      @media all and (max-width: variables.$screen-xxs) {
+        max-width: 40vw;
+      }
     }
 
     &[headers="image"] {
@@ -67,12 +72,38 @@
     }
 
     &[headers="date"] {
-      width: 12vw;
+      max-width: 20vw;
+      text-align: right;
+
+      @media all and (max-width: variables.$screen-xxs) {
+        max-width: 60vw;
+      }
     }
 
-    &[headers="image"] figure,
-    &[headers="camera"] {
-      display: none !important;
+    &[headers="camera"],
+    &[headers="category"] {
+      @media all and (max-width: variables.$screen-md) {
+        display: none;
+      }
+    }
+
+    &[headers="location"],
+    &[headers="city"] {
+      @media all and (max-width: variables.$screen-xs) {
+        display: none;
+      }
+    }
+
+    &[headers="image"] {
+      @media all and (max-width: variables.$screen-xxs) {
+        display: none;
+      }
+    }
+
+    &[headers="description"] {
+      @media all and (max-width: variables.$screen-xxs) {
+        padding-left: 0 !important;
+      }
     }
   }
 }
