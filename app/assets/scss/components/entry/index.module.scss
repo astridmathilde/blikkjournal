@@ -10,7 +10,7 @@
 
   &:hover,
   &:focus {
-    background-color: all variables.$background-hover;
+    background-color: variables.$background-hover;
     transition: all variables.$transition-in;
     -webkit-transition: all variables.$transition-in;
     -moz-transition: all variables.$transition-in;
