@@ -4,7 +4,7 @@ import { getEntries } from "../../lib/notion";
 import GalleryEntry from "../../components/entry/gallery";
 import Filter from "@/app/components/filter";
 import styles from '../../assets/scss/views/gallery.module.scss';
-import utils from "../assets/scss/views/utils.module.scss";
+import utils from "../../assets/scss/utils.module.scss";
 
 export const metadata = {
 metadataBase: new URL('https://blikk.directory/gallery'),

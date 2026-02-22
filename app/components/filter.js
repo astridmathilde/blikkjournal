@@ -1,5 +1,5 @@
 import { getDatabase } from "../lib/notion";
-import styles from '..draggable.module.scss';
+import styles from '../assets/scss/components/draggable.module.scss';
 import utils from '../assets/scss/utils.module.scss';
 
 /* Get categories */

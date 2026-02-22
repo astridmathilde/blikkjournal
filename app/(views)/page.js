@@ -3,7 +3,7 @@ import { siteTitle, siteDescription } from "./layout";
 import Filter from "../components/filter";
 import ListEntry from "../components/entry/index";
 import styles from "../assets/scss/views/index.module.scss";
-import utils from "../assets/scss/views/utils.module.scss";
+import utils from "../assets/scss/utils.module.scss";
 
 export const metadata = {
 metadataBase: new URL('https://blikk.directory'),
