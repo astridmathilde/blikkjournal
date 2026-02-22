@@ -18,7 +18,6 @@ export default async function Gallery() {
   
   return (
     <>
-    <Filter />
     <h2 className={utils.screen_reader_text}>Gallery</h2>
     <div key="entries" className={styles.gallery}>
     {entries.map((entry, index) => { 
