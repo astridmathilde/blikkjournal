@@ -1,14 +1,18 @@
 import { getEntry } from "../../../lib/notion"; 
 import { getEntries } from "../../../lib/notion"; 
-
+import { siteTitle, siteDescription } from "@/app/(views)/layout";
 import SingleEntry from "../../../components/entry/single";
 import SingleEntryNav from "@/app/components/entry/single-nav";
 import NavBack from "../../../components/nav-back";
 import EntryImage from "../../../components/entry/image";
 
-
 import utils from "../../../assets/scss/utils.module.scss";
 import styles from "../../../assets/scss/components/entry/single.module.scss";
+
+export const metadata = {
+title: siteTitle,
+description: siteDescription,
+};
 
 export default async function Post({ params }) {
   const { entryId } = await params;
