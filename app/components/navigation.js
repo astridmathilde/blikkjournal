@@ -10,8 +10,8 @@ export default function NavLink() {
   return (
     <nav className={styles.navigation} id="navigation">
     <ul>
-    <li key="index"><Link href="/" className={styles.link + " " + `${pathname === '/' ? `${styles.active}` : ''}`}>Index</Link></li>
-    <li key="gallery"><Link href="/gallery" className={styles.link + " " + `${pathname === '/gallery' ? `${styles.active}` : ''}`}>Gallery</Link></li>
+    <li key="gallery"><Link href="/" className={styles.link + " " + `${pathname === '/' ? `${styles.active}` : ''}`}>Gallery</Link></li>
+    <li key="index"><Link href="/list" className={styles.link + " " + `${pathname === '/list' ? `${styles.active}` : ''}`}>Index</Link></li>
     </ul>
     </nav>
   )
