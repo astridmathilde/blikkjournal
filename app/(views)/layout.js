@@ -1,6 +1,8 @@
 import localFont from 'next/font/local';
 import Link from "next/link";
 import '../assets/scss/global.scss';
+import { ClutterProvider } from '../components/clutter-context';
+import ClutterControl from '../components/clutter-control';
 import Colophon from '../components/colophon';
 import styles from '../assets/scss/layout.module.scss'
 import utils from '../assets/scss/utils.module.scss' 
@@ -33,11 +35,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={ronzino.className}>
     <body className={styles.wrapper}>    
+    <ClutterProvider>
     <header className={styles.header}>
     <h1 className={utils.screen_reader_text}><Link href="/">{siteTitle}</Link></h1>
     <p className={styles.description}><em>blikkjournal</em> is a collection of moments 
     and everyday observations.</p>
     <Navigation />
+    <ClutterControl />
     </header>
     
     <main className={styles.content}>
@@ -58,7 +62,7 @@ export default function RootLayout({ children }) {
     <p>design, code and photos © <a href="https://astridmathilde.no" target="_blank" rel="external">Astrid Boberg</a> 2018–{(new Date().getFullYear())}</p>
     </Colophon>
     </footer>
-    
+    </ClutterProvider>
     </body>
     </html>
   );

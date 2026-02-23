@@ -17,6 +17,11 @@
     margin-bottom: variables.$margin;
   }
 
+  .navigation,
+  .header {
+    z-index: 1000;
+  }
+
   .header {
     .title,
     .location {
@@ -25,10 +30,18 @@
 
     .title {
       left: variables.$margin;
+
+      @media all and (max-width: variables.$screen-sm) {
+        max-width: 50vw;
+      }
     }
 
     .location {
       right: variables.$margin;
+
+      @media all and (max-width: variables.$screen-sm) {
+        max-width: 50vw;
+      }
     }
 
     .entryTitle,

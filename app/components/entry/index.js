@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useReturnPath } from '@/app/hooks/use-return-path';
 import styles from "../../assets/scss/components/entry/index.module.scss";
