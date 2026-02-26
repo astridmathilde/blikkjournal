@@ -35,18 +35,23 @@ export default function GalleryEntry(entry) {
   
   return (
     <article key={entryId} className={styles.galleryEntry}>
-    { level <= -1 ? (
+    { level <= -2 ? (
       <h2 className={utils.screen_reader_text}><time dateTime={dateTime}>{date}</time></h2>
     ) : (
       <h2 className={styles.date}><time dateTime={dateTime}>{date}</time></h2>)
     }
+
     <ul className={styles.metadata}>
-    <li className={styles.caption}><span className={styles.label}>Description: </span>{title}</li>
-    {camera && level >= 8 ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : "" }
-    {location ? <li className={styles.location} key="location"><span className={styles.label}>Location: </span>{location}</li> : "" }
-    <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li>
+
+    { level >= 0 ? <li className={styles.caption}><span className={styles.label}>Description: </span>{title}</li> : "" }
+
+    {level >= 3 && camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : "" }
+
+    {level >= 2 && location ? <li className={styles.location} key="location"><span className={styles.label}>Location: </span>{location}</li> : "" }
     
-    {category ? <li className={styles.category} key="category"><span className={styles.label}>Category: </span>{category}</li> : "" }
+    { level >= 1 ? <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li> : "" }
+    
+    { level >= 5 && category ? <li className={styles.category} key="category"><span className={styles.label}>Category: </span>{category}</li> : "" }
     
     </ul>
     
