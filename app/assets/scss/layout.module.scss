@@ -29,12 +29,10 @@
 
   .footer {
     position: fixed;
-    left: 0;
-    right: 0;
     bottom: 0;
+    right: variables.$margin-01;
     display: flex;
     justify-content: space-between;
-    width: 100%;
 
     @media all and (min-width: variables.$screen-sm) {
       .backtotop {
