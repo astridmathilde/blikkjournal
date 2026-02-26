@@ -1,11 +1,12 @@
  /**
-  * Navigation between entries
-  */
-
+ * Navigation between entries
+ */
+ 
  "use client";
  
  import { useState, useEffect } from "react";
  import { useRouter } from "next/navigation";
+ import { useClutter } from "../clutter-context";
  import Link from "next/link";
  import styles from "../../assets/scss/components/entry/single-nav.module.scss";
  
@@ -35,23 +36,30 @@
     
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevEntry, nextEntry]);
-
+  
   useEffect(() => {
     if (currentEntryId !== entryId) {
       router.push(`/entry/${currentEntryId}`);
     }
   }, [currentEntryId, router]);
-
-  return (
-    <nav className={styles.navigation}>
-    <ul>
-    {prevEntry && (
-      <li className={styles.prev}><Link href={`/entry/${prevEntry.id}`} aria-label="Go to previous entry"><IconArrowLeft /></Link></li>
-    )}
-    {nextEntry && (
-      <li className={styles.next}><Link href={`/entry/${nextEntry.id}`} aria-label="Go to next entry"><IconArrowRight /></Link></li>
-    )}
-    </ul>
-    </nav>
-  )
+  
+  /* Declutter things */
+  const {level} = useClutter();
+  
+  if (level >= -7) {
+    return (
+      <nav className={styles.navigation}>
+      <ul>
+      {prevEntry && (
+        <li className={styles.prev}><Link href={`/entry/${prevEntry.id}`} aria-label="Go to previous entry"><IconArrowLeft /></Link></li>
+      )}
+      {nextEntry && (
+        <li className={styles.next}><Link href={`/entry/${nextEntry.id}`} aria-label="Go to next entry"><IconArrowRight /></Link></li>
+      )}
+      </ul>
+      </nav>
+    )
+  } else {
+    null;
+  }
 }

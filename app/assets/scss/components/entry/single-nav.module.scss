@@ -5,7 +5,7 @@
     .prev,
     .next {
       position: fixed;
-      bottom: variables.$margin;
+      bottom: variables.$margin-01;
       opacity: 0.6;
       filter: alpha(opacity=60);
       transition: all variables.$transition-out;
@@ -35,11 +35,11 @@
     }
 
     .prev {
-      left: calc(variables.$margin - (24px - 1em));
+      left: calc(variables.$margin-01 - (24px - 1em));
     }
 
     .next {
-      right: calc(variables.$margin - (24px - 1em));
+      right: calc(variables.$margin-01 - (24px - 1em));
     }
   }
 }

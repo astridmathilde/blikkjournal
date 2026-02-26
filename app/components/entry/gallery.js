@@ -1,16 +1,18 @@
 "use client";
 
 import { useReturnPath } from '@/app/hooks/use-return-path';
+import { useClutter } from '../clutter-context';
 import Link from 'next/link';
 import styles from '../../assets/scss/components/entry/gallery.module.scss';
+import utils from '../../assets/scss/utils.module.scss';
 import EntryImage from './image';
 
 export default function GalleryEntry(entry) {
   useReturnPath(); // storing current url
-
+  
   const entryId = entry.id;
   const title = entry.title;
-  const place = entry.place;
+  const location = entry.place;
   const city = entry.city;
   const country = entry.country;
   const category = entry.category;
@@ -28,16 +30,24 @@ export default function GalleryEntry(entry) {
   );
   
   const entryUrl = `/entry/${entryId}`;
-
+  
+  const { level } = useClutter();
+  
   return (
     <article key={entryId} className={styles.galleryEntry}>
-    <h2 className={styles.date}><time dateTime={dateTime}>{date}</time></h2>
+    { level <= -1 ? (
+      <h2 className={utils.screen_reader_text}><time dateTime={dateTime}>{date}</time></h2>
+    ) : (
+      <h2 className={styles.date}><time dateTime={dateTime}>{date}</time></h2>)
+    }
     <ul className={styles.metadata}>
     <li className={styles.caption}><span className={styles.label}>Description: </span>{title}</li>
-    {place ? <li className={styles.place} key="place"><span className={styles.label}>Location: </span>{place}</li> : <></> }
+    {camera && level >= 8 ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : "" }
+    {location ? <li className={styles.location} key="location"><span className={styles.label}>Location: </span>{location}</li> : "" }
     <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li>
-    {category ? <li className={styles.category} key="category"><span className={styles.label}>Category: </span>{category}</li> : <></> }
-    {camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : <></> }
+    
+    {category ? <li className={styles.category} key="category"><span className={styles.label}>Category: </span>{category}</li> : "" }
+    
     </ul>
     
     <figure>

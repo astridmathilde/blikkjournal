@@ -12,3 +12,16 @@
     }
   }
 }
+
+:global(html[data-clutter="clutter-6"]) {
+  .navigation ul {
+    display: inline-flex;
+    gap: 0.5em;
+  }
+}
+
+:global(html[data-clutter="declutter-6"]) {
+  .navigation {
+    display: none;
+  }
+}

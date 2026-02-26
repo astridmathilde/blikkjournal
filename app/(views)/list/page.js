@@ -17,7 +17,6 @@ export default async function List() {
   return (
     <>
     <h2 className={utils.screen_reader_text}>Index</h2>
-    <Filter />
     <table className={styles.list}>
     <thead>
     <tr>

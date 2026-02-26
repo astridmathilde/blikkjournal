@@ -14,6 +14,7 @@
   thead {
     tr {
       th {
+        border-bottom: variables.$border-size solid variables.$text-color;
         padding-top: 1em;
         padding-bottom: 1em;
         text-align: left;
@@ -54,5 +55,32 @@
         }
       }
     }
+  }
+}
+
+:global(html[data-clutter="declutter-1"]),
+:global(html[data-clutter="declutter-2"]),
+:global(html[data-clutter="declutter-3"]),
+:global(html[data-clutter="declutter-4"]),
+:global(html[data-clutter="declutter-5"]),
+:global(html[data-clutter="declutter-6"]) {
+  .list {
+    thead {
+      display: none;
+    }
+  }
+}
+
+:global(html[data-clutter="clutter-2"]),
+:global(html[data-clutter="clutter-1"]),
+:global(html[data-clutter="default-0"]),
+:global(html[data-clutter="declutter-1"]),
+:global(html[data-clutter="declutter-2"]),
+:global(html[data-clutter="declutter-3"]),
+:global(html[data-clutter="declutter-4"]),
+:global(html[data-clutter="declutter-5"]),
+:global(html[data-clutter="declutter-6"]) {
+  .list thead tr th[id="camera"] {
+    display: none;
   }
 }

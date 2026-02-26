@@ -38,8 +38,7 @@ export default function RootLayout({ children }) {
     <ClutterProvider>
     <header className={styles.header}>
     <h1 className={utils.screen_reader_text}><Link href="/">{siteTitle}</Link></h1>
-    <p className={styles.description}><em>blikkjournal</em> is a collection of moments 
-    and everyday observations.</p>
+    <p className={styles.description}><em>blikkjournal</em> is a collection of moments and everyday observations.</p>
     <Navigation />
     <ClutterControl />
     </header>

@@ -4,10 +4,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
-  gap: 10vw;
-  margin-top: 5vw;
-  margin-left: 5vw;
-  margin-right: 5vw;
+  gap: 7vw;
+  margin-left: 3vw;
+  margin-right: 3vw;
 
   @media all and (min-width: variables.$screen-sm) {
     grid-template-columns: repeat(3, 1fr);
@@ -39,6 +38,30 @@
         -webkit-transition: box-shadow variables.$transition-md-out;
         -moz-transition: box-shadow variables.$transition-md-out;
       }
+    }
+  }
+}
+
+:global(html[data-clutter="clutter-1"]),
+:global(html[data-clutter="clutter-2"]),
+:global(html[data-clutter="clutter-3"]),
+:global(html[data-clutter="clutter-4"]),
+:global(html[data-clutter="clutter-5"]),
+:global(html[data-clutter="clutter-6"]),
+:global(html[data-clutter="clutter-7"]),
+:global(html[data-clutter="clutter-8"]) {
+  .gallery {
+    margin-top: 0;
+  }
+}
+
+:global(html[data-clutter="clutter-5"]),
+:global(html[data-clutter="clutter-6"]),
+:global(html[data-clutter="clutter-7"]),
+:global(html[data-clutter="clutter-8"]) {
+  .gallery {
+    @media all and (min-width: variables.$screen-lg) {
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 }

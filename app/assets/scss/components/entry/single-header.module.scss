@@ -1,0 +1,42 @@
+@use "../../base/variables";
+
+.header {
+  z-index: 1000;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: variables.$margin-01;
+
+  .title,
+  .location {
+    position: fixed;
+  }
+
+  .title {
+    left: variables.$margin-01;
+
+    @media all and (max-width: variables.$screen-sm) {
+      max-width: 50vw;
+    }
+  }
+
+  .location {
+    right: variables.$margin-01;
+
+    @media all and (max-width: variables.$screen-sm) {
+      max-width: 50vw;
+    }
+  }
+
+  .entryTitle,
+  p {
+    margin: 0;
+    font-weight: 400;
+    font-size: variables.$font-size-large;
+  }
+
+  .location {
+    text-align: right;
+  }
+}

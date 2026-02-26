@@ -18,7 +18,6 @@ export default async function Gallery() {
   
   return (
     <>
-    <Filter />
     <h2 className={utils.screen_reader_text}>Gallery</h2>
     <div key="entries" className={styles.gallery}>
     {entries.map((entry, index) => { 
@@ -31,9 +30,10 @@ export default async function Gallery() {
       const city = entry.properties?.City?.select?.name || "";
       const country = entry.properties?.Country?.select?.name || "";
       const camera = entry.properties?.Camera?.select?.name || "";
+      const category = entry.properties?.Category?.select?.name || "";  
       const time = entry.properties.Time.date?.start;
       
-      return <GalleryEntry key={entryId} id={entryId} place={place} title={title} city={city} country={country} time={time} camera={camera} name={name} priority={isAboveTheFold ? "true" : ""} />
+      return <GalleryEntry key={entryId} id={entryId} place={place} title={title} city={city} country={country} category={category} time={time} camera={camera} name={name} priority={isAboveTheFold ? "true" : ""} />
       
     })}
     </div>

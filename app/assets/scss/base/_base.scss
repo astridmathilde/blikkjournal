@@ -7,8 +7,9 @@
 }
 
 body {
+  position: relative;
   background-color: variables.$background-color;
-  margin: variables.$margin;
+  margin: variables.$margin-01;
   text-transform: lowercase;
   font-family:
     "Ronzino",

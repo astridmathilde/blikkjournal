@@ -1,4 +1,5 @@
 import { siteTitle } from '../(views)/layout';
+import { ClutterProvider } from '../components/clutter-context';
 import localFont from 'next/font/local';
 import Link from "next/link";
 import '../assets/scss/global.scss';
@@ -28,6 +29,7 @@ export default function EntryLayout({ children }) {
   return (
     <html lang="en" className={ronzino.className}>
     <body className={styles.wrapper}> 
+    <ClutterProvider>
     <header className={styles.header}>
     <h1 className={utils.screen_reader_text}><Link href="/">{siteTitle}</Link></h1>
     </header>
@@ -38,6 +40,7 @@ export default function EntryLayout({ children }) {
     
     <footer className={styles.footer}>
     </footer>
+    </ClutterProvider>
     </body>
     </html>
   );

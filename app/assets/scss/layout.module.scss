@@ -1,31 +1,86 @@
 @use "base/variables";
 
 .wrapper {
+  position: relative;
+
   .header,
   .footer {
     font-size: variables.$font-size-large;
     font-weight: 400;
   }
 
+  .header {
+    p {
+      @media all and (min-width: variables.$screen-xxs) {
+        max-width: 30ch;
+      }
+    }
+  }
+
   .content {
-    margin-top: calc(variables.$margin * 2);
-    margin-bottom: calc(variables.$margin * 2);
+    margin-top: calc(variables.$margin-01 * 2);
+    margin-bottom: calc(variables.$margin-01 * 2);
 
     @media all and (min-width: variables.$screen-md) {
-      margin-top: variables.$margin;
+      margin-top: calc(variables.$margin-02 * 1.5);
+      margin-bottom: calc(variables.$margin-02 * 1.5);
     }
   }
 
   .footer {
     position: fixed;
+    left: 0;
+    right: 0;
     bottom: 0;
-    right: variables.$margin;
     display: flex;
     justify-content: space-between;
+    width: 100%;
 
     @media all and (min-width: variables.$screen-sm) {
       .backtotop {
         display: none;
+      }
+    }
+  }
+}
+:global(html[data-clutter="declutter-5"]),
+:global(html[data-clutter="declutter-6"]) {
+  .header {
+    .description {
+      display: none;
+    }
+  }
+}
+
+:global(html[data-clutter="clutter-1"]),
+:global(html[data-clutter="clutter-2"]) {
+  .content {
+    margin-top: variables.$margin-02;
+  }
+}
+
+:global(html[data-clutter="clutter-6"]) {
+  .wrapper {
+    .header {
+      @media all and (min-width: variables.$screen-md) {
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        left: 1.1em;
+        right: 1.1em;
+        width: 100%;
+      }
+
+      p {
+        @media all and (min-width: variables.$screen-md) {
+          max-width: 100%;
+        }
+      }
+    }
+
+    .content {
+      @media all and (min-width: variables.$screen-md) {
+        margin-top: 8em;
       }
     }
   }

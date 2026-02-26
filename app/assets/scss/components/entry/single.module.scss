@@ -6,54 +6,18 @@
   left: 0;
   width: 100%;
   min-height: 100%;
-  padding: variables.$margin;
+  padding: variables.$margin-01;
 
-  .navigation,
-  .header {
+  .navigation {
     position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: variables.$margin;
+    margin-bottom: variables.$margin-01;
   }
 
-  .navigation,
-  .header {
+  .navigation {
     z-index: 1000;
-  }
-
-  .header {
-    .title,
-    .location {
-      position: fixed;
-    }
-
-    .title {
-      left: variables.$margin;
-
-      @media all and (max-width: variables.$screen-sm) {
-        max-width: 50vw;
-      }
-    }
-
-    .location {
-      right: variables.$margin;
-
-      @media all and (max-width: variables.$screen-sm) {
-        max-width: 50vw;
-      }
-    }
-
-    .entryTitle,
-    p {
-      margin: 0;
-      font-weight: 400;
-      font-size: variables.$font-size-large;
-    }
-
-    .location {
-      text-align: right;
-    }
   }
 
   .imgWrapper {
@@ -64,38 +28,5 @@
     position: relative;
     width: 100%;
     height: 90vh;
-
-    .image {
-      padding-top: 5vh;
-      padding-bottom: 5vh;
-
-      img {
-        width: auto;
-        max-height: 70vh;
-        box-shadow: variables.$shadow;
-        transition: all variables.$transition-out;
-        -webkit-transition: all variables.$transition-out;
-        -moz-transition: all variables.$transition-out;
-
-        &:hover,
-        &:focus {
-          box-shadow: all variables.$shadow-hover;
-          transition: all variables.$transition-in;
-          -webkit-transition: all variables.$transition-in;
-          -moz-transition: all variables.$transition-in;
-        }
-      }
-    }
-
-    .caption {
-      width: 100%;
-      font-size: variables.$font-size-small;
-
-      ul {
-        display: inline-flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-    }
   }
 }

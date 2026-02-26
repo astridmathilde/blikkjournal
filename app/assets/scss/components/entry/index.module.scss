@@ -9,6 +9,10 @@
   -webkit-transition: all variables.$transition-out;
   -moz-transition: all variables.$transition-out;
 
+  &:nth-child(1) {
+    border-top: 0;
+  }
+
   &:hover,
   &:focus {
     background-color: variables.$background-hover;
@@ -19,11 +23,15 @@
 
   .image {
     cursor: zoom-in;
+    width: 100%;
+    height: 1.2em;
 
     img {
-      width: 40px;
-      height: 40px;
       object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
     }
   }
 
@@ -104,6 +112,52 @@
       @media all and (max-width: variables.$screen-xxs) {
         padding-left: 0 !important;
       }
+    }
+  }
+}
+
+:global(html[data-clutter="declutter-4"]),
+:global(html[data-clutter="declutter-5"]),
+:global(html[data-clutter="declutter-6"]),
+:global(html[data-clutter="declutter-7"]),
+:global(html[data-clutter="declutter-8"]) {
+  .listEntry {
+    border-top: none;
+
+    &:hover,
+    &:focus {
+      background: none;
+
+      td {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+:global(html[data-clutter="clutter-1"]) {
+  .listEntry {
+    td[headers="image"] {
+      max-width: 12vw;
+    }
+  }
+}
+
+:global(html[data-clutter="clutter-2"]) {
+  .listEntry {
+    td[headers="image"] {
+      max-width: 20vw;
+    }
+  }
+}
+
+:global(html[data-clutter="clutter-3"]),
+:global(html[data-clutter="clutter-4"]),
+:global(html[data-clutter="clutter-5"]),
+:global(html[data-clutter="clutter-6"]) {
+  .listEntry {
+    td[headers="image"] {
+      max-width: 16vw;
     }
   }
 }

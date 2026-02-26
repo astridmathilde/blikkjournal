@@ -8,8 +8,8 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const STORAGE_KEY = "blikkjournal.clutterLevel";
-const MIN_LEVEL = -8;
-const MAX_LEVEL = 5;
+const MIN_LEVEL = -6;
+const MAX_LEVEL = 6 ;
 
 function clamp(n, min, max) {
   return Math.min(max, Math.max(min, n));

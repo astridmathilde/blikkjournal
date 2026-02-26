@@ -1,0 +1,53 @@
+@use "../base/variables";
+
+.clutterControl {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  justify-content: end;
+
+  @media all and (max-width: variables.$screen-xxs) {
+    display: none;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    background: none;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    font-size: variables.$font-size-small;
+    text-transform: lowercase;
+
+    svg {
+      width: variables.$font-size-large;
+      height: auto;
+      fill: variables.$text-color;
+    }
+  }
+
+  .clutterInput {
+    order: -1;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+  }
+}
+
+:global(html[data-clutter="clutter-6"]) {
+  .clutterControl {
+    @media all and (min-width: variables.$screen-md) {
+      top: 0.9em;
+      right: 2.3em;
+    }
+  }
+}
+
+:global(html[data-clutter="declutter-6"]) {
+  .clutterControl {
+    position: relative;
+  }
+}

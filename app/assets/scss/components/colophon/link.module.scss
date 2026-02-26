@@ -1,10 +1,12 @@
 @use "../../base/variables";
 
 .link {
+  z-index: 1000;
   position: fixed;
-  bottom: variables.$margin;
-  right: variables.$margin;
+  bottom: variables.$margin-01;
+  right: variables.$margin-01;
   background: none;
+  padding: 0;
   border: none;
   cursor: pointer;
   font-size: variables.$font-size-small;

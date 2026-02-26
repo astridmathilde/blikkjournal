@@ -9,7 +9,7 @@
   margin: 0 auto;
   border: variables.$border-size solid variables.$text-color;
   border-radius: variables.$border-radius-md;
-  padding: variables.$margin;
+  padding: variables.$margin-01;
 
   @media all and (min-width: variables.$screen-sm) {
     font-size: variables.$font-size-small;
