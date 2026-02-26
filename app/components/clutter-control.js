@@ -17,7 +17,8 @@ export default function ClutterControl() {
   return (
     <div className={styles.clutterControl}>
     <button onClick={handleClick} aria-expanded={open} aria-controls="clutter-input">
-    {! open ? <IconClutter /> : ""} <span className={styles.label}>Clutter</span>
+    {! open ? <IconClutter /> : ""}
+    {level !== -6 || open ? <span className={styles.label}>Clutter</span> : <span className={utils.screen_reader_text}>Clutter</span> }
     </button>
     
     {open ? (
