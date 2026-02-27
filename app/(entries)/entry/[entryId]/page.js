@@ -1,12 +1,12 @@
 import { getEntry } from "../../../lib/notion"; 
 import { getEntries } from "../../../lib/notion"; 
 import { siteTitle, siteDescription } from "@/app/(views)/layout";
-import SingleEntry from "../../../components/entry/single";
-import SingleEntryNav from "@/app/components/entry/single-nav";
-import EntryHeaderSingle from "@/app/components/entry/single-header";
+import SingleEntry from "../../../components/entry/single/wrapper";
+import SingleEntryNav from "@/app/components/entry/single/nav";
+import EntryHeaderSingle from "@/app/components/entry/single/header";
 import NavBack from "../../../components/nav-back";
 import EntryImage from "@/app/components/entry/image";
-import styles from "../../../assets/scss/components/entry/single.module.scss";
+import styles from "../../../assets/scss/components/entry/single/img.module.scss";
 import utils from "../../../assets/scss/utils.module.scss";
 
 export const metadata = {
@@ -50,11 +50,11 @@ export default async function Post({ params }) {
     <div className={styles.imgWrapper}>
     <NavBack>
     <figure className={styles.image}>
-    <EntryImage alt={entry.title} entryId={entryId} width="600" height="600" preload={true} loading="eager" />
+    <EntryImage alt={title} entryId={entryId} width="600" height="600" preload={true} loading="eager" />
       <figcaption className={styles.caption}>
       <ul>
-      <li><span className={utils.screen_reader_text}>File name: </span>{entry.fileName}</li>
-      <li><span className={utils.screen_reader_text}>Camera: </span>{entry.camera}</li>
+      <li><span className={utils.screen_reader_text}>File name: </span>{fileName}</li>
+      <li><span className={utils.screen_reader_text}>Camera: </span>{camera}</li>
       </ul>
       </figcaption>
       </figure>

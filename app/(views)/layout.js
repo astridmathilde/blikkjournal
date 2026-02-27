@@ -1,8 +1,8 @@
 import localFont from 'next/font/local';
 import Link from "next/link";
 import '../assets/scss/global.scss';
-import { ClutterProvider } from '../components/clutter-context';
-import ClutterControl from '../components/clutter-control';
+import { ClutterProvider } from '../components/clutter/context';
+import ClutterControl from '../components/clutter/control';
 import Colophon from '../components/colophon';
 import styles from '../assets/scss/layout.module.scss'
 import utils from '../assets/scss/utils.module.scss' 

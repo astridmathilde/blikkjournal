@@ -1,5 +1,5 @@
 import { siteTitle } from '../(views)/layout';
-import { ClutterProvider } from '../components/clutter-context';
+import { ClutterProvider } from '../components/clutter/context';
 import localFont from 'next/font/local';
 import Link from "next/link";
 import '../assets/scss/global.scss';

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { useClutter } from "./clutter-context";
+import { useClutter } from "./clutter/context";
 import Draggable from "./draggable"
 import contentStyle from "../assets/scss/components/colophon/content.module.scss";
 import linkStyle from "../assets/scss/components/colophon/link.module.scss";

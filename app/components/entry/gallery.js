@@ -1,7 +1,7 @@
 "use client";
 
 import { useReturnPath } from '@/app/hooks/use-return-path';
-import { useClutter } from '../clutter-context';
+import { useClutter } from '../clutter/context';
 import Link from 'next/link';
 import styles from '../../assets/scss/components/entry/gallery.module.scss';
 import utils from '../../assets/scss/utils.module.scss';

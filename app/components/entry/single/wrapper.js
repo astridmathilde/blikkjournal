@@ -1,7 +1,7 @@
 "use client";
 
 import { useExtractColors } from "react-extract-colors";
-import styles from "../../assets/scss/components/entry/single.module.scss";
+import styles from "../../../assets/scss/components/entry/single/wrapper.module.scss";
 
 export default function SingleEntry({entryId, children}) {
   const image =  `/api/images/${entryId}`;

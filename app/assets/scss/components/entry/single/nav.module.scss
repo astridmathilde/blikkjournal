@@ -1,6 +1,12 @@
-@use "../../base/variables";
+@use "../../../base/variables";
 
 .navigation {
+  z-index: 1000;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
   ul {
     .prev,
     .next {
@@ -40,6 +46,40 @@
 
     .next {
       right: calc(variables.$margin-01 - (24px - 1em));
+    }
+  }
+}
+
+:global(html[data-clutter="clutter-4"]),
+:global(html[data-clutter="clutter-5"]),
+:global(html[data-clutter="clutter-6"]) {
+  .navigation {
+    .prev,
+    .next {
+      svg {
+        width: 1.6em;
+      }
+
+      a {
+        align-items: center;
+        gap: 0.5em;
+        font-size: variables.$font-size-large;
+        text-decoration: none;
+      }
+    }
+
+    .prev {
+      left: calc(variables.$margin-01 - (24px - 1.5em));
+    }
+
+    .next {
+      right: calc(variables.$margin-01 - (24px - 1.5em));
+
+      a {
+        span {
+          order: -1;
+        }
+      }
     }
   }
 }

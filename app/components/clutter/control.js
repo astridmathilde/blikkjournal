@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useClutter } from "./clutter-context";
-import IconClutter from "./icons/icon-clutter";
+import { useClutter } from "./context";
+import IconClutter from "../icons/icon-clutter";
 import utils from "@/app/assets/scss/utils.module.scss";
 import styles from "@/app/assets/scss/components/clutter-control.module.scss";
 
