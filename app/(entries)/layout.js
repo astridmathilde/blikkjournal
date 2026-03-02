@@ -24,11 +24,12 @@ const ronzino = localFont({
   ]
 })
 
-export default function EntryLayout({ children }) {
+export default function EntryLayout({ children, params }) {
+  const entryId = params.id;
   
   return (
     <html lang="en" className={ronzino.className}>
-    <body className={styles.wrapper}> 
+    <body className={styles.wrapper} key={entryId}> 
     <ClutterProvider>
     <header className={styles.header}>
     <h1 className={utils.screen_reader_text}><Link href="/">{siteTitle}</Link></h1>
