@@ -1,6 +1,6 @@
 /**
 * 
-* Function for handling images from Notion API
+* Function for handling images from Notion API or mock data (picsum.photos)
 * 
 */
 
@@ -14,7 +14,9 @@ export async function GET(request, { params }) {
   
   try {
     const entry = await getEntry(entryId); 
-    const imgUrl = entry.properties.Image.files[0]?.file.url;     
+    const imgUrl = entry.properties.Image.files[0]?.file.url;
+    
+    // Fetch image from URL (Notion CDN or picsum.photos for mock data)
     const imageResponse = await fetch(imgUrl);
     
     const headers = {
