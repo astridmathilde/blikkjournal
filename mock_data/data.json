@@ -1,0 +1,615 @@
+{
+  "database": {
+    "object": "database",
+    "id": "mock-database-id",
+    "properties": {
+      "Title": {
+        "id": "title",
+        "name": "Title",
+        "type": "title"
+      },
+      "Image": {
+        "id": "image",
+        "name": "Image",
+        "type": "files"
+      },
+      "Place": {
+        "id": "place",
+        "name": "Place",
+        "type": "select",
+        "select": {
+          "options": [
+            { "id": "1", "name": "Golden Gate Bridge", "color": "blue" },
+            { "id": "2", "name": "Central Park", "color": "green" },
+            { "id": "3", "name": "Eiffel Tower", "color": "red" },
+            { "id": "4", "name": "Times Square", "color": "yellow" },
+            { "id": "5", "name": "Tokyo Tower", "color": "orange" }
+          ]
+        }
+      },
+      "City": {
+        "id": "city",
+        "name": "City",
+        "type": "select",
+        "select": {
+          "options": [
+            { "id": "1", "name": "San Francisco", "color": "blue" },
+            { "id": "2", "name": "New York", "color": "green" },
+            { "id": "3", "name": "Paris", "color": "red" },
+            { "id": "4", "name": "Tokyo", "color": "orange" },
+            { "id": "5", "name": "London", "color": "purple" }
+          ]
+        }
+      },
+      "Country": {
+        "id": "country",
+        "name": "Country",
+        "type": "select",
+        "select": {
+          "options": [
+            { "id": "1", "name": "United States", "color": "blue" },
+            { "id": "2", "name": "France", "color": "red" },
+            { "id": "3", "name": "Japan", "color": "orange" },
+            { "id": "4", "name": "United Kingdom", "color": "purple" },
+            { "id": "5", "name": "Italy", "color": "green" }
+          ]
+        }
+      },
+      "Camera": {
+        "id": "camera",
+        "name": "Camera",
+        "type": "select",
+        "select": {
+          "options": [
+            { "id": "1", "name": "Canon EOS R5", "color": "blue" },
+            { "id": "2", "name": "Sony A7 III", "color": "green" },
+            { "id": "3", "name": "Nikon Z6", "color": "red" },
+            { "id": "4", "name": "Fujifilm X-T4", "color": "orange" },
+            { "id": "5", "name": "iPhone 14 Pro", "color": "gray" }
+          ]
+        }
+      },
+      "Category": {
+        "id": "category",
+        "name": "Category",
+        "type": "select",
+        "select": {
+          "options": [
+            { "id": "1", "name": "Landscape", "color": "green" },
+            { "id": "2", "name": "Architecture", "color": "blue" },
+            { "id": "3", "name": "Street", "color": "yellow" },
+            { "id": "4", "name": "Portrait", "color": "red" },
+            { "id": "5", "name": "Nature", "color": "purple" }
+          ]
+        }
+      },
+      "Time": {
+        "id": "time",
+        "name": "Time",
+        "type": "date"
+      }
+    }
+  },
+  "entries": [
+    {
+      "object": "page",
+      "id": "mock-entry-1",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "Golden Hour at the Bridge" },
+              "plain_text": "Golden Hour at the Bridge"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "golden-gate-bridge.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/golden-gate/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "1", "name": "Golden Gate Bridge", "color": "blue" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "1", "name": "San Francisco", "color": "blue" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "1", "name": "United States", "color": "blue" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "1", "name": "Canon EOS R5", "color": "blue" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "1", "name": "Landscape", "color": "green" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-11-15" }
+        }
+      }
+    },
+    {
+      "object": "page",
+      "id": "mock-entry-2",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "Autumn in Central Park" },
+              "plain_text": "Autumn in Central Park"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "central-park-autumn.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/central-park/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "2", "name": "Central Park", "color": "green" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "2", "name": "New York", "color": "green" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "1", "name": "United States", "color": "blue" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "2", "name": "Sony A7 III", "color": "green" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "5", "name": "Nature", "color": "purple" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-10-22" }
+        }
+      }
+    },
+    {
+      "object": "page",
+      "id": "mock-entry-3",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "Evening in Paris" },
+              "plain_text": "Evening in Paris"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "eiffel-tower-night.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/eiffel-tower/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "3", "name": "Eiffel Tower", "color": "red" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "3", "name": "Paris", "color": "red" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "2", "name": "France", "color": "red" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "3", "name": "Nikon Z6", "color": "red" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "2", "name": "Architecture", "color": "blue" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-09-08" }
+        }
+      }
+    },
+    {
+      "object": "page",
+      "id": "mock-entry-4",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "Neon Lights" },
+              "plain_text": "Neon Lights"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "times-square-night.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/times-square/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "4", "name": "Times Square", "color": "yellow" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "2", "name": "New York", "color": "green" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "1", "name": "United States", "color": "blue" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "5", "name": "iPhone 14 Pro", "color": "gray" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "3", "name": "Street", "color": "yellow" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-08-30" }
+        }
+      }
+    },
+    {
+      "object": "page",
+      "id": "mock-entry-5",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "Tokyo Skyline" },
+              "plain_text": "Tokyo Skyline"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "tokyo-tower-sunset.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/tokyo-tower/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "5", "name": "Tokyo Tower", "color": "orange" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "4", "name": "Tokyo", "color": "orange" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "3", "name": "Japan", "color": "orange" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "4", "name": "Fujifilm X-T4", "color": "orange" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "2", "name": "Architecture", "color": "blue" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-07-14" }
+        }
+      }
+    },
+    {
+      "object": "page",
+      "id": "mock-entry-6",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "Sunset Boulevard" },
+              "plain_text": "Sunset Boulevard"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "sunset-boulevard.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/sunset-blvd/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "1", "name": "Golden Gate Bridge", "color": "blue" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "1", "name": "San Francisco", "color": "blue" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "1", "name": "United States", "color": "blue" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "5", "name": "iPhone 14 Pro", "color": "gray" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "3", "name": "Street", "color": "yellow" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-06-20" }
+        }
+      }
+    },
+    {
+      "object": "page",
+      "id": "mock-entry-7",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "London Eye View" },
+              "plain_text": "London Eye View"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "london-eye.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/london-eye/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "3", "name": "Eiffel Tower", "color": "red" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "5", "name": "London", "color": "purple" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "4", "name": "United Kingdom", "color": "purple" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "2", "name": "Sony A7 III", "color": "green" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "1", "name": "Landscape", "color": "green" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-05-12" }
+        }
+      }
+    },
+    {
+      "object": "page",
+      "id": "mock-entry-8",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "Mountain Sunrise" },
+              "plain_text": "Mountain Sunrise"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "mountain-sunrise.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/mountain-sunrise/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "2", "name": "Central Park", "color": "green" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "2", "name": "New York", "color": "green" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "1", "name": "United States", "color": "blue" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "1", "name": "Canon EOS R5", "color": "blue" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "5", "name": "Nature", "color": "purple" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-04-03" }
+        }
+      }
+    },
+    {
+      "object": "page",
+      "id": "mock-entry-9",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "Cherry Blossoms" },
+              "plain_text": "Cherry Blossoms"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "cherry-blossoms.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/cherry-blossoms/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "5", "name": "Tokyo Tower", "color": "orange" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "4", "name": "Tokyo", "color": "orange" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "3", "name": "Japan", "color": "orange" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "4", "name": "Fujifilm X-T4", "color": "orange" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "5", "name": "Nature", "color": "purple" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-03-25" }
+        }
+      }
+    },
+    {
+      "object": "page",
+      "id": "mock-entry-10",
+      "properties": {
+        "Title": {
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": { "content": "Cafe Culture" },
+              "plain_text": "Cafe Culture"
+            }
+          ]
+        },
+        "Image": {
+          "type": "files",
+          "files": [
+            {
+              "name": "cafe-culture.jpg",
+              "type": "file",
+              "file": {
+                "url": "https://picsum.photos/seed/cafe-paris/1200/800"
+              }
+            }
+          ]
+        },
+        "Place": {
+          "type": "select",
+          "select": { "id": "3", "name": "Eiffel Tower", "color": "red" }
+        },
+        "City": {
+          "type": "select",
+          "select": { "id": "3", "name": "Paris", "color": "red" }
+        },
+        "Country": {
+          "type": "select",
+          "select": { "id": "2", "name": "France", "color": "red" }
+        },
+        "Camera": {
+          "type": "select",
+          "select": { "id": "3", "name": "Nikon Z6", "color": "red" }
+        },
+        "Category": {
+          "type": "select",
+          "select": { "id": "4", "name": "Portrait", "color": "red" }
+        },
+        "Time": {
+          "type": "date",
+          "date": { "start": "2024-02-14" }
+        }
+      }
+    }
+  ]
+}

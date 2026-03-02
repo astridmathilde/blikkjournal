@@ -1,6 +1,7 @@
 {
     "scripts": {
         "dev": "next dev",
+        "dev-mock": "USE_MOCK_DATA=true next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
