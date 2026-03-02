@@ -6,15 +6,18 @@ import styles from "../../../assets/scss/components/entry/single/wrapper.module.
 
 export default function SingleEntry({entryId, children}) {
   const image =  `/api/images/${entryId}`;
-  const { lighterColor } = useExtractColors(image, {format: "rgb"});
-  
+  const {lighterColor, loading} = useExtractColors(image, {
+    format: "rgb",
+    crossOrigin: "anonymous"
+  });
+
   const opacity = 0.2;
   const imageColor = lighterColor ? lighterColor : "";
   const adjustedColor = imageColor.replace('rgb', 'rgba').replace(')', `, ${opacity})`);
   
   
   useEffect(() => {
-    if (adjustedColor) {
+    if (adjustedColor && !loading) {
       document.body.style.backgroundColor = adjustedColor;
       
       let metaThemeColor = document.querySelector('meta[name="theme-color"]');
@@ -25,10 +28,10 @@ export default function SingleEntry({entryId, children}) {
       }
       metaThemeColor.content = adjustedColor;
     }
-  }, [adjustedColor]);
-  
+  }, [adjustedColor, loading]);
+
   return (
-    <article key={entryId} className={styles.singleEntry}>
+    <article className={styles.singleEntry}>
     {children}
     </article>
   )

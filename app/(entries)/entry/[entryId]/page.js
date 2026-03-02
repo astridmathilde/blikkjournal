@@ -44,7 +44,7 @@ export default async function Post({ params }) {
   
   
   return (
-    <SingleEntry entryId={entryId}>
+    <SingleEntry key={entryId} entryId={entryId}>
     <EntryHeaderSingle title={title} date={date} location={location} city={city} country={country} />
     
     <div className={styles.imgWrapper}>
