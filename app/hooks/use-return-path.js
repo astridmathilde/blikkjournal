@@ -3,8 +3,9 @@
  * (preserving any view settings) after navigating between 
  * single posts
  * 
- * This part is written with assistance from Claude.ai
+ * Written with help from Claude 🐑
  **/
+
 "use client";
 
 import { useEffect } from "react";

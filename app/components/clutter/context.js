@@ -1,6 +1,6 @@
 /**
 * Component setting the global state for clutter control
-* 
+* Written with help from Claude 🐑
 */
 
 "use client";
