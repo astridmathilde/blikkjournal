@@ -20,7 +20,7 @@ export const getDatabase = unstable_cache(
     return response;
   },
   ['properties'],
-  { revalidate: 2592000 , tags: ['properties'] } // refresh every month
+  { revalidate: 1 , tags: ['properties'] } // refresh every month
 );
 
 /* Get entries */
@@ -38,7 +38,7 @@ export const getEntries = unstable_cache(
     return response.results;
   },
   ['entries'],
-  { revalidate: 2592000, tags: ['entries']} // refresh every month
+  { revalidate: 1, tags: ['entries']} // refresh every month
 );
 
 /* Get a single entry */
@@ -50,5 +50,5 @@ export const getEntry = unstable_cache(
     return response;
   },
   ['singleEntry'],
-  { revalidate: 2592000, tags: ['singleEntry'] } // refresh every month
+  { revalidate: 1, tags: ['singleEntry'] } // refresh every month
 );
