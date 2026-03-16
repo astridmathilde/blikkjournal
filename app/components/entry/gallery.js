@@ -15,7 +15,6 @@ export default function GalleryEntry(entry) {
   const location = entry.place;
   const city = entry.city;
   const country = entry.country;
-  const category = entry.category;
   const camera = entry.camera;
   const time = entry.time;
   
@@ -45,14 +44,11 @@ export default function GalleryEntry(entry) {
 
     { level >= 0 ? <li className={styles.caption}><span className={styles.label}>Description: </span>{title}</li> : "" }
 
-    {level >= 3 && camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : "" }
+    {level >= 4 && camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : "" }
 
-    {level >= 2 && location ? <li className={styles.location} key="location"><span className={styles.label}>Location: </span>{location}</li> : "" }
+    {level >= 3 && location ? <li className={styles.location} key="location"><span className={styles.label}>Location: </span>{location}</li> : "" }
     
-    { level >= 1 ? <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li> : "" }
-    
-    { level >= 5 && category ? <li className={styles.category} key="category"><span className={styles.label}>Category: </span>{category}</li> : "" }
-    
+    { level >= 2 ? <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li> : "" }
     </ul>
     
     <figure>
