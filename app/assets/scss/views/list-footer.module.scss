@@ -35,8 +35,8 @@
 
       .disabled {
         cursor: not-allowed;
-        opacity: 0.4;
-        filter: alpha(opacity=40);
+        opacity: 0.3;
+        filter: alpha(opacity=3);
       }
 
       .prev,
@@ -47,6 +47,7 @@
 
         &:hover,
         &:focus-visible {
+          color: variables.$text-color-hover;
           opacity: 1;
           filter: alpha(opacity=100);
           transition: all variables.$transition-in;

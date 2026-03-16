@@ -45,6 +45,7 @@
       opacity: 1;
       filter: alpha(opacity=100);
       transition: all variables.$transition-in;
+      color: variables.$text-color-hover;
     }
 
     svg {
@@ -80,6 +81,7 @@
 
     &:hover,
     &:focus {
+      color: variables.$text-color-hover;
       opacity: 1;
       filter: alpha(opacity=100);
       transition: all variables.$transition-in;

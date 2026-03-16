@@ -12,8 +12,8 @@
     .next {
       position: fixed;
       bottom: variables.$margin-sm;
-      opacity: 0.6;
-      filter: alpha(opacity=60);
+      opacity: 0.8;
+      filter: alpha(opacity=80);
       transition: all variables.$transition-out;
       -webkit-transition: all variables.$transition-out;
       -moz-transition: all variables.$transition-out;
@@ -31,12 +31,18 @@
         height: auto;
       }
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
+        color: variables.$text-color-hover;
         opacity: 1;
         filter: alpha(opacity=100);
         transition: all variables.$transition-in;
         -webkit-transition: all variables.$transition-in;
         -moz-transition: all variables.$transition-in;
+
+        svg {
+          fill: variables.$text-color-hover;
+        }
       }
     }
 

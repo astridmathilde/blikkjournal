@@ -174,12 +174,11 @@
 :global(html[data-clutter="clutter-1"]) {
   .listEntry {
     td[headers="image"] {
-      max-width: 12vw;
+      max-width: 20vw;
     }
   }
 }
 
-:global(html[data-clutter="clutter-1"]),
 :global(html[data-clutter="clutter-2"]),
 :global(html[data-clutter="clutter-3"]),
 :global(html[data-clutter="clutter-4"]),
@@ -187,7 +186,7 @@
 :global(html[data-clutter="clutter-6"]) {
   .listEntry {
     td[headers="image"] {
-      max-width: 25vw;
+      max-width: 30vw;
     }
   }
 }
