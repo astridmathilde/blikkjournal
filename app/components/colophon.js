@@ -15,7 +15,7 @@ export default function Colophon({button, children}) {
   }
   const { level } = useClutter();
   
-  if (level <= -5) {
+  if (level <= -6) {
     return null;
   } else {
   return (

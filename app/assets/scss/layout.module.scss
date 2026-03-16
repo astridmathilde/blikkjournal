@@ -52,7 +52,12 @@
 
 :global(html[data-clutter="declutter-5"]),
 :global(html[data-clutter="declutter-6"]) {
-  .header .description,
+  .header .description {
+    display: none;
+  }
+}
+
+:global(html[data-clutter="declutter-6"]) {
   .footer .credits {
     display: none;
   }

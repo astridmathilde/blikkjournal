@@ -1,11 +1,13 @@
+/* Wrapper used for lazy-loading gallery entries */ 
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { loadMoreEntries } from "../lib/actions";
+import { loadMoreEntries } from "../../lib/actions";
 import GalleryEntry from "@/app/components/entry/gallery";
 import styles from '@/app/assets/scss/views/gallery.module.scss';
 
-export default function Loader({ initialEntries, initialCursor, initialHasMore }) {
+export default function EntryGalleryLoader({ initialEntries, initialCursor, initialHasMore }) {
   const [entries, setEntries] = useState(initialEntries);
   const [cursor, setCursor] = useState(initialCursor);
   const [hasMore, setHasMore] = useState(initialHasMore);

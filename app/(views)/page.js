@@ -1,6 +1,6 @@
 import { siteTitle, siteDescription } from "./layout";
 import { getEntries } from "@/app/lib/notion";
-import Loader from "@/app/components/loader";
+import EntryGalleryLoader from "../components/entry/gallery-loader";
 import utils from "@/app/assets/scss/utils.module.scss";
 
 export const metadata = {
@@ -15,7 +15,7 @@ export default async function Gallery() {
   return (
     <>
       <h2 className={utils.screen_reader_text}>Gallery</h2>
-      <Loader
+      <EntryGalleryLoader
         initialEntries={results}
         initialCursor={nextCursor}
         initialHasMore={hasMore}

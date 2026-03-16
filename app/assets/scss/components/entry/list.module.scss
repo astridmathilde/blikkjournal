@@ -189,3 +189,11 @@
     }
   }
 }
+
+:global(html[data-clutter="clutter-6"]) {
+  .listEntry {
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

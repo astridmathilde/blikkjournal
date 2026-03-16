@@ -1,10 +1,16 @@
+"use client";
+
 import Link from "next/link";
+import { useClutter } from "../clutter/context";
 import IconChevronLeft from "../icons/icon-chevron-left";
 import IconChevronRight from "../icons/icon-chevron-right";
 import styles from "../../assets/scss/views/list-footer.module.scss";
 import utils from "../../assets/scss/utils.module.scss";
 
 export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage, totalPages, prevCursor, prevCursors, nextCursor, nextPrevCursor}) {
+  const {level} = useClutter();
+
+  if (level >= -4 && level !== 6) {
   return (
     <div className={styles.footer}>
     <p className={styles.totalEntries}>{totalEntries} entries</p>
@@ -32,4 +38,5 @@ export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage
     
     </div>
   )
+}
 }
