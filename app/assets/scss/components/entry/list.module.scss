@@ -4,18 +4,9 @@
   width: 100%;
   cursor: pointer !important;
   vertical-align: middle;
-  border-top: variables.$border-size solid variables.$text-color;
   transition: all variables.$transition-out;
   -webkit-transition: all variables.$transition-out;
   -moz-transition: all variables.$transition-out;
-
-  &:nth-child(1) {
-    border-top: 0;
-  }
-
-  &:last-child {
-    border-bottom: variables.$border-size solid variables.$text-color;
-  }
 
   &:hover,
   &:focus {
@@ -27,19 +18,21 @@
 
   .image {
     cursor: zoom-in;
-    width: 100%;
+    max-width: 12vw;
     height: 1.2em;
 
     img {
       object-fit: cover;
       object-position: center;
-      width: 100%;
+      max-width: 12vw;
       height: 100%;
       border-radius: 2px;
     }
   }
 
   td {
+    border-top: variables.$border-size solid variables.$text-color;
+    border-spacing: 0;
     padding-top: variables.$padding-md;
     padding-bottom: variables.$padding-md;
 
@@ -62,6 +55,7 @@
       display: flex;
       align-items: center;
       gap: 0.5em;
+      text-align: left;
     }
 
     &[headers="category"] {
@@ -118,6 +112,18 @@
       }
     }
   }
+
+  &:nth-child(1) {
+    td {
+      border-top: 0;
+    }
+  }
+
+  &:last-child {
+    td {
+      border-bottom: variables.$border-size solid variables.$text-color;
+    }
+  }
 }
 
 :global(html[data-clutter="declutter-3"]),
@@ -130,7 +136,9 @@
     border-top: none;
 
     &:last-child {
-      border-bottom: none;
+      td {
+        border-bottom: none;
+      }
     }
 
     &:hover,
@@ -171,21 +179,15 @@
   }
 }
 
-:global(html[data-clutter="clutter-2"]) {
-  .listEntry {
-    td[headers="image"] {
-      max-width: 20vw;
-    }
-  }
-}
-
+:global(html[data-clutter="clutter-1"]),
+:global(html[data-clutter="clutter-2"]),
 :global(html[data-clutter="clutter-3"]),
 :global(html[data-clutter="clutter-4"]),
 :global(html[data-clutter="clutter-5"]),
 :global(html[data-clutter="clutter-6"]) {
   .listEntry {
     td[headers="image"] {
-      max-width: 16vw;
+      max-width: 25vw;
     }
   }
 }
@@ -193,7 +195,9 @@
 :global(html[data-clutter="clutter-6"]) {
   .listEntry {
     &:last-child {
-      border-bottom: none;
+      td {
+        border-bottom: none;
+      }
     }
   }
 }

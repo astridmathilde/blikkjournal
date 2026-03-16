@@ -54,6 +54,12 @@
   }
 }
 
+:global(html[data-clutter="declutter-5"]) {
+  .content {
+    margin-top: calc(variables.$margin-lg * 1.5);
+  }
+}
+
 :global(html[data-clutter="declutter-6"]) {
   .footer .credits {
     display: none;
@@ -73,37 +79,9 @@
 }
 
 :global(html[data-clutter="clutter-4"]),
-:global(html[data-clutter="clutter-5"]) {
+:global(html[data-clutter="clutter-5"]),
+:global(html[data-clutter="clutter-6"]) {
   .content {
     margin-top: variables.$margin-xs;
-  }
-}
-
-:global(html[data-clutter="clutter-6"]) {
-  .wrapper {
-    .header {
-      @media all and (min-width: variables.$screen-md) {
-        z-index: 1000;
-        position: fixed;
-        top: 0;
-        left: 1.1em;
-        right: 1.1em;
-        width: 100%;
-      }
-
-      p {
-        @media all and (min-width: variables.$screen-md) {
-          max-width: 100%;
-        }
-      }
-    }
-
-    .content {
-      margin-top: 0;
-
-      @media all and (min-width: variables.$screen-md) {
-        margin-top: 7em;
-      }
-    }
   }
 }
