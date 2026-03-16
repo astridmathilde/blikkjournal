@@ -7,9 +7,10 @@
   position: absolute;
   top: -(calc((48px - 12px) / 2));
   right: 0;
-  width: 100%;
+  width: 50%;
   height: auto;
   justify-content: end;
+  justify-self: end;
 
   @media all and (max-width: variables.$screen-xxs) {
     display: none;
