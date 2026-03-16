@@ -1,0 +1,44 @@
+@use "../base/variables";
+
+.footer {
+  display: flex;
+  gap: variables.$margin-xs;
+  justify-content: space-between;
+  align-items: center;
+
+  .pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+
+    nav {
+      ul {
+        display: flex;
+      }
+
+      .prev,
+      .next {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+
+        svg {
+          fill: variables.$text-color;
+          width: 1.6em;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+:global(html[data-clutter="declutter-4"]),
+:global(html[data-clutter="declutter-5"]),
+:global(html[data-clutter="declutter-6"]) {
+  .footer {
+    display: none;
+  }
+}

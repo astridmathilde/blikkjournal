@@ -1,7 +1,8 @@
 import { siteTitle, siteDescription } from "../layout";
-import { getEntries } from "@/app/lib/notion";
-import ListEntry from "@/app/components/entry";
-import styles from "@/app/assets/scss/views/index.module.scss";
+import { getEntries, getAllEntries } from "@/app/lib/notion";
+import ListEntry from "@/app/components/entry/list";
+import ListEntryNav from "@/app/components/entry/list-footer";
+import styles from "@/app/assets/scss/views/list.module.scss";
 import utils from "@/app/assets/scss/utils.module.scss";
 
 export const metadata = {
@@ -11,8 +12,21 @@ export const metadata = {
 };
 
 export default async function List({ searchParams }) {
-  const { cursor } = await searchParams;
-  const { results: entries, nextCursor, hasMore } = await getEntries(cursor);
+  const { cursor, page, prev } = await searchParams;
+  const [{ results: entries, nextCursor, hasMore }, allEntries] = await Promise.all([
+    getEntries(cursor),
+    getAllEntries(),
+  ]);
+  
+  const totalEntries = allEntries.length;
+  const totalPages = Math.ceil(totalEntries / 12);
+  const currentPage = page ? parseInt(page) : 1;
+  
+  /* Getting previous pages */
+  const cursors = prev ? prev.split(",") : [];
+  const nextPrevCursor = cursor ? [...cursors, cursor].join(",") : "";
+  const prevCursor = cursors[cursors.length - 1];
+  const prevCursors = cursors.slice(0, -1).join(",");
   
   return (
     <>
@@ -67,10 +81,17 @@ export default async function List({ searchParams }) {
     </tbody>
     </table>
     
-    <nav>
-    {cursor && <a href="/list">← Newer</a>}
-    {hasMore && nextCursor && <a href={`/list?cursor=${nextCursor}`}>Older →</a>}
-    </nav>
+    <ListEntryNav
+    cursor={cursor}
+    nextCursor={nextCursor}
+    hasMore={hasMore}
+    totalPages={totalPages}
+    totalEntries={totalEntries}
+    currentPage={currentPage}
+    nextPrevCursor={nextPrevCursor}
+    prevCursor={prevCursor}
+    prevCursors={prevCursors}
+    />
     </>
   );
 }
