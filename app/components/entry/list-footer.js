@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useClutter } from "../clutter/context";
 import IconChevronLeft from "../icons/icon-chevron-left";
 import IconChevronRight from "../icons/icon-chevron-right";
@@ -21,13 +20,13 @@ export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage
     <nav aria-label="pagination">
     <ul>
     {cursor ? (
-      <li><Link aria-label="Go to the previous page" href={prevCursor ? `/list?cursor=${prevCursor}&page=${currentPage - 1}&prev=${prevCursors}` : `/list`} className={styles.prev}><IconChevronLeft /></Link></li>
+      <li><a aria-label="Go to the previous page" href={prevCursor ? `/list?cursor=${prevCursor}&page=${currentPage - 1}&prev=${prevCursors}` : `/list`} className={styles.prev}><IconChevronLeft /></a></li>
     ) : (
       <li aria-hidden="true" className={styles.disabled}><IconChevronLeft /></li>
     ) }
     {hasMore && nextCursor ? (
       <li>
-      <Link aria-label="Go to the next page" href={`/list?cursor=${nextCursor}&page=${currentPage + 1}&prev=${nextPrevCursor}`} className={styles.next}><IconChevronRight /></Link>
+      <a aria-label="Go to the next page" href={`/list?cursor=${nextCursor}&page=${currentPage + 1}&prev=${nextPrevCursor}`} className={styles.next}><IconChevronRight /></a>
       </li>
     ) : (
       <li aria-hidden="true" className={styles.disabled}><IconChevronRight /></li>
