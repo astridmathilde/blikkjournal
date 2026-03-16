@@ -15,7 +15,7 @@ export default function EntryListLoader({ initialEntries, initialCursor, initial
   const sentinelRef = useRef(null);
   
   const {level} = useClutter();
-  const hasLazyLoad = level <= -4 || level == 6;
+  const hasLazyLoad = level <= -3 || level == 6;
   
   useEffect(() => {
      if (!hasLazyLoad) return; // exit when not in declutter mode
