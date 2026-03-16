@@ -13,6 +13,10 @@
     border-top: 0;
   }
 
+  &:last-child {
+    border-bottom: variables.$border-size solid variables.$text-color;
+  }
+
   &:hover,
   &:focus {
     background-color: variables.$background-hover;
@@ -36,11 +40,11 @@
   }
 
   td {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: variables.$padding-md;
+    padding-bottom: variables.$padding-md;
 
     + td {
-      padding-left: 1.5em;
+      padding-left: variables.$padding-lg;
     }
 
     &[headers="description"] {
@@ -116,6 +120,7 @@
   }
 }
 
+:global(html[data-clutter="declutter-3"]),
 :global(html[data-clutter="declutter-4"]),
 :global(html[data-clutter="declutter-5"]),
 :global(html[data-clutter="declutter-6"]),
@@ -124,6 +129,10 @@
   .listEntry {
     border-top: none;
 
+    &:last-child {
+      border-bottom: none;
+    }
+
     &:hover,
     &:focus {
       background: none;
@@ -131,6 +140,25 @@
       td {
         text-decoration: underline;
       }
+    }
+  }
+}
+
+:global(html[data-clutter="declutter-4"]),
+:global(html[data-clutter="declutter-5"]),
+:global(html[data-clutter="declutter-6"]) {
+  .listEntry {
+    td {
+      padding-top: variables.$padding-lg;
+      padding-bottom: variables.$padding-lg;
+    }
+  }
+}
+
+:global(html[data-clutter="declutter-6"]) {
+  .listEntry {
+    td {
+      padding: variables.$padding-lg;
     }
   }
 }

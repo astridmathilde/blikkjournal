@@ -4,24 +4,24 @@
 .list {
   overflow-x: hidden;
   width: 100%;
-  margin-top: 2em;
+  margin-top: variables.$margin-md;
   border-collapse: collapse;
 
   @media all and (min-width: variables.$screen-sm) {
-    margin-top: 1em;
+    margin-top: variables.$margin-xs;
   }
 
   thead {
     tr {
       th {
         border-bottom: variables.$border-size solid variables.$text-color;
-        padding-top: 1em;
-        padding-bottom: 1em;
+        padding-top: variables.$padding-md;
+        padding-bottom: variables.$padding-md;
         text-align: left;
         font-weight: normal;
 
         + th {
-          padding-left: 1.5em;
+          padding-left: variables.$padding-lg;
         }
 
         &[id="date"] {
@@ -82,5 +82,17 @@
 :global(html[data-clutter="declutter-6"]) {
   .list thead tr th[id="camera"] {
     display: none;
+  }
+}
+
+:global(html[data-clutter="clutter-4"]),
+:global(html[data-clutter="clutter-5"]),
+:global(html[data-clutter="clutter-6"]) {
+  .list {
+    margin-top: 0;
+
+    @media all and (min-width: variables.$screen-sm) {
+      margin-top: 0;
+    }
   }
 }
