@@ -153,7 +153,11 @@
           background-size: 100% 100%;
           border: none;
           border-radius: 0;
-          cursor: pointer;
+          cursor: grab;
+
+          &:active {
+            cursor: grabbing;
+          }
 
           @media all and (min-width: variables.$screen-sm) {
             width: 16px;

@@ -23,14 +23,12 @@
 
     @media all and (min-width: variables.$screen-md) {
       margin-top: variables.$margin-lg;
-      margin-bottom: calc(variables.$margin-md * 1.5);
+      margin-bottom: variables.$margin-lg;
     }
   }
 
   .footer {
     display: flex;
-    position: relative;
-    margin-top: variables.$margin-sm;
     width: 100%;
     justify-content: space-between;
     align-content: center;
@@ -39,6 +37,15 @@
       margin: 0;
       margin-block-start: 0;
       margin-block-end: 0;
+
+      a {
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
