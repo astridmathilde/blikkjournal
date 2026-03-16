@@ -1,6 +1,7 @@
 @use "../../base/variables";
 
 .content {
+  z-index: 1000;
   position: absolute;
   bottom: 3em;
   right: 0;
