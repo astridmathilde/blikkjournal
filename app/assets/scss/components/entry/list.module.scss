@@ -133,7 +133,9 @@
 :global(html[data-clutter="declutter-7"]),
 :global(html[data-clutter="declutter-8"]) {
   .listEntry {
-    border-top: none;
+    td {
+      border-top: none;
+    }
 
     &:last-child {
       td {
