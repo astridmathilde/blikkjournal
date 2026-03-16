@@ -1,5 +1,4 @@
-import { getEntry } from "../../../lib/notion"; 
-import { getEntries } from "../../../lib/notion"; 
+import { getEntry, getAllEntries } from "../../../lib/notion";
 import { siteTitle, siteDescription } from "@/app/(views)/layout";
 import SingleEntry from "../../../components/entry/single/wrapper";
 import SingleEntryNav from "@/app/components/entry/single/nav";
@@ -10,8 +9,8 @@ import styles from "../../../assets/scss/components/entry/single/img.module.scss
 import utils from "../../../assets/scss/utils.module.scss";
 
 export const metadata = {
-title: siteTitle,
-description: siteDescription,
+  title: siteTitle,
+  description: siteDescription,
 };
 
 export default async function Post({ params }) {
@@ -26,22 +25,18 @@ export default async function Post({ params }) {
   const time = entry.properties.Time.date?.start;
   const camera = entry.properties?.Camera?.select?.name || "";
   
-  const date = new Date(time).toLocaleString(
-    'en-US',
-    {
-      month: 'short',
-      day: '2-digit',
-      year: 'numeric',
-    },
-  );
+  const date = new Date(time).toLocaleString('en-US', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+  });
   
-  /* Get prev and next entries */
-  const entries = await getEntries();
-  const currentIndex = entries.findIndex(entry => entry.id === entryId);
+  /* Get prev and next entries across full collection */
+  const entries = await getAllEntries();
+  const currentIndex = entries.findIndex(e => e.id === entryId);
   
   const prevEntry = currentIndex > 0 ? entries[currentIndex - 1] : null;
-  const nextEntry = currentIndex< entries.length - 1 ? entries[currentIndex + 1] : null;
-  
+  const nextEntry = currentIndex < entries.length - 1 ? entries[currentIndex + 1] : null;
   
   return (
     <SingleEntry key={entryId} entryId={entryId}>
@@ -51,18 +46,17 @@ export default async function Post({ params }) {
     <NavBack>
     <figure className={styles.image}>
     <EntryImage alt={title} entryId={entryId} width="600" height="600" preload={true} loading="eager" />
-      <figcaption className={styles.caption}>
-      <ul>
-      <li><span className={utils.screen_reader_text}>File name: </span>{fileName}</li>
-      <li><span className={utils.screen_reader_text}>Camera: </span>{camera}</li>
-      </ul>
-      </figcaption>
-      </figure>
-      </NavBack>
-      </div>
-      
-      <SingleEntryNav entryId={entryId} prevEntry={prevEntry} nextEntry={nextEntry} />
-      </SingleEntry>
-    )
+    <figcaption className={styles.caption}>
+    <ul>
+    <li><span className={utils.screen_reader_text}>File name: </span>{fileName}</li>
+    <li><span className={utils.screen_reader_text}>Camera: </span>{camera}</li>
+    </ul>
+    </figcaption>
+    </figure>
+    </NavBack>
+    </div>
     
-  }
+    <SingleEntryNav entryId={entryId} prevEntry={prevEntry} nextEntry={nextEntry} />
+    </SingleEntry>
+  );
+}

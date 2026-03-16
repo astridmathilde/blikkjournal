@@ -1,7 +1,3 @@
-/**
- * Lib -> notion.js
- */
-
 import { unstable_cache } from "next/cache";
 import { Client } from "@notionhq/client";
 
@@ -11,8 +7,9 @@ const notion = new Client({
 });
 
 const databaseId = process.env.NOTION_DATABASE_ID;
+const dataSourceId = process.env.NOTION_DATA_SOURCE_ID;
 
-/* Get database properties */
+/* Get database properties  */
 export const getDatabase = unstable_cache(
   async () => {
     const response = await notion.request({
@@ -25,37 +22,50 @@ export const getDatabase = unstable_cache(
   { revalidate: 2592000, tags: ['properties'] }
 );
 
-const getDataSourceId = async () => {
-  const db = await getDatabase();
-  const dataSource = db.data_sources?.[0];
-  return dataSource.id;
-};
+/* Get entries (not using cache here) */
+export async function fetchEntries(cursor = undefined) {
+  const response = await notion.request({
+    method: "post",
+    path: `data_sources/${dataSourceId}/query`,
+    body: {
+      sorts: [{ property: "Time", direction: "descending" }],
+      page_size: 12,
+      ...(cursor && { start_cursor: cursor }),
+    },
+  });
+  
+  return {
+    results: response.results,
+    nextCursor: response.next_cursor,
+    hasMore: response.has_more,
+  };
+}
 
-/* Get entries */
-export const getEntries = unstable_cache(
+export async function getEntries(cursor = undefined) {
+  return fetchEntries(cursor);
+}
+
+/* Get all entries by looping through cursors */ 
+export const getAllEntries = unstable_cache(
   async () => {
-    const dataSourceId = await getDataSourceId();
-
-    const response = await notion.request({
-      method: "post",
-      path: `data_sources/${dataSourceId}/query`,
-      body: {
-        sorts: [
-          {
-            property: "Time",
-            direction: "descending",
-          },
-        ],
-      },
-    });
-
-    return response.results;
+    const allResults = [];
+    let cursor = undefined;
+    let hasMore = true;
+    
+    while (hasMore) {
+      const { results, nextCursor, hasMore: more } = await fetchEntries(cursor);
+      allResults.push(...results);
+      cursor = nextCursor;
+      hasMore = more;
+    }
+    
+    return allResults;
   },
-  ['entries'],
-  { revalidate: 2592000, tags: ['entries'] }
+  ['allEntries'],
+  { revalidate: 2592000, tags: ['allEntries'] }
 );
 
-/* Get a single entry */
+/* Get single entry */
 export const getEntry = unstable_cache(
   async (pageId) => {
     const response = await notion.pages.retrieve({

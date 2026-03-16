@@ -1,18 +1,18 @@
-import { getEntries } from "@/app/lib/notion";
 import { siteTitle, siteDescription } from "../layout";
-import Filter from "@/app/components/filter";
+import { getEntries } from "@/app/lib/notion";
 import ListEntry from "@/app/components/entry";
 import styles from "@/app/assets/scss/views/index.module.scss";
 import utils from "@/app/assets/scss/utils.module.scss";
 
 export const metadata = {
-metadataBase: new URL('https://blikk.directory/list'),
-title: siteTitle,
-description: siteDescription,
+  metadataBase: new URL('https://blikk.directory/list'),
+  title: siteTitle,
+  description: siteDescription,
 };
 
-export default async function List() {
-  const entries = await getEntries();
+export default async function List({ searchParams }) {
+  const { cursor } = await searchParams;
+  const { results: entries, nextCursor, hasMore } = await getEntries(cursor);
   
   return (
     <>
@@ -30,9 +30,8 @@ export default async function List() {
     </tr>
     </thead>
     <tbody>
-    {entries.map((entry, index) => { 
-      const isAboveTheFold = index < 15;   
-
+    {entries.map((entry, index) => {
+      const isAboveTheFold = index < 15;
       const entryId = entry.id;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const fileName = entry.properties?.Image?.files[0]?.name || "";
@@ -41,21 +40,37 @@ export default async function List() {
       const country = entry.properties?.Country?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       const camera = entry.properties?.Camera?.select?.name || "";
-      const category = entry.properties?.Category?.select?.name || "";  
+      const category = entry.properties?.Category?.select?.name || "";
       
-      const date = new Date(time).toLocaleString(
-        'en-US',
-        {
-          month: 'short',
-          day: '2-digit',
-          year: 'numeric',
-        },
-      );   
+      const date = new Date(time).toLocaleString('en-US', {
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric',
+      });
       
-      return <ListEntry key={entryId} id={entryId} title={title} fileName={fileName} location={location} city={city} country={country} category={category} camera={camera} date={date} priority={isAboveTheFold ? "true" : ""}/>
+      return (
+        <ListEntry
+        key={entryId}
+        id={entryId}
+        title={title}
+        fileName={fileName}
+        location={location}
+        city={city}
+        country={country}
+        category={category}
+        camera={camera}
+        date={date}
+        priority={isAboveTheFold ? "true" : ""}
+        />
+      );
     })}
     </tbody>
     </table>
+    
+    <nav>
+    {cursor && <a href="/list">← Newer</a>}
+    {hasMore && nextCursor && <a href={`/list?cursor=${nextCursor}`}>Older →</a>}
+    </nav>
     </>
-  )
+  );
 }
