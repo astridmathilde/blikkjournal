@@ -4,6 +4,8 @@
 .galleryEntry {
   position: relative;
   display: flex;
+  animation: fadeIn variables.$transition-lg-in forwards;
+  opacity: 0;
 
   @media all and (min-width: variables.$screen-sm) {
     font-size: variables.$font-size-small;
@@ -43,5 +45,14 @@
         }
       }
     }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

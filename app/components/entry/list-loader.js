@@ -13,30 +13,33 @@ export default function EntryListLoader({ initialEntries, initialCursor, initial
   const [hasMore, setHasMore] = useState(initialHasMore);
   const [loading, setLoading] = useState(false);
   const sentinelRef = useRef(null);
+  const loadingRef = useRef(false);
   
   const {level} = useClutter();
   const hasLazyLoad = level <= -3 || level == 6;
   
   useEffect(() => {
-     if (!hasLazyLoad) return; // exit when not in declutter mode
-
-      const observer = new IntersectionObserver(
-        async ([sentinel]) => {
-          if (sentinel.isIntersecting && hasMore && !loading) {
-            setLoading(true);
-            const data = await loadMoreEntries(cursor);
-            setEntries((prev) => [...prev, ...data.results]);
-            setCursor(data.nextCursor);
-            setHasMore(data.hasMore);
-            setLoading(false);
-          }
-        },
-        { rootMargin: "600px" }
-      );
-      
-      if (sentinelRef.current) observer.observe(sentinelRef.current);
-      return () => observer.disconnect();
-  }, [cursor, hasMore, loading, hasLazyLoad]);
+    if (!hasLazyLoad) return; // exit when not in declutter mode
+    
+    const observer = new IntersectionObserver(
+      async ([sentinel]) => {
+        if (sentinel.isIntersecting && hasMore && !loadingRef.current) {
+          loadingRef.current = true;
+          setLoading(true);
+          const data = await loadMoreEntries(cursor);
+          setEntries((prev) => [...prev, ...data.results]);
+          setCursor(data.nextCursor);
+          setHasMore(data.hasMore);
+          loadingRef.current = false;
+          setLoading(false);
+        }
+      },
+      { rootMargin: "400px" }
+    );
+    
+    if (sentinelRef.current) observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
+  }, [cursor, hasMore, hasLazyLoad]); 
   
   return (
     <>

@@ -13,31 +13,33 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
   const [hasMore, setHasMore] = useState(initialHasMore);
   const [loading, setLoading] = useState(false);
   const sentinelRef = useRef(null);
+  const loadingRef = useRef(false);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
       async ([sentinel]) => {
-        if (sentinel.isIntersecting && hasMore && !loading) {
+        if (sentinel.isIntersecting && hasMore && !loadingRef.current) {
+          loadingRef.current = true;
           setLoading(true);
           const data = await loadMoreEntries(cursor);
           setEntries((prev) => [...prev, ...data.results]);
           setCursor(data.nextCursor);
           setHasMore(data.hasMore);
+          loadingRef.current = false;
           setLoading(false);
         }
       },
-      {  rootMargin: "80px"}
+      { rootMargin: "400px" }
     );
     
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
-  }, [cursor, hasMore, loading]);
+  }, [cursor, hasMore]); 
   
   return (
     <>
     <div className={styles.gallery}>
     {entries.map((entry, index) => {
-      const isAboveTheFold = index < 10;
       const entryId = entry.id;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const name = entry.properties?.Image?.files[0]?.name || "";
@@ -63,7 +65,7 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
           time={time}
           camera={camera}
           name={name}
-          priority={isAboveTheFold ? "true" : ""}
+          priority={index < 10}
           />
         );
       }
@@ -71,6 +73,7 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
     </div>
     
     <div ref={sentinelRef} />
+    {loading && <p className={styles.loading} style={{textAlign: 'center'}}>{"( . . . )"}</p>}
     </>
   );
 }

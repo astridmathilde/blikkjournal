@@ -9,7 +9,7 @@ import utils from "../../assets/scss/utils.module.scss";
 export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage, totalPages, prevCursor, prevCursors, nextCursor, nextPrevCursor}) {
   const {level} = useClutter();
 
-  if (level >= -3 && level !== 6) {
+  if (level >= -2 && level !== 6) {
   return (
     <div className={styles.footer}>
     <p className={styles.totalEntries}>{totalEntries} entries</p>
