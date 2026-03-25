@@ -5,6 +5,7 @@
   gap: variables.$margin-xs;
   justify-content: space-between;
   align-items: center;
+  border-top: variables.$border-size solid variables.$text-color;
 
   .pagination {
     display: flex;

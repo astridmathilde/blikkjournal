@@ -118,12 +118,6 @@
       border-top: 0;
     }
   }
-
-  &:last-child {
-    td {
-      border-bottom: variables.$border-size solid variables.$text-color;
-    }
-  }
 }
 
 :global(html[data-clutter="declutter-3"]),
@@ -176,7 +170,7 @@
 :global(html[data-clutter="clutter-1"]) {
   .listEntry {
     td[headers="image"] {
-      max-width: 20vw;
+      //  max-width: 20vw;
     }
   }
 }
@@ -188,7 +182,7 @@
 :global(html[data-clutter="clutter-6"]) {
   .listEntry {
     td[headers="image"] {
-      max-width: 30vw;
+      // max-width: 30vw;
     }
   }
 }
