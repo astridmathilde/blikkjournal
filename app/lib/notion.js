@@ -73,6 +73,6 @@ export const getEntry = unstable_cache(
     });
     return response;
   },
-  ['singleEntry'],
+  [(pageId) => `singleEntry-${pageId}`],
   { revalidate: 2592000, tags: ['singleEntry'] }
 );
