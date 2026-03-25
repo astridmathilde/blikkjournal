@@ -7,12 +7,12 @@
   position: absolute;
   top: -(calc((48px - 12px) / 2));
   right: 0;
-  width: 50%;
+  max-width: 50%;
   height: auto;
   justify-content: end;
   justify-self: end;
 
-  @media all and (max-width: variables.$screen-xxs) {
+  @media all and (max-width: 364px) {
     display: none;
   }
 
@@ -33,12 +33,16 @@
     padding: 0;
     border: none;
     cursor: pointer;
-    font-size: variables.$font-size-small;
+    font-size: variables.$font-size-base;
     text-transform: lowercase;
     color: variables.$text-color;
     opacity: 0.8;
     filter: alpha(opacity=80);
     transition: all variables.$transition-out;
+
+    @media all and (min-width: variables.$screen-xs) {
+      font-size: variables.$font-size-small;
+    }
 
     &:hover,
     &:focus-visible {
@@ -49,22 +53,13 @@
     }
 
     svg {
-      width: 12px;
-      height: 12px;
+      width: 16px;
+      height: 16px;
       fill: variables.$text-color;
-
-      @media all and (min-width: variables.$screen-sm) {
-        width: 16px;
-        height: 16px;
-      }
     }
 
     span {
-      line-height: 12px;
-
-      @media all and (min-width: variables.$screen-sm) {
-        line-height: 16px;
-      }
+      line-height: 16px;
     }
   }
 
@@ -95,20 +90,12 @@
         -webkit-appearance: none;
         background: transparent;
         margin: 0;
-        width: 20vw;
-        height: 100%;
+        width: 90px;
+        height: 48px;
         border: none;
 
         @media all and (min-width: variables.$screen-sm) {
-          width: 16vw;
-        }
-
-        @media all and (min-width: variables.$screen-md) {
-          width: 14vw;
-        }
-
-        @media all and (min-width: variables.$screen-lg) {
-          width: 10vw;
+          width: 124px;
         }
 
         &::-webkit-slider-runnable-track,
@@ -125,18 +112,14 @@
           -webkit-appearance: none;
           box-sizing: border-box;
           box-shadow: none;
-          margin-top: calc((1px / 2) - (12px / 2));
-
-          @media all and (min-width: variables.$screen-sm) {
-            margin-top: calc((1px / 2) - (16px / 2));
-          }
+          margin-top: calc((1px / 2) - (16px / 2));
         }
 
         &::-webkit-slider-thumb,
         &::-moz-range-thumb {
           box-sizing: border-box;
-          width: 12px;
-          height: 12px;
+          width: 16px;
+          height: 16px;
           background-color: transparent;
           background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><circle cx='10' cy='10' r='9' fill='%23FFFAF2' stroke='%23111111' stroke-width='1.4'/></svg>");
           background-size: 100% 100%;
@@ -146,11 +129,6 @@
 
           &:active {
             cursor: grabbing;
-          }
-
-          @media all and (min-width: variables.$screen-sm) {
-            width: 16px;
-            height: 16px;
           }
         }
       }
