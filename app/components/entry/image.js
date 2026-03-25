@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function EntryImage({ entryId, alt, fill, width, height, style, preload, loading}) {
+export default function EntryImage({ entryId, alt, fill, width, height, style, preload, loading, sizes}) {
   const proxySrc = `/api/images/${entryId}`;
   
   return (
@@ -13,7 +13,7 @@ export default function EntryImage({ entryId, alt, fill, width, height, style, p
     style={style}
     preload={preload}
     loading={loading}
-    unoptimized
+    sizes={sizes}
     />
   );
 }

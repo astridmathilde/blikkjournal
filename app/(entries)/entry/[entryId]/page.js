@@ -45,7 +45,7 @@ export default async function Post({ params }) {
     <div className={styles.imgWrapper}>
     <NavBack>
     <figure className={styles.image}>
-    <EntryImage alt={title} entryId={entryId} width="600" height="600" preload={true} loading="eager" />
+    <EntryImage alt={title} entryId={entryId} width="600" height="600" preload={true} loading="eager" sizes="(max-width: 440px) 100vw, 60vw" />
     <figcaption className={styles.caption}>
     <ul>
     <li><span className={utils.screen_reader_text}>File name: </span>{fileName}</li>
