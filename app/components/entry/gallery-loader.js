@@ -26,7 +26,7 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
           setLoading(false);
         }
       },
-      { rootMargin: "900px" }
+      { rootMargin: "80px" }
     );
     
     if (sentinelRef.current) observer.observe(sentinelRef.current);
