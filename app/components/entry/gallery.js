@@ -53,7 +53,7 @@ export default function GalleryEntry(entry) {
     
     <figure>
     <Link href={entryUrl} style={{cursor: "zoom-in"}}>
-    <EntryImage alt={title} entryId={entryId} width="300" height="600" fill={false} priority={entry.priority === "true" ? true : false} sizes="(max-width: 600px) 50vw, (max-width: 854px) 33vw, 25vw" />
+    <EntryImage alt={title} entryId={entryId} width="300" height="600" fill={false} preload={entry.priority === "true" ? true : false} sizes="(max-width: 600px) 50vw, (max-width: 854px) 33vw, 25vw" />
     </Link>
     </figure> 
     
