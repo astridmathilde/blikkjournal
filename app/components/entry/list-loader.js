@@ -45,7 +45,6 @@ export default function EntryListLoader({ initialEntries, initialCursor, initial
     <>
     <tbody>
     {entries.map((entry, index) => {
-      const isAboveTheFold = index < 15;
       const entryId = entry.id;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
       const fileName = entry.properties?.Image?.files[0]?.name || "";
@@ -74,7 +73,7 @@ export default function EntryListLoader({ initialEntries, initialCursor, initial
         category={category}
         camera={camera}
         date={date}
-        priority={isAboveTheFold ? "true" : ""}
+        priority={index < 15}
         />
       );
     })}

@@ -29,7 +29,7 @@ export default function ListEntry(entry) {
       <td headers="image">
       {level >= 1 ? (
         <figure className={styles.image}>
-        <EntryImage alt={entry.title} entryId={entry.id} width="200" height="40" />
+        <EntryImage alt={entry.title} entryId={entry.id} width="200" height="40" preload={entry.priority === "true" ? true : false} sizes="(max-width: 854px) 10vw, 12vw"/>
         </figure>
       ) : ""
     } {level == -1 || level >= 2 || level == 0 ? (
