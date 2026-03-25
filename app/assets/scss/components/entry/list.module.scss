@@ -127,8 +127,10 @@
 :global(html[data-clutter="declutter-7"]),
 :global(html[data-clutter="declutter-8"]) {
   .listEntry {
-    animation: fadeIn variables.$transition-lg-in forwards;
-    opacity: 0;
+    &:nth-child(n + 13) {
+      animation: fadeIn variables.$transition-lg-in forwards;
+      opacity: 0;
+    }
 
     td {
       border-top: none;
