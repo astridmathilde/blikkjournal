@@ -2,10 +2,10 @@
 
 import { useRouter } from 'next/navigation';
 import { useReturnPath } from '@/app/hooks/use-return-path';
-import { useClutter } from '../clutter/context';
+import { useClutter } from '../../clutter/context';
 
-import EntryImage from './image';
-import styles from "../../assets/scss/components/entry/list.module.scss";
+import EntryImage from '../image';
+import styles from "@/app/assets/scss/components/entry/list/entry.module.scss";
 
 export default function ListEntry(entry) {
   useReturnPath(); // storing current url 

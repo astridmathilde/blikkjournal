@@ -1,10 +1,10 @@
 "use client";
 
-import { useClutter } from "../clutter/context";
-import IconChevronLeft from "../icons/icon-chevron-left";
-import IconChevronRight from "../icons/icon-chevron-right";
-import styles from "../../assets/scss/views/list-footer.module.scss";
-import utils from "../../assets/scss/utils.module.scss";
+import { useClutter } from "../../clutter/context";
+import IconChevronLeft from "../../icons/icon-chevron-left";
+import IconChevronRight from "../../icons/icon-chevron-right";
+import styles from "@/app/assets/scss/components/entry/list/nav.module.scss";
+import utils from "@/app/assets/scss/utils.module.scss";
 
 export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage, totalPages, prevCursor, prevCursors, nextCursor, nextPrevCursor}) {
   const {level} = useClutter();

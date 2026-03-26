@@ -1,8 +1,8 @@
 import { siteTitle, siteDescription } from "../layout";
 import { getEntries, getAllEntries } from "@/app/lib/notion";
 import { getEntryColor } from "@/app/lib/colors.server";
-import ListEntryLoader from "@/app/components/entry/list-loader";
-import ListEntryNav from "@/app/components/entry/list-footer";
+import ListEntryLoader from "@/app/components/entry/list/loader";
+import ListEntryNav from "@/app/components/entry/list/nav";
 import styles from "@/app/assets/scss/views/list.module.scss";
 import utils from "@/app/assets/scss/utils.module.scss";
 

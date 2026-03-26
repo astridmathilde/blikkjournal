@@ -3,11 +3,11 @@ import { createPastelColor, getEntryColor } from "@/app/lib/colors.server";
 
 import { siteTitle, siteDescription } from "@/app/(views)/layout";
 
-import SingleEntry from "../../../components/entry/single";
+import SingleEntry from "../../../components/entry/single/entry";
 import SingleEntryNav from "@/app/components/entry/single/nav";
 import SingleEntryHeader from "@/app/components/entry/single/header";
 import SingleEntryImageWrapper from "@/app/components/entry/single/image";
-import NavBack from "../../../components/nav-back";
+import NavBack from "../../../components/entry/single/nav-back";
 import EntryImage from "@/app/components/entry/image";
 
 import styles from "../../../assets/scss/components/entry/single/image-wrapper.module.scss";

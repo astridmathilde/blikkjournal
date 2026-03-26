@@ -8,7 +8,7 @@
  import { useRouter } from "next/navigation";
  import { useClutter } from "../../clutter/context";
  import Link from "next/link";
- import styles from "../../../assets/scss/components/entry/single/nav.module.scss";
+ import styles from "@/app/assets/scss/components/entry/single/nav.module.scss";
  
  import IconArrowLeft from "@/app/components/icons/icon-arrow-left";
  import IconArrowRight from "@/app/components/icons/icon-arrow-right";

@@ -1,11 +1,11 @@
 "use client";
 
 import { useReturnPath } from '@/app/hooks/use-return-path';
-import { useClutter } from '../clutter/context';
+import { useClutter } from '../../clutter/context';
 import Link from 'next/link';
-import styles from '../../assets/scss/components/entry/gallery.module.scss';
-import utils from '../../assets/scss/utils.module.scss';
-import EntryImage from './image';
+import styles from '@/app/assets/scss/components/entry/gallery/entry.module.scss';
+import utils from '@/app/assets/scss/utils.module.scss';
+import EntryImage from '../image';
 
 export default function GalleryEntry(entry) {
   useReturnPath(); // storing current url
@@ -57,10 +57,11 @@ export default function GalleryEntry(entry) {
     alt={title}
     entryId={entryId}
     width="300"
-    height="600"
+    height="350"
     fill={false}
     preload={entry.priority === "true" ? true : false}
     sizes="(max-width: 600px) 50vw, (max-width: 854px) 33vw, 25vw"
+    placeholderColor={entry.dominantColor}
     />
     </Link>
     </figure> 

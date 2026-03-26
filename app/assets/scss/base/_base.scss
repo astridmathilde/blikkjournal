@@ -53,6 +53,11 @@ img {
   max-width: 100%;
   height: auto;
   border-radius: variables.$border-radius;
+
+  &[data-nimg] {
+    background: none;
+    box-shadow: none;
+  }
 }
 
 ul,

@@ -1,13 +1,13 @@
-/* Wrapper used for lazy-loading gallery entries */ 
+/* Wrapper used for lazy-loading list entries in declutter mode, otherwise rendering the list as normal */ 
 
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { loadMoreEntries } from "../../lib/actions";
-import GalleryEntry from "@/app/components/entry/gallery";
-import styles from '@/app/assets/scss/views/gallery.module.scss';
+import { loadMoreEntries } from "../../../lib/actions";
+import { useClutter } from "../../clutter/context";
+import ListEntry from "./entry";
 
-export default function EntryGalleryLoader({ initialEntries, initialCursor, initialHasMore }) {
+export default function ListEntryLoader({ initialEntries, initialCursor, initialHasMore }) {
   const [entries, setEntries] = useState(initialEntries);
   const [cursor, setCursor] = useState(initialCursor);
   const [hasMore, setHasMore] = useState(initialHasMore);
@@ -15,7 +15,12 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
   const sentinelRef = useRef(null);
   const loadingRef = useRef(false);
   
+  const {level} = useClutter();
+  const hasLazyLoad = level <= -3 || level == 6;
+  
   useEffect(() => {
+    if (!hasLazyLoad) return; // exit when not in declutter mode
+    
     const observer = new IntersectionObserver(
       async ([sentinel]) => {
         if (sentinel.isIntersecting && hasMore && !loadingRef.current) {
@@ -34,46 +39,47 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
     
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
-  }, [cursor, hasMore]); 
+  }, [cursor, hasMore, hasLazyLoad]); 
   
   return (
     <>
-    <div className={styles.gallery}>
+    <tbody>
     {entries.map((entry, index) => {
       const entryId = entry.id;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
-      const name = entry.properties?.Image?.files[0]?.name || "";
-      const place = entry.properties?.Place?.select?.name || "";
+      const fileName = entry.properties?.Image?.files[0]?.name || "";
+      const location = entry.properties?.Place?.select?.name || "";
       const city = entry.properties?.City?.select?.name || "";
       const country = entry.properties?.Country?.select?.name || "";
+      const time = entry.properties.Time.date?.start;
       const camera = entry.properties?.Camera?.select?.name || "";
       const category = entry.properties?.Category?.select?.name || "";
-      const time = entry.properties.Time.date?.start;
       
-      const img = `/api/images/${entryId}`;
+      const date = new Date(time).toLocaleString('en-US', {
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric',
+      });
       
-      if (img) {
-        return (
-          <GalleryEntry
-          key={entryId}
-          id={entryId}
-          place={place}
-          title={title}
-          city={city}
-          country={country}
-          category={category}
-          time={time}
-          camera={camera}
-          name={name}
-          priority={index < 10}
-          />
-        );
-      }
+      return (
+        <ListEntry
+        key={entryId}
+        id={entryId}
+        title={title}
+        fileName={fileName}
+        location={location}
+        city={city}
+        country={country}
+        category={category}
+        camera={camera}
+        date={date}
+        priority={index < 12}
+        dominantColor={entry.dominantColor}
+        />
+      );
     })}
-    </div>
-    
-    <div ref={sentinelRef} />
-    {loading && <p className={styles.loading} style={{textAlign: 'center'}}>{"( . . . )"}</p>}
+    </tbody>
+    {hasLazyLoad && <tfoot ref={sentinelRef} />}
     </>
   );
 }

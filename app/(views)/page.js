@@ -1,6 +1,7 @@
 import { siteTitle, siteDescription } from "./layout";
 import { getEntries } from "@/app/lib/notion";
-import EntryGalleryLoader from "../components/entry/gallery-loader";
+import { getEntryColor, createPastelColor } from "@/app/lib/colors.server";
+import EntryGalleryLoader from "../components/entry/gallery/loader";
 import utils from "@/app/assets/scss/utils.module.scss";
 
 export const metadata = {
@@ -11,15 +12,25 @@ export const metadata = {
 
 export default async function Gallery() {
   const { results, nextCursor, hasMore } = await getEntries();
-
+  
+  /* Get dominant color from images and use that as placeholder background color */ 
+  const colors = await Promise.all(
+    results.map(entry => getEntryColor(entry.id))
+  );
+  
+  const entriesWithColors = results.map((entry, index) => ({
+    ...entry,
+    dominantColor: colors[index]
+  }));
+  
   return (
     <>
-      <h2 className={utils.screen_reader_text}>Gallery</h2>
-      <EntryGalleryLoader
-        initialEntries={results}
-        initialCursor={nextCursor}
-        initialHasMore={hasMore}
-      />
+    <h2 className={utils.screen_reader_text}>Gallery</h2>
+    <EntryGalleryLoader
+    initialEntries={entriesWithColors}
+    initialCursor={nextCursor}
+    initialHasMore={hasMore}
+    />
     </>
   );
 }
