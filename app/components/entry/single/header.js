@@ -4,7 +4,7 @@ import { useClutter } from "../../clutter/context";
 import styles from "../../../assets/scss/components/entry/single/header.module.scss";
 import utils from "../../../assets/scss/utils.module.scss"
 
-export default function EntryHeaderSingle(entry) {
+export default function SingleEntryHeader(entry) {
   const { level } = useClutter();
   
   return (

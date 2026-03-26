@@ -3,14 +3,14 @@ import { createPastelColor, getEntryColor } from "@/app/lib/colors.server";
 
 import { siteTitle, siteDescription } from "@/app/(views)/layout";
 
-import SingleEntry from "../../../components/entry/single/wrapper";
+import SingleEntry from "../../../components/entry/single";
 import SingleEntryNav from "@/app/components/entry/single/nav";
-import EntryHeaderSingle from "@/app/components/entry/single/header";
+import SingleEntryHeader from "@/app/components/entry/single/header";
+import SingleEntryImageWrapper from "@/app/components/entry/single/image";
 import NavBack from "../../../components/nav-back";
 import EntryImage from "@/app/components/entry/image";
 
-import styles from "../../../assets/scss/components/entry/single/img.module.scss";
-import utils from "../../../assets/scss/utils.module.scss";
+import styles from "../../../assets/scss/components/entry/single/image-wrapper.module.scss";
 
 export const metadata = {
   title: siteTitle,
@@ -34,7 +34,7 @@ export default async function Post({ params }) {
     day: '2-digit',
     year: 'numeric',
   });
-
+  
   /* Get dominant color from image & make a pastel color used for background */
   const domColor = await getEntryColor(entryId);
   const bgColor = createPastelColor(domColor);
@@ -48,23 +48,19 @@ export default async function Post({ params }) {
   
   return (
     <SingleEntry key={entryId} bgColor={bgColor}>
-    <EntryHeaderSingle title={title} date={date} location={location} city={city} country={country} />
+    <NavBack>
+    <SingleEntryHeader title={title} date={date} location={location} city={city} country={country} />
     
     <div className={styles.imgWrapper}>
-    <NavBack>
-    <figure className={styles.image}>
+    <SingleEntryImageWrapper fileName={fileName} camera={camera}>
     <EntryImage alt={title} entryId={entryId} width="738" height="738" priority="true" sizes="(max-width: 440px) 100vw, 60vw" placeholderColor={domColor} />
-    <figcaption className={styles.caption}>
-    <ul>
-    <li><span className={utils.screen_reader_text}>File name: </span>{fileName}</li>
-    <li><span className={utils.screen_reader_text}>Camera: </span>{camera}</li>
-    </ul>
-    </figcaption>
-    </figure>
-    </NavBack>
+    </SingleEntryImageWrapper>
     </div>
+    
+    </NavBack>
     
     <SingleEntryNav entryId={entryId} prevEntry={prevEntry} nextEntry={nextEntry} />
     </SingleEntry>
+    
   );
 }

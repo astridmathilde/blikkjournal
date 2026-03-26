@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import styles from "../../../assets/scss/components/entry/single/wrapper.module.scss";
+import styles from "../../assets/scss/components/entry/single.module.scss";
 
 export default function SingleEntry({bgColor, children}) {
   
