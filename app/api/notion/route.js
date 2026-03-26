@@ -15,7 +15,7 @@ export async function POST(request) {
       revalidateTag('entries', 'max');
       revalidateTag('singleEntry', 'max');
       revalidateTag('properties', 'max');
-      /* logging everything for debugging */
+      revalidateTag('entryColor', 'max');
       console.log('cache revalidated for', response.type);
     }
     

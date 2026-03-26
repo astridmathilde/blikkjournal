@@ -1,6 +1,7 @@
 import { siteTitle, siteDescription } from "../layout";
 import { getEntries, getAllEntries } from "@/app/lib/notion";
-import EntryListLoader from "@/app/components/entry/list-loader";
+import { getEntryColor, createPastelColor } from "@/app/lib/colors.server";
+import ListEntryLoader from "@/app/components/entry/list-loader";
 import ListEntryNav from "@/app/components/entry/list-footer";
 import styles from "@/app/assets/scss/views/list.module.scss";
 import utils from "@/app/assets/scss/utils.module.scss";
@@ -28,6 +29,16 @@ export default async function List({ searchParams }) {
   const prevCursor = cursors[cursors.length - 1];
   const prevCursors = cursors.slice(0, -1).join(",");
   
+  /* Get dominant color from images and use that as placeholder background color */ 
+  const colors = await Promise.all(
+    entries.map(entry => getEntryColor(entry.id))
+  );
+  
+  const entriesWithColors = entries.map((entry, index) => ({
+    ...entry,
+    dominantColor: colors[index]
+  }));
+  
   return (
     <>
     <h2 className={utils.screen_reader_text}>Index</h2>
@@ -43,8 +54,9 @@ export default async function List({ searchParams }) {
     <th id="date">Date</th>
     </tr>
     </thead>
-    <EntryListLoader
-    initialEntries={entries}
+    
+    <ListEntryLoader
+    initialEntries={entriesWithColors}
     initialCursor={nextCursor}
     initialHasMore={hasMore}
     />

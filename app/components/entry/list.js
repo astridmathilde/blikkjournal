@@ -3,8 +3,9 @@
 import { useRouter } from 'next/navigation';
 import { useReturnPath } from '@/app/hooks/use-return-path';
 import { useClutter } from '../clutter/context';
-import styles from "../../assets/scss/components/entry/list.module.scss";
+
 import EntryImage from './image';
+import styles from "../../assets/scss/components/entry/list.module.scss";
 
 export default function ListEntry(entry) {
   useReturnPath(); // storing current url 
@@ -29,7 +30,15 @@ export default function ListEntry(entry) {
       <td headers="image">
       {level >= 1 ? (
         <figure className={styles.image}>
-        <EntryImage alt={entry.title} entryId={entry.id} width="200" height="40" preload={entry.priority === "true" ? true : false} sizes="(max-width: 854px) 10vw, 12vw"/>
+        <EntryImage
+        alt={entry.title}
+        entryId={entry.id}
+        width="200"
+        height="40"
+        preload={entry.priority === "true" ? true : false}
+        sizes="(max-width: 854px) 10vw, 12vw"
+        placeholderColor={entry.dominantColor}
+        />
         </figure>
       ) : ""
     } {level == -1 || level >= 2 || level == 0 ? (

@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "@notionhq/client": "^5.13.0",
-        "fast-average-color": "^9.5.0",
+        "fast-average-color-node": "^3.2.0",
         "next": "^16.1.4",
         "react": "^19.2.4",
         "react-dom": "^19.2.3"

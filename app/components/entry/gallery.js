@@ -39,13 +39,13 @@ export default function GalleryEntry(entry) {
     ) : (
       <h2 className={styles.date}><time dateTime={dateTime}>{date}</time></h2>)
     }
-
+    
     <ul className={styles.metadata}>
-
+    
     { level >= 0 ? <li className={styles.caption}><span className={styles.label}>Description: </span>{title}</li> : "" }
-
+    
     {level >= 4 && camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : "" }
-
+    
     {level >= 3 && location ? <li className={styles.location} key="location"><span className={styles.label}>Location: </span>{location}</li> : "" }
     
     { level >= 2 ? <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li> : "" }
@@ -53,7 +53,15 @@ export default function GalleryEntry(entry) {
     
     <figure>
     <Link href={entryUrl} style={{cursor: "zoom-in"}}>
-    <EntryImage alt={title} entryId={entryId} width="300" height="600" fill={false} preload={entry.priority === "true" ? true : false} sizes="(max-width: 600px) 50vw, (max-width: 854px) 33vw, 25vw" />
+    <EntryImage
+    alt={title}
+    entryId={entryId}
+    width="300"
+    height="600"
+    fill={false}
+    preload={entry.priority === "true" ? true : false}
+    sizes="(max-width: 600px) 50vw, (max-width: 854px) 33vw, 25vw"
+    />
     </Link>
     </figure> 
     

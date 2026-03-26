@@ -9,7 +9,6 @@
 body {
   position: relative;
   background-color: variables.$background-color;
-  transition: background-color variables.$transition-md-in;
   margin: variables.$margin-sm;
   text-transform: lowercase;
   font-family:

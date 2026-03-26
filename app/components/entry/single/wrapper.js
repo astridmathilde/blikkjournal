@@ -1,51 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { FastAverageColor } from "fast-average-color";
+import { useEffect } from "react";
 import styles from "../../../assets/scss/components/entry/single/wrapper.module.scss";
 
-export default function SingleEntry({entryId, children}) {
-  const [bgColor, setBgColor] = useState();
-  const image =  `/api/images/${entryId}`;  
+export default function SingleEntry({bgColor, children}) {
   
-  /* I wrote this with help from Claude 🐑 */
+  /* Set background color (I wrote this with help from Claude 🐑) */
   useEffect(() => {
-    const fac = new FastAverageColor();
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
+    document.body.style.backgroundColor = bgColor;
     
-    img.onload = () => {
-      setTimeout(() => {
-        fac.getColorAsync(img, {algorithm: 'simple'}).then(color => {
-          const opacity = 0.2;
-          const adjustedColor = color.rgba.replace(/[\d.]+\)$/g, `${opacity})`);
-          
-          setBgColor(adjustedColor);
-          document.body.style.backgroundColor = adjustedColor;
-          
-          let metaThemeColor = document.querySelector('meta[name="theme-color"]');
-          if (!metaThemeColor) {
-            metaThemeColor = document.createElement('meta');
-            metaThemeColor.name = 'theme-color';
-            document.head.appendChild(metaThemeColor);
-          }
-          metaThemeColor.content = adjustedColor;
-          console.log('EntryId:', entryId, 'Color:', adjustedColor);
-        })
-        .catch(error => {
-          console.log('oh no:', error);
-        })
-      }, 100); // be certain that the image is rendered before attempting adding any colors :D
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (!metaThemeColor) {
+      metaThemeColor = document.createElement('meta');
+      metaThemeColor.name = 'theme-color';
+      document.head.appendChild(metaThemeColor);
     }
-    
-    img.src = image;
-
-    return() => {
-      fac.destroy();
-    }
-  }, [image]);
+    metaThemeColor.content = bgColor;
+  }, [bgColor]);
   /* end of Claude 🐑*/ 
-
+  
   return (
     <article className={styles.singleEntry}>
     {children}

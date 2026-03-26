@@ -7,7 +7,7 @@ import { loadMoreEntries } from "../../lib/actions";
 import { useClutter } from "../clutter/context";
 import ListEntry from "./list";
 
-export default function EntryListLoader({ initialEntries, initialCursor, initialHasMore }) {
+export default function ListEntryLoader({ initialEntries, initialCursor, initialHasMore }) {
   const [entries, setEntries] = useState(initialEntries);
   const [cursor, setCursor] = useState(initialCursor);
   const [hasMore, setHasMore] = useState(initialHasMore);
@@ -73,7 +73,8 @@ export default function EntryListLoader({ initialEntries, initialCursor, initial
         category={category}
         camera={camera}
         date={date}
-        priority={index < 15}
+        priority={index < 12}
+        dominantColor={entry.dominantColor}
         />
       );
     })}

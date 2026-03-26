@@ -1,10 +1,14 @@
 import { getEntry, getAllEntries } from "../../../lib/notion";
+import { createPastelColor, getEntryColor } from "@/app/lib/colors.server";
+
 import { siteTitle, siteDescription } from "@/app/(views)/layout";
+
 import SingleEntry from "../../../components/entry/single/wrapper";
 import SingleEntryNav from "@/app/components/entry/single/nav";
 import EntryHeaderSingle from "@/app/components/entry/single/header";
 import NavBack from "../../../components/nav-back";
 import EntryImage from "@/app/components/entry/image";
+
 import styles from "../../../assets/scss/components/entry/single/img.module.scss";
 import utils from "../../../assets/scss/utils.module.scss";
 
@@ -30,6 +34,10 @@ export default async function Post({ params }) {
     day: '2-digit',
     year: 'numeric',
   });
+
+  /* Get dominant color from image & make a pastel color used for background */
+  const domColor = await getEntryColor(entryId);
+  const bgColor = createPastelColor(domColor);
   
   /* Get prev and next entries across full collection */
   const entries = await getAllEntries();
@@ -39,13 +47,13 @@ export default async function Post({ params }) {
   const nextEntry = currentIndex < entries.length - 1 ? entries[currentIndex + 1] : null;
   
   return (
-    <SingleEntry key={entryId} entryId={entryId}>
+    <SingleEntry key={entryId} bgColor={bgColor}>
     <EntryHeaderSingle title={title} date={date} location={location} city={city} country={country} />
     
     <div className={styles.imgWrapper}>
     <NavBack>
     <figure className={styles.image}>
-    <EntryImage alt={title} entryId={entryId} width="600" height="600" priority="true" sizes="(max-width: 440px) 100vw, 60vw" />
+    <EntryImage alt={title} entryId={entryId} width="738" height="738" priority="true" sizes="(max-width: 440px) 100vw, 60vw" placeholderColor={domColor} />
     <figcaption className={styles.caption}>
     <ul>
     <li><span className={utils.screen_reader_text}>File name: </span>{fileName}</li>
