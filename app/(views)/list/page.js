@@ -1,6 +1,6 @@
 import { siteTitle, siteDescription } from "../layout";
 import { getEntries, getAllEntries } from "@/app/lib/notion";
-import { getEntryColor } from "@/app/lib/colors.server";
+import { getEntryColor, createPastelColor } from "@/app/lib/colors.server";
 import ListEntryLoader from "@/app/components/entry/list/loader";
 import ListEntryNav from "@/app/components/entry/list/nav";
 import styles from "@/app/assets/scss/views/list.module.scss";
@@ -36,7 +36,7 @@ export default async function List({ searchParams }) {
   
   const entriesWithColors = entries.map((entry, index) => ({
     ...entry,
-    dominantColor: colors[index]
+    dominantColor: createPastelColor(colors[index])
   }));
   
   return (
