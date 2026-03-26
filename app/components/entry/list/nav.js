@@ -17,7 +17,7 @@ export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage
     <div className={styles.pagination}>
     <p className={styles.currentPage}>page {currentPage}<span aria-hidden="true">/</span><span className={utils.screen_reader_text}>of </span>{totalPages}</p>
     
-    <nav aria-label="pagination">
+    <nav>
     <ul>
     {cursor ? (
       <li><a aria-label="Go to the previous page" href={prevCursor ? `/list?cursor=${prevCursor}&page=${currentPage - 1}&prev=${prevCursors}` : `/list`} className={styles.prev}><IconChevronLeft /></a></li>
