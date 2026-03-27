@@ -1,18 +1,34 @@
 @use "../../../base/variables";
 
 .image {
-  padding-top: 8vh;
-  padding-bottom: 8vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+
+  @media all and (min-width: variables.$screen-xxs) {
+    max-width: 80vw;
+  }
+
+  @media all and (min-width: variables.$screen-sm) {
+    max-width: 53vw;
+  }
 
   img {
     object-fit: cover;
     object-position: center;
-    width: auto;
-    max-height: 74vh;
+    width: 100%;
+    height: 100%;
     box-shadow: variables.$shadow;
     transition: all variables.$transition-out;
     -webkit-transition: all variables.$transition-out;
     -moz-transition: all variables.$transition-out;
+
+    @media all and (min-width: variables.$screen-xxs) {
+      max-height: 80vh;
+    }
+
+    @media all and (min-width: variables.$screen-md) {
+      max-height: 78vh;
+    }
   }
 
   &:hover {

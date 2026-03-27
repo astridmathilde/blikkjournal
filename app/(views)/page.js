@@ -20,7 +20,7 @@ export default async function Gallery() {
   
   const entriesWithColors = results.map((entry, index) => ({
     ...entry,
-    dominantColor: createPastelColor(colors[index])
+    dominantColor: colors[index]
   }));
   
   return (

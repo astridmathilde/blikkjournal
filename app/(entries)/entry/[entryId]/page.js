@@ -53,7 +53,7 @@ export default async function Post({ params }) {
     
     <div className={styles.imgWrapper}>
     <SingleEntryImageWrapper fileName={fileName} camera={camera}>
-    <EntryImage alt={title} entryId={entryId} width="738" height="738" priority="true" sizes="(max-width: 440px) 100vw, 60vw" placeholderColor={domColor} />
+    <EntryImage alt={title} entryId={entryId} width="738" height="738" priority="true" sizes="(max-width: 304px) 100vw, (max-width: 854px) 80vw, 53vw" placeholderColor={domColor} />
     </SingleEntryImageWrapper>
     </div>
     

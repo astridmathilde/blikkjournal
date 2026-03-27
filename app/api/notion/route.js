@@ -8,21 +8,21 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const response = JSON.parse(await request.text());
+    const parsedRequest = JSON.parse(await parsedRequest.text());
     
     /* revalidating the cache if there is any changes */
-    if (response.type === 'page.properties_updated' || response.type === 'page.created' || response.type === 'page.deleted' || response.type === 'page.undeleted') {
+    if (parsedRequest.type === 'page.properties_updated' || parsedRequest.type === 'page.created' || parsedRequest.type === 'page.deleted' || parsedRequest.type === 'page.undeleted') {
       revalidateTag('entries', 'max');
       revalidateTag('singleEntry', 'max');
       revalidateTag('properties', 'max');
       revalidateTag('entryColor', 'max');
-      console.log('cache revalidated for', response.type);
+      console.log('cache revalidated for', parsedRequest.type);
     }
     
     /* response thing */
     return NextResponse.json({ 
       received: true,
-      event_type: response.type 
+      event_type: parsedRequest.type 
     });
   }
   

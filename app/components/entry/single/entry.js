@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import styles from "@/app/assets/scss/components/entry/single/entry.module.scss";
 
 export default function SingleEntry({bgColor, children}) {
   
@@ -20,7 +19,7 @@ export default function SingleEntry({bgColor, children}) {
   /* end of Claude 🐑*/ 
   
   return (
-    <article className={styles.singleEntry}>
+    <article>
     {children}
     </article>
   )

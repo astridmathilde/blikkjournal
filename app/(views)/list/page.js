@@ -36,7 +36,7 @@ export default async function List({ searchParams }) {
   
   const entriesWithColors = entries.map((entry, index) => ({
     ...entry,
-    dominantColor: createPastelColor(colors[index])
+    dominantColor: colors[index]
   }));
   
   return (
