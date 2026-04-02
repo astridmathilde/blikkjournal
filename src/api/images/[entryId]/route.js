@@ -33,7 +33,7 @@ export async function GET(request, { params }) {
       headers: {
         'Content-Type': contentType,
         'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'public, max-age=2592000, immutable'
+        'Cache-Control': 'public, max-age=1, immutable'
       }
     });
   } catch (error) {
