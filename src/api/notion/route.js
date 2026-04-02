@@ -11,17 +11,11 @@ export async function POST(request) {
     const parsedRequest = JSON.parse(await request.text());
     
     /* revalidating the cache if there is any changes */
-    if (
-      parsedRequest.type === 'page.properties_updated' ||
-      parsedRequest.type === 'page.created' ||
-      parsedRequest.type === 'page.deleted' ||
-      parsedRequest.type === 'page.undeleted'
-    ) {
-      revalidateTag('entries');
-      revalidateTag('singleEntry');
-      revalidateTag('allEntries');
-      revalidateTag('properties');
-      revalidateTag('entryColor');
+    if (parsedRequest.type === 'page.properties_updated' || parsedRequest.type === 'page.created' || parsedRequest.type === 'page.deleted' || parsedRequest.type === 'page.undeleted') {
+      revalidateTag('entries', 'max');
+      revalidateTag('singleEntry', 'max');
+      revalidateTag('properties', 'max');
+      revalidateTag('entryColor', 'max');
       console.log('cache revalidated for', parsedRequest.type);
     }
     

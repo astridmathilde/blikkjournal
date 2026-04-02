@@ -10,19 +10,16 @@ export const metadata = {
   description: siteDescription,
 };
 
-export default async function Gallery({ searchParams }) {
-  const { cursor } = await searchParams;
-  const [{ results: entries, nextCursor, hasMore }, allEntries] = await Promise.all([
-    getEntries(cursor),
-    getAllEntries(),
-  ]);
+
+export default async function Gallery() {
+  const { results, nextCursor, hasMore } = await getEntries();
   
   /* Get dominant color from images and use that as placeholder background color */ 
   const colors = await Promise.all(
-    entries.map(entry => getEntryColor(entry.id))
+    results.map(entry => getEntryColor(entry.id))
   );
-
-  const entriesWithColors = entries.map((entry, index) => ({
+  
+  const entriesWithColors = results.map((entry, index) => ({
     ...entry,
     dominantColor: createPastelColor(colors[index])
   }));

@@ -7,6 +7,7 @@ import { loadMoreEntries } from "@/src/lib/actions";
 import GalleryEntry from "./gallery";
 import styles from '@/src/assets/scss/gallery.module.scss';
 
+
 export default function EntryGalleryLoader({ initialEntries, initialCursor, initialHasMore }) {
   const [entries, setEntries] = useState(initialEntries);
   const [cursor, setCursor] = useState(initialCursor);
@@ -50,22 +51,26 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
       const category = entry.properties?.Category?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       
-      return (
-        <GalleryEntry
-        key={entryId}
-        id={entryId}
-        place={place}
-        title={title}
-        city={city}
-        country={country}
-        category={category}
-        time={time}
-        camera={camera}
-        name={name}
-        priority={index < 10}
-        dominantColor={entry.dominantColor}
-        />
-      );
+      const img = `/api/images/${entryId}`;
+      
+      if (img) {
+        return (
+          <GalleryEntry
+          key={entryId}
+          id={entryId}
+          place={place}
+          title={title}
+          city={city}
+          country={country}
+          category={category}
+          time={time}
+          camera={camera}
+          name={name}
+          priority={index < 10}
+          dominantColor={entry.dominantColor}
+          />
+        );
+      }
     })}
     </div>
     
