@@ -7,7 +7,6 @@ import { loadMoreEntries } from "@/src/lib/actions";
 import GalleryEntry from "./gallery";
 import styles from '@/src/assets/scss/gallery.module.scss';
 
-
 export default function EntryGalleryLoader({ initialEntries, initialCursor, initialHasMore }) {
   const [entries, setEntries] = useState(initialEntries);
   const [cursor, setCursor] = useState(initialCursor);
@@ -51,9 +50,7 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
       const category = entry.properties?.Category?.select?.name || "";
       const time = entry.properties.Time.date?.start;
       
-      const img = `/api/images/${entryId}`;
       
-      if (img) {
         return (
           <GalleryEntry
           key={entryId}
@@ -70,7 +67,6 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
           dominantColor={entry.dominantColor}
           />
         );
-      }
     })}
     </div>
     

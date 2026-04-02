@@ -66,13 +66,12 @@ export const getAllEntries = unstable_cache(
 );
 
 /* Get single entry */
-export const getEntry = unstable_cache(
-  async (pageId) => {
-    const response = await notion.pages.retrieve({
-      page_id: pageId,
-    });
-    return response;
-  },
-  [(pageId) => `singleEntry-${pageId}`],
-  { revalidate: 2592000, tags: ['singleEntry'] }
-);
+export async function getEntry(pageId) {
+  return unstable_cache(
+    async () => {
+      return notion.pages.retrieve({ page_id: pageId });
+    },
+    [`singleEntry-${pageId}`],
+    { revalidate: 2592000, tags: ['singleEntry', `singleEntry-${pageId}`] }
+  )();
+}
