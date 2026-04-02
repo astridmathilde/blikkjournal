@@ -1,0 +1,48 @@
+import { siteTitle } from '../(entries)/layout';
+import { ClutterProvider } from '../../components/clutter/context';
+import localFont from 'next/font/local';
+import Link from "next/link";
+import '../assets/scss/global.scss';
+import styles from '../assets/scss/layout.module.scss'
+import utils from '../assets/scss/utils.module.scss' 
+
+export const viewport = {
+  colorScheme: 'light',
+}
+const ronzino = localFont({
+  src: [
+    {
+      path: '../assets/fonts/Ronzino-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/Ronzino-Oblique.woff2',
+      weight: '400',
+      style: 'italic',
+    }
+  ]
+})
+
+export default function EntryLayout({ children, params }) {
+  const entryId = params.id;
+  
+  return (
+    <html lang="en" className={ronzino.className}>
+    <body className={styles.wrapper} key={entryId}> 
+    <ClutterProvider>
+    <header className={styles.header}>
+    <h1 className={utils.screen_reader_text}><Link href="/">{siteTitle}</Link></h1>
+    </header>
+    
+    <main className={styles.content}>
+    {children}
+    </main>
+    
+    <footer className={styles.footer}>
+    </footer>
+    </ClutterProvider>
+    </body>
+    </html>
+  );
+}
