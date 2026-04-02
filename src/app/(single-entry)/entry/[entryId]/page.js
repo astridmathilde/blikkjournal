@@ -6,7 +6,7 @@ import { siteTitle, siteDescription } from "@/src/app/(entries)/layout";
 import SingleEntry from "@/src/components/entry/single/entry";
 import SingleEntryNav from "@/src/components/entry/single/nav";
 import SingleEntryHeader from "@/src/components/entry/single/header";
-import SingleEntryImageWrsrcer from "@/src/components/entry/single/image";
+import SingleEntryImageWrapper from "@/src/components/entry/single/image";
 import NavBack from "@/src/components/entry/single/nav-back";
 import EntryImage from "@/src/components/entry/image";
 
@@ -52,9 +52,9 @@ export default async function Post({ params }) {
     <SingleEntryHeader title={title} date={date} location={location} city={city} country={country} />
     
     <div className={styles.imgWrapper}>
-    <SingleEntryImageWrsrcer fileName={fileName} camera={camera}>
+    <SingleEntryImageWrapper fileName={fileName} camera={camera}>
     <EntryImage alt={title} entryId={entryId} width="738" height="738" priority="true" sizes="(max-width: 304px) 100vw, (max-width: 854px) 80vw, 53vw" placeholderColor={domColor} />
-    </SingleEntryImageWrsrcer>
+    </SingleEntryImageWrapper>
     </div>
     
     </NavBack>
