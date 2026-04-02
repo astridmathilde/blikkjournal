@@ -1,6 +1,6 @@
-import { getDatabase } from "../../lib/notion";
-import styles from '../assets/scss/components/draggable.module.scss';
-import utils from '../assets/scss/utils.module.scss';
+import { getDatabase } from '@/src/lib/notion';
+import styles from './style.module.scss';
+import utils from "@/src/assets/scss/utils.module.scss";
 
 /* Get categories */
 async function displayProperties() {

@@ -1,7 +1,7 @@
 "use server";
 
-import { fetchEntries } from "@/app/lib/notion";
-import { getEntryColor } from "@/app/lib/colors.server";
+import { fetchEntries } from "./notion";
+import { getEntryColor } from "./colors.server";
 
 export async function loadMoreEntries(cursor = undefined) {
   const { results, nextCursor, hasMore } = await fetchEntries(cursor);

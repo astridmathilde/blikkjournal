@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useClutter } from "./context";
-import IconClutter from "../icons/icon-clutter";
-import utils from "@/app/assets/scss/utils.module.scss";
-import styles from "@/app/assets/scss/components/clutter-control.module.scss";
+import { useClutter } from "../context";
+import IconClutter from "../../icons/icon-clutter";
+import utils from "@/src/assets/scss/utils.module.scss";
+import styles from "./style.module.scss";
 
 export default function ClutterControl() {
   const [open, setOpen] = useState(false);

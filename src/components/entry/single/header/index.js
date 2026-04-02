@@ -1,8 +1,8 @@
 "use client";
 
-import { useClutter } from "../../clutter/context";
-import styles from "@/app/assets/scss/components/entry/single/header.module.scss";
-import utils from "@/app/assets/scss/utils.module.scss"
+import { useClutter } from '@/src/components/clutter/context';
+import styles from './style.module.scss';
+import utils from "@/src/assets/scss/utils.module.scss"
 
 export default function SingleEntryHeader(entry) {
   const { level } = useClutter();

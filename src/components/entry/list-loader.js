@@ -3,7 +3,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { loadMoreEntries } from "../../lib/actions";
+import { loadMoreEntries } from "@/src/lib/actions";
 import { useClutter } from "../clutter/context";
 import ListEntry from "./list/entry";
 

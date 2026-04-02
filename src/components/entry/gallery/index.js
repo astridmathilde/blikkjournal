@@ -3,8 +3,8 @@
 import { useReturnPath } from '@/src/hooks/use-return-path';
 import { useClutter } from '../../clutter/context';
 import Link from 'next/link';
-import styles from '@/app/assets/scss/components/entry/gallery/entry.module.scss';
-import utils from '@/app/assets/scss/utils.module.scss';
+import styles from './style.module.scss';
+import utils from '@/src/assets/scss/utils.module.scss';
 import EntryImage from '../image';
 
 export default function GalleryEntry(entry) {

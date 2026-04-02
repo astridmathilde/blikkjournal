@@ -1,10 +1,10 @@
 import { siteTitle } from '../(entries)/layout';
-import { ClutterProvider } from '../../components/clutter/context';
+import { ClutterProvider } from '@/src/components/clutter/context';
 import localFont from 'next/font/local';
 import Link from "next/link";
-import '../assets/scss/global.scss';
-import styles from '../assets/scss/layout.module.scss'
-import utils from '../assets/scss/utils.module.scss' 
+import '@/src/assets/scss/global.scss';
+import styles from '@/src/assets/scss/layout.module.scss'
+import utils from '@/src/assets/scss/utils.module.scss' 
 
 export const viewport = {
   colorScheme: 'light',
@@ -12,12 +12,12 @@ export const viewport = {
 const ronzino = localFont({
   src: [
     {
-      path: '../assets/fonts/Ronzino-Regular.woff2',
+      path: '../../assets/fonts/Ronzino-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../assets/fonts/Ronzino-Oblique.woff2',
+      path: '../../assets/fonts/Ronzino-Oblique.woff2',
       weight: '400',
       style: 'italic',
     }

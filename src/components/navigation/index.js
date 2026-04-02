@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
-import styles from "../assets/scss/components/navigation.module.scss";
+import styles from "./style.module.scss";
 
 export default function NavLink() {
   const pathname = usePathname();

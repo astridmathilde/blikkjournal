@@ -4,7 +4,7 @@
 * 
 */
 
-import { getEntry } from '@/app/lib/notion';
+import { getEntry } from '@/src/lib/notion';
 import { NextResponse } from 'next/server';
 
 export async function GET(request, { params }) {

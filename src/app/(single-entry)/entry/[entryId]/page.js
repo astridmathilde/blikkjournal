@@ -1,16 +1,16 @@
-import { getEntry, getAllEntries } from "../../../lib/notion";
-import { createPastelColor, getEntryColor } from "@/app/lib/colors.server";
+import { getEntry, getAllEntries } from "@/src/lib/notion";
+import { createPastelColor, getEntryColor } from "@/src/lib/colors.server";
 
-import { siteTitle, siteDescription } from "@/app/(views)/layout";
+import { siteTitle, siteDescription } from "@/src/app/(entries)/layout";
 
-import SingleEntry from "../../../../components/entry/single/entry";
-import SingleEntryNav from "@/app/components/entry/single/nav";
-import SingleEntryHeader from "@/app/components/entry/single/header";
-import SingleEntryImageWrapper from "@/app/components/entry/single/image";
-import NavBack from "../../../../components/entry/single/nav-back";
-import EntryImage from "@/app/components/entry/image";
+import SingleEntry from "@/src/components/entry/single/entry";
+import SingleEntryNav from "@/src/components/entry/single/nav";
+import SingleEntryHeader from "@/src/components/entry/single/header";
+import SingleEntryImageWrsrcer from "@/src/components/entry/single/image";
+import NavBack from "@/src/components/entry/single/nav-back";
+import EntryImage from "@/src/components/entry/image";
 
-import styles from "../../../assets/scss/components/entry/single/image-wrapper.module.scss";
+import styles from "@/src/assets/scss/img-wrapper.module.scss";
 
 export const metadata = {
   title: siteTitle,
@@ -52,9 +52,9 @@ export default async function Post({ params }) {
     <SingleEntryHeader title={title} date={date} location={location} city={city} country={country} />
     
     <div className={styles.imgWrapper}>
-    <SingleEntryImageWrapper fileName={fileName} camera={camera}>
+    <SingleEntryImageWrsrcer fileName={fileName} camera={camera}>
     <EntryImage alt={title} entryId={entryId} width="738" height="738" priority="true" sizes="(max-width: 304px) 100vw, (max-width: 854px) 80vw, 53vw" placeholderColor={domColor} />
-    </SingleEntryImageWrapper>
+    </SingleEntryImageWrsrcer>
     </div>
     
     </NavBack>

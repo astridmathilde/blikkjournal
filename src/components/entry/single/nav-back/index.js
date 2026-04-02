@@ -4,8 +4,8 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getReturnPath } from "../../../../hooks/use-return-path";
-import styles from "@/app/assets/scss/components/entry/single/nav-back.module.scss";
+import { getReturnPath } from "@/src/hooks/use-return-path";
+import styles from './style.module.scss';
 
 export default function NavBack({children}) {
   const router = useRouter();

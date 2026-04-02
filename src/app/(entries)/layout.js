@@ -1,12 +1,12 @@
 import localFont from 'next/font/local';
 import Link from "next/link";
-import '../assets/scss/global.scss';
-import { ClutterProvider } from '../../components/clutter/context';
-import ClutterControl from '../../components/clutter/control';
-import Colophon from '../../components/colophon';
-import styles from '../assets/scss/layout.module.scss'
-import utils from '../assets/scss/utils.module.scss' 
-import Navigation from '../../components/navigation';
+import '@/src/assets/scss/global.scss';
+import { ClutterProvider } from '@/src/components/clutter/context';
+import ClutterControl from '@/src/components/clutter/control';
+import Colophon from '@/src/components/colophon';
+import styles from '@/src/assets/scss/layout.module.scss'
+import utils from '@/src/assets/scss/utils.module.scss' 
+import Navigation from '@/src/components/navigation';
 
 export const siteTitle = "blikkjournal";
 export const siteDescription = "a collection of moments and everyday observations";
@@ -18,12 +18,12 @@ export const viewport = {
 const ronzino = localFont({
   src: [
     {
-      path: '../assets/fonts/Ronzino-Regular.woff2',
+      path: '../../assets/fonts/Ronzino-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../assets/fonts/Ronzino-Oblique.woff2',
+      path: '../../assets/fonts/Ronzino-Oblique.woff2',
       weight: '400',
       style: 'italic',
     }

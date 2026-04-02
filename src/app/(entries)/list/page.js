@@ -1,10 +1,10 @@
 import { siteTitle, siteDescription } from "../layout";
-import { getEntries, getAllEntries } from "@/app/lib/notion";
-import { getEntryColor, createPastelColor } from "@/app/lib/colors.server";
-import ListEntryLoader from "@/app/components/entry/list/loader";
-import ListEntryNav from "@/app/components/entry/list/nav";
-import styles from "@/app/assets/scss/views/list.module.scss";
-import utils from "@/app/assets/scss/utils.module.scss";
+import { getEntries, getAllEntries } from "@/src/lib/notion";
+import { getEntryColor, } from "@/src/lib/colors.server";
+import ListEntryLoader from "@/src/components/entry/list-loader";
+import ListEntryNav from "@/src/components/entry/list/nav";
+import styles from "@/src/assets/scss/list.module.scss";
+import utils from "@/src/assets/scss/utils.module.scss";
 
 export const metadata = {
   metadataBase: new URL('https://blikk.directory/list'),

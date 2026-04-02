@@ -6,12 +6,12 @@
  
  import { useState, useEffect } from "react";
  import { useRouter } from "next/navigation";
- import { useClutter } from "../../clutter/context";
+ import { useClutter } from "@/src/components/clutter/context";
  import Link from "next/link";
- import styles from "@/app/assets/scss/components/entry/single/nav.module.scss";
+ import styles from './style.module.scss';
  
- import IconArrowLeft from "@/app/components/icons/icon-arrow-left";
- import IconArrowRight from "@/app/components/icons/icon-arrow-right";
+ import IconArrowLeft from "@/src/components/icons/icon-arrow-left";
+ import IconArrowRight from "@/src/components/icons/icon-arrow-right";
  
  export default function SingleEntryNav({entryId, prevEntry, nextEntry}) {
   /* Enable keyboard navigation */ 

@@ -3,9 +3,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { loadMoreEntries } from "../../lib/actions";
-import GalleryEntry from "@/app/components/entry/gallery/entry";
-import styles from '@/app/assets/scss/views/gallery.module.scss';
+import { loadMoreEntries } from "@/src/lib/actions";
+import GalleryEntry from "./gallery";
+import styles from '@/src/assets/scss/gallery.module.scss';
 
 export default function EntryGalleryLoader({ initialEntries, initialCursor, initialHasMore }) {
   const [entries, setEntries] = useState(initialEntries);
