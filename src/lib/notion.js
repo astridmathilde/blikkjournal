@@ -62,7 +62,7 @@ export const getAllEntries = unstable_cache(
     return allResults;
   },
   ['allEntries'],
-  { revalidate: 1, tags: ['allEntries'] }
+  { revalidate: 2592000, tags: ['allEntries'] }
 );
 
 /* Get single entry */
@@ -74,5 +74,5 @@ export const getEntry = unstable_cache(
     return response;
   },
   [(pageId) => `singleEntry-${pageId}`],
-  { revalidate: 1, tags: ['singleEntry'] }
+  { revalidate: 2592000, tags: ['singleEntry'] }
 );
