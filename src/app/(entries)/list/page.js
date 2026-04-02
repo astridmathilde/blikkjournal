@@ -1,6 +1,6 @@
 import { siteTitle, siteDescription } from "../layout";
 import { getEntries, getAllEntries } from "@/src/lib/notion";
-import { getEntryColor, } from "@/src/lib/colors.server";
+import { getEntryColor, createPastelColor} from "@/src/lib/colors.server";
 import ListEntryLoader from "@/src/components/entry/list-loader";
 import ListEntryNav from "@/src/components/entry/list/nav";
 import styles from "@/src/assets/scss/list.module.scss";
@@ -41,7 +41,7 @@ export default async function List({ searchParams }) {
   
   return (
     <>
-    <h2 className={utils.screen_reader_text}>Index</h2>
+    <h2 className={utils.screen_reader_text}>List</h2>
     <table className={styles.list}>
     <thead>
     <tr>

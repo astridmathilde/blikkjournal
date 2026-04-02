@@ -1,6 +1,6 @@
 import { siteTitle, siteDescription } from "./layout";
-import { getEntries } from "@/src/lib/notion";
-import { getEntryColor } from "@/src/lib/colors.server";
+import { getEntries, getAllEntries } from "@/src/lib/notion";
+import { getEntryColor, createPastelColor } from "@/src/lib/colors.server";
 import EntryGalleryLoader from "@/src/components/entry/gallery-loader";
 import utils from "@/src/assets/scss/utils.module.scss";
 
@@ -10,17 +10,21 @@ export const metadata = {
   description: siteDescription,
 };
 
-export default async function Gallery() {
-  const { results, nextCursor, hasMore } = await getEntries();
+export default async function Gallery({ searchParams }) {
+  const { cursor } = await searchParams;
+  const [{ results: entries, nextCursor, hasMore }, allEntries] = await Promise.all([
+    getEntries(cursor),
+    getAllEntries(),
+  ]);
   
   /* Get dominant color from images and use that as placeholder background color */ 
   const colors = await Promise.all(
-    results.map(entry => getEntryColor(entry.id))
+    entries.map(entry => getEntryColor(entry.id))
   );
-  
-  const entriesWithColors = results.map((entry, index) => ({
+
+  const entriesWithColors = entries.map((entry, index) => ({
     ...entry,
-    dominantColor: colors[index]
+    dominantColor: createPastelColor(colors[index])
   }));
   
   return (
