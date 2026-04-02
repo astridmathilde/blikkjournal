@@ -1,0 +1,48 @@
+@use "../../../../assets/scss/base/variables";
+
+.image {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: auto;
+    box-shadow: variables.$shadow;
+    transition: all variables.$transition-out;
+    -webkit-transition: all variables.$transition-out;
+    -moz-transition: all variables.$transition-out;
+
+    @media all and (min-width: variables.$screen-xxs) {
+      max-width: 80vw;
+      max-height: 80vh;
+      width: auto;
+    }
+
+    @media all and (min-width: variables.$screen-md) {
+      max-width: 53vw;
+      max-height: 78vh;
+    }
+  }
+
+  &:hover {
+    > img {
+      box-shadow: variables.$shadow-hover;
+      transition: all variables.$transition-in;
+      -webkit-transition: all variables.$transition-in;
+      -moz-transition: all variables.$transition-in;
+    }
+  }
+
+  .caption {
+    width: 100%;
+    font-size: variables.$font-size-small;
+
+    ul {
+      display: inline-flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}

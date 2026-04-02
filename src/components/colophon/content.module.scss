@@ -1,0 +1,77 @@
+@use "../../assets/scss/base/variables";
+
+.content {
+  z-index: 1000;
+  position: absolute;
+  bottom: 3em;
+  right: 0;
+  background: variables.$background-color;
+  width: 60vw;
+  margin: 0 auto;
+  border: variables.$border-size solid variables.$text-color;
+  border-radius: variables.$border-radius-md;
+  padding: variables.$margin-sm;
+
+  @media all and (min-width: variables.$screen-sm) {
+    font-size: variables.$font-size-small;
+  }
+
+  @media all and (max-width: variables.$screen-sm) {
+    overflow-y: scroll;
+    width: 80vw;
+    max-height: 80vh;
+  }
+
+  @media all and (min-width: variables.$screen-md) {
+    width: 44vw;
+  }
+
+  .close {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    width: 48px;
+    height: 48px;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      fill: variables.$text-color;
+      margin-top: -12px;
+      margin-right: -12px;
+      width: 20px;
+      height: 20px;
+      opacity: 0.6;
+      filter: alpha(opacity=60);
+      transition: all variables.$transition-out;
+      -webkit-transition: all variables.$transition-out;
+      -moz-transition: all variables.$transition-out;
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        transition: all variables.$transition-in;
+        -webkit-transition: all variables.$transition-in;
+        -moz-transition: all variables.$transition-in;
+      }
+
+      @media all and (min-width: variables.$screen-sm) {
+        margin-top: 0;
+        margin-right: 0;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  h2 {
+    margin-top: 0;
+    font-size: variables.$font-size-base;
+    font-weight: 400;
+  }
+}
