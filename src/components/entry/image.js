@@ -5,10 +5,10 @@ function colorPlaceholderDataUrl(color) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1">
     <rect width="1" height="1" fill="${color}"/>
   </svg>`;
-  return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
+  return `data:image/svg+xml;base64,${btoa(svg)}`;
 }
 
-export default function EntryImage({ entryId, alt, fill, width, height, style, preload, priority, sizes, placeholderColor}) {
+export default function EntryImage({ entryId, alt, fill, width, height, style, priority, sizes, placeholderColor}) {
   const proxySrc = `/api/images/${entryId}`;
   
   return (
@@ -19,7 +19,6 @@ export default function EntryImage({ entryId, alt, fill, width, height, style, p
     height={height}
     fill={fill}
     style={style}
-    preload={preload}
     priority={priority}
     sizes={sizes}
     placeholder="blur"

@@ -59,7 +59,7 @@ export default function GalleryEntry(entry) {
     width="300"
     height="350"
     fill={false}
-    preload={entry.priority === "true" ? true : false}
+    priority={entry.priority === "true" ? true : false}
     sizes="(max-width: 600px) 50vw, (max-width: 854px) 33vw, 25vw"
     placeholderColor={entry.dominantColor}
     />

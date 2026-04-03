@@ -42,31 +42,29 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
     {entries.map((entry, index) => {
       const entryId = entry.id;
       const title = entry.properties?.Title?.title[0]?.plain_text || "";
-      const name = entry.properties?.Image?.files[0]?.name || "";
       const place = entry.properties?.Place?.select?.name || "";
       const city = entry.properties?.City?.select?.name || "";
       const country = entry.properties?.Country?.select?.name || "";
       const camera = entry.properties?.Camera?.select?.name || "";
       const category = entry.properties?.Category?.select?.name || "";
-      const time = entry.properties.Time.date?.start;
+      const time = entry.properties?.Time?.date?.start;
       
       
-        return (
-          <GalleryEntry
-          key={entryId}
-          id={entryId}
-          place={place}
-          title={title}
-          city={city}
-          country={country}
-          category={category}
-          time={time}
-          camera={camera}
-          name={name}
-          priority={index < 10}
-          dominantColor={entry.dominantColor}
-          />
-        );
+      return (
+        <GalleryEntry
+        key={entryId}
+        id={entryId}
+        place={place}
+        title={title}
+        city={city}
+        country={country}
+        category={category}
+        time={time}
+        camera={camera}
+        priority={index < 10}
+        dominantColor={entry.dominantColor}
+        />
+      );
     })}
     </div>
     
