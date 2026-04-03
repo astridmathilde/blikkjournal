@@ -6,32 +6,24 @@ const notion = new Client({
   notionVersion: "2025-09-03",
 });
 
-const databaseId = process.env.NOTION_DATABASE_ID;
 const dataSourceId = process.env.NOTION_DATA_SOURCE_ID;
 
-/* Get database properties  */
-export const getDatabase = unstable_cache(
+/* Get properties  */
+export const getProperties = unstable_cache(
   async () => {
-    const response = await notion.request({
-      method: "get",
-      path: `databases/${databaseId}`,
-    });
-    return response;
+    return notion.dataSources.retrieve({ data_source_id: dataSourceId });
   },
   ['properties'],
   { revalidate: 2592000, tags: ['properties'] }
 );
 
-/* Get entries (not using cache here) */
-export async function fetchEntries(cursor = undefined) {
-  const response = await notion.request({
-    method: "post",
-    path: `data_sources/${dataSourceId}/query`,
-    body: {
-      sorts: [{ property: "Time", direction: "descending" }],
-      page_size: 12,
-      ...(cursor && { start_cursor: cursor }),
-    },
+/* Get the first page of entries */
+export async function getEntries(cursor = undefined) {
+  const response = await notion.dataSources.query({
+    data_source_id: dataSourceId,
+    sorts: [{ property: "Time", direction: "descending" }],
+    page_size: 12,
+    ...(cursor && { start_cursor: cursor })
   });
   
   return {
@@ -41,11 +33,7 @@ export async function fetchEntries(cursor = undefined) {
   };
 }
 
-export async function getEntries(cursor = undefined) {
-  return fetchEntries(cursor);
-}
-
-/* Get all entries by looping through cursors */ 
+/* Get all entries by looping through cursors (pages) */ 
 export const getAllEntries = unstable_cache(
   async () => {
     const allResults = [];
@@ -53,7 +41,7 @@ export const getAllEntries = unstable_cache(
     let hasMore = true;
     
     while (hasMore) {
-      const { results, nextCursor, hasMore: more } = await fetchEntries(cursor);
+      const { results, nextCursor, hasMore: more } = await getEntries(cursor);
       allResults.push(...results);
       cursor = nextCursor;
       hasMore = more;

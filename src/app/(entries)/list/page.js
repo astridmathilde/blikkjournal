@@ -1,6 +1,6 @@
 import { siteTitle, siteDescription } from "../layout";
 import { getEntries, getAllEntries } from "@/src/lib/notion";
-import { getEntryColor, createPastelColor} from "@/src/lib/colors.server";
+import { getEntryColor } from "@/src/lib/colors.server";
 import ListEntryLoader from "@/src/components/entry/list-loader";
 import ListEntryNav from "@/src/components/entry/list/nav";
 import styles from "@/src/assets/scss/list.module.scss";
