@@ -9,32 +9,30 @@ import 'server-only';
 import { unstable_cache } from 'next/cache';
 import { getEntry } from './notion';
 
-export const getEntryColor = unstable_cache(
-  async (pageId) => {
-    const fallBack = "rgba(40, 40, 40, 0.2)";
-
-    try {
-    const entry = await getEntry(pageId);
-    const imgUrl = entry.properties.Image.files[0]?.file.url;
-    
-    if ( !imgUrl) return fallBack;
-    
-    const imageResponse = await fetch(imgUrl);
-    const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
-    
-    const fac = await import('fast-average-color-node');
-    const color = await fac.getAverageColor(imageBuffer);
-    
-    return color.hex;
-  } catch (error) {
-    return fallBack;
-  }
-  },
-  ['entryColor'],
-  { revalidate: 2592000, tags: ['entryColor'] }
-);
+export async function getEntryColor(pageId) {
+  return unstable_cache(
+    async () => {
+      const fallBack = "rgba(40, 40, 40, 0.2)";
+      try {
+        const entry = await getEntry(pageId);
+        const imgUrl = entry.properties.Image.files[0]?.file.url;
+        if (!imgUrl) return fallBack;
+        const imageResponse = await fetch(imgUrl);
+        const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
+        const fac = await import('fast-average-color-node');
+        const color = await fac.getAverageColor(imageBuffer);
+        return color.hex;
+      } catch (error) {
+        return fallBack;
+      }
+    },
+    [`entryColor-${pageId}`],
+    { revalidate: 2592000, tags: ['entryColor', `entryColor-${pageId}`] }
+  )();
+}
 
 export function createPastelColor(hex, opacity = 0.2) {
+  if (!hex || !hex.startsWith('#')) return '#28282833';
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);

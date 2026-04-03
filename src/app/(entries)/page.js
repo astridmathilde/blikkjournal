@@ -15,13 +15,15 @@ export default async function Gallery() {
   const { results, nextCursor, hasMore } = await getEntries();
   
   /* Get dominant color from images and use that as placeholder background color */ 
-  const colors = await Promise.all(
+  const colors = await Promise.allSettled(
     results.map(entry => getEntryColor(entry.id))
   );
   
   const entriesWithColors = results.map((entry, index) => ({
     ...entry,
-    dominantColor: createPastelColor(colors[index])
+    dominantColor: createPastelColor(
+      colors[index].status === 'fulfilled' ? colors[index].value : null
+    )
   }));
   
   return (
