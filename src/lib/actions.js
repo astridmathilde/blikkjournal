@@ -3,8 +3,8 @@
 import { getEntries } from "./notion";
 import { getEntryColor } from "./colors.server";
 
-export async function loadMoreEntries(cursor = undefined) {
-  const { results, nextCursor, hasMore } = await getEntries(cursor);
+export async function loadMoreEntries(cursor = undefined, filters = {}) {
+  const { results, nextCursor, hasMore } = await getEntries(cursor, filters);
 
   const colors = await Promise.allSettled(
     results.map(entry => getEntryColor(entry.id))

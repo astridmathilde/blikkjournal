@@ -7,7 +7,7 @@ import { loadMoreEntries } from "@/src/lib/actions";
 import { useClutter } from "../clutter/context";
 import ListEntry from "./list/entry";
 
-export default function ListEntryLoader({ initialEntries, initialCursor, initialHasMore }) {
+export default function ListEntryLoader({ initialEntries, initialCursor, initialHasMore, filters}) {
   const [entries, setEntries] = useState(initialEntries);
   const [cursor, setCursor] = useState(initialCursor);
   const [hasMore, setHasMore] = useState(initialHasMore);
@@ -18,6 +18,7 @@ export default function ListEntryLoader({ initialEntries, initialCursor, initial
   const {level} = useClutter();
   const hasLazyLoad = level <= -3 || level == 6;
   
+  /* Loading the entries */
   useEffect(() => {
     if (!hasLazyLoad) return; // exit when not in declutter mode
     
@@ -26,7 +27,7 @@ export default function ListEntryLoader({ initialEntries, initialCursor, initial
         if (sentinel.isIntersecting && hasMore && !loadingRef.current) {
           loadingRef.current = true;
           setLoading(true);
-          const data = await loadMoreEntries(cursor);
+          const data = await loadMoreEntries(cursor, filters);
           setEntries((prev) => [...prev, ...data.results]);
           setCursor(data.nextCursor);
           setHasMore(data.hasMore);

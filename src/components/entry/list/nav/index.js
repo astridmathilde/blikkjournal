@@ -8,19 +8,27 @@ import utils from "@/src/assets/scss/utils.module.scss";
 
 export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage, totalPages, prevCursor, prevCursors, nextCursor, nextPrevCursor}) {
   const {level} = useClutter();
-
+  
   if (level >= -2 && level !== 6) {
-  return (
-    <div className={styles.footer}>
-    <p className={styles.totalEntries}>{totalEntries} entries</p>
-    
-    <div className={styles.pagination}>
-    <p className={styles.currentPage}>page {currentPage}<span aria-hidden="true">/</span><span className={utils.screen_reader_text}>of </span>{totalPages}</p>
-    
-    <nav>
-    <ul>
-    {cursor ? (
-      <li><a aria-label="Go to the previous page" href={prevCursor ? `/list?cursor=${prevCursor}&page=${currentPage - 1}&prev=${prevCursors}` : `/list`} className={styles.prev}><IconChevronLeft /></a></li>
+    return (
+      <div className={styles.footer}>
+      <p className={styles.totalEntries}>{totalEntries} entries</p>
+      
+      <div className={styles.pagination}>
+      <p className={styles.currentPage}>page {currentPage}<span aria-hidden="true">/</span><span className={utils.screen_reader_text}>of </span>{totalPages}</p>
+      
+      <nav>
+      <ul>
+      {cursor ? (
+        <li><a
+        aria-label="Go to the previous page"
+        href={prevCursor ? (
+        `/list?cursor=${prevCursor}&page=${currentPage - 1}&prev=${prevCursors}`
+        ) : (
+          `/list`
+        )
+      }
+      className={styles.prev}><IconChevronLeft /></a></li>
     ) : (
       <li aria-hidden="true" className={styles.disabled}><IconChevronLeft /></li>
     ) }

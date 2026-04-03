@@ -1,51 +1,64 @@
-import { getDatabase } from '@/src/lib/notion';
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from './style.module.scss';
 import utils from "@/src/assets/scss/utils.module.scss";
 
-/* Get categories */
-async function displayProperties() {
-  const data = await getDatabase();
-  return data;
-}
-
-/* Display content */
-export default async function Filter() {
-  const properties = await displayProperties();
+export default function Filter({ categories, locations, years, activeFilters }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   
-  const categories = properties.properties.Category.select.options;
-  const locations = properties.properties.Country.select.options;
-  
-  const currentYear = new Date().getFullYear();
-  const generateYears = (startYear, currentYear) => {
-    const years = [];
-    for (let i = startYear; i <= currentYear; i++) {
-      years.push(i);
-    }
-    return years;
-  }
-  const years = generateYears(2018, currentYear)
+  /* Written with help from Claude 🐑 */
+  const updateFilter = (key, value) => {
+    const params = new URLSearchParams(searchParams);
+    params.set(key, value);
+    params.delete('cursor'); // reset pagination when filter changes
+    params.delete('page');
+    params.delete('prev');
+    router.push(`?${params.toString()}`);
+  };
+  /* End of Claude */ 
   
   return (
     <div className={styles.filter}>
+    
+    { /* Choose category */ }
     <label htmlFor="category-filter" className={utils.screen_reader_text}>Choose a category:</label>
-    <select name="filter-category" id="category-filter">
-    <option key="everything" value="everything">everything</option>
+    <select
+    name="filter-category"
+    id="category-filter"
+    value={searchParams.get('category') || 'everything'}
+    onChange={e => updateFilter('category', e.target.value)}
+    >
+    <option value="everything">everything</option>
     {categories.map((item) => (
       <option key={item.name} value={item.name}>{item.name}</option>
     ))}
     </select>
     
+    { /* Choose location */ }
     <label htmlFor="location-filter" className={utils.screen_reader_text}>Choose a location:</label>
-    <select name="filter-location" id="location-filter">
-    <option key="everywhere" value="everywhere">everywhere</option>
+    <select
+    name="filter-location"
+    id="location-filter"
+    value={searchParams.get('location') || 'everywhere'}
+    onChange={e => updateFilter('location', e.target.value)}
+    >
+    <option value="everywhere">everywhere</option>
     {locations.map((item) => (
       <option key={item.name} value={item.name}>{item.name}</option>
     ))}
     </select>
     
+    { /* Choose year */ }
     <label htmlFor="year-filter" className={utils.screen_reader_text}>Choose a year:</label>
-    <select name="filter-year" id="year-filter">
-    <option key="all-time" value="all-time">all time</option>
+    <select
+    name="filter-year"
+    id="year-filter"
+    value={searchParams.get('year') || 'all-time'}
+    onChange={e => updateFilter('year', e.target.value)}
+    >
+    <option value="all-time">all time</option>
     {years.map((year) => (
       <option key={year} value={year}>{year}</option>
     ))}
