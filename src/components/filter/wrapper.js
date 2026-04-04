@@ -25,8 +25,15 @@ export default function FilterWrapper({ categories, locations, years, children }
       years={years}
       startTransition={startTransition}
       />
-      {isPending  ? <Loading /> : children }
-      </>
-    );
-  }
+      {isPending  ? (
+        <div style={{display: "flex", justifyContent: "center", flexDirection: "column", minHeight: "50vh", opacity: "0.7", filter: "alpha(opacity=70)"}}>
+        <Loading />
+        </div>
+      ) : (
+        children
+      )
+    }
+    </>
+  );
+}
 }
