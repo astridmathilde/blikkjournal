@@ -4,6 +4,8 @@
   width: 100%;
   cursor: pointer !important;
   vertical-align: middle;
+  animation: fadeIn variables.$transition-md-in forwards;
+  opacity: 0;
   transition: all variables.$transition-out;
   -webkit-transition: all variables.$transition-out;
   -moz-transition: all variables.$transition-out;

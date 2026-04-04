@@ -4,7 +4,7 @@
 .galleryEntry {
   position: relative;
   display: flex;
-  animation: fadeIn variables.$transition-lg-in forwards;
+  animation: fadeIn variables.$transition-md-in forwards;
   opacity: 0;
 
   @media all and (min-width: variables.$screen-sm) {

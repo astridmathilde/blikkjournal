@@ -5,6 +5,8 @@
 import { useEffect, useRef, useState } from "react";
 import { loadMoreEntries } from "@/src/lib/actions";
 import { useClutter } from "../clutter/context";
+
+import Loading from "../loading";
 import ListEntry from "./list/entry";
 
 export default function ListEntryLoader({ initialEntries, initialCursor, initialHasMore, filters}) {
@@ -89,7 +91,15 @@ export default function ListEntryLoader({ initialEntries, initialCursor, initial
       );
     })}
     </tbody>
-    {hasLazyLoad && <tfoot ref={sentinelRef} />}
+    {hasLazyLoad && (
+      <tfoot ref={sentinelRef}>
+      {loading && (
+        <tr style={{display: "flex"}}>
+        <td><Loading /></td>
+        </tr>
+      )}
+      </tfoot>
+    )}
     </>
   );
 }

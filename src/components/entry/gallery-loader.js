@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState } from "react";
 import { loadMoreEntries } from "@/src/lib/actions";
 import GalleryEntry from "./gallery";
+import Loading from "../loading";
 import styles from '@/src/assets/scss/gallery.module.scss';
 
 export default function EntryGalleryLoader({ initialEntries, initialCursor, initialHasMore }) {
@@ -69,7 +70,7 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
     </div>
     
     <div ref={sentinelRef} />
-    {loading && <p className={styles.loading} style={{textAlign: 'center'}}>{"( . . . )"}</p>}
+    {loading && <Loading />}
     </>
   );
 }

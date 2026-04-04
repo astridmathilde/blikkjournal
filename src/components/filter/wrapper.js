@@ -5,6 +5,7 @@
 "use client";
 
 import { useTransition } from "react";
+import Loading from "../loading";
 import Filter from "./index";
 
 export default function FilterWrapper({ categories, locations, years, children }) {
@@ -18,7 +19,7 @@ export default function FilterWrapper({ categories, locations, years, children }
       years={years}
       startTransition={startTransition}
     />
-    {isPending  ? <p style={{textAlign: 'center'}}>{"( . . . )"}</p> : children }
+    {isPending  ? <Loading /> : children }
     </>
   );
 }
