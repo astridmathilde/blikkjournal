@@ -7,8 +7,12 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
   background-color: variables.$background-color;
+  min-height: calc(100vh - (variables.$margin-sm * 2));
   margin: variables.$margin-sm;
   text-transform: lowercase;
   font-family:
