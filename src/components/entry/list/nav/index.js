@@ -6,8 +6,13 @@ import IconChevronRight from "@/src/components/icons/icon-chevron-right";
 import styles from './style.module.scss';
 import utils from "@/src/assets/scss/utils.module.scss";
 
-export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage, totalPages, prevCursor, prevCursors, nextCursor, nextPrevCursor}) {
+export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage, totalPages, prevCursor, prevCursors, nextCursor, nextPrevCursor, filters}) {
   const {level} = useClutter();
+  const {category, location, year} = filters;
+
+  const prevFilters = category ? `&category=${category}` : "" + location ? `&location=${location}` : "" + year ? `&year=${year}` : "";
+  const prevFiltersLast = category ? `&category=${category}` : "" + location ? `&location=${location}` : "" + year ? `&year=${year}` : "";
+  const nextFilters = category ? `&category=${category}` : "" + location ? `&location=${location}` : "" + year ? `&year=${year}` : "";
   
   if (level >= -2 && level !== 6) {
     return (
@@ -23,9 +28,9 @@ export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage
         <li><a
         aria-label="Go to the previous page"
         href={prevCursor ? (
-        `/list?cursor=${prevCursor}&page=${currentPage - 1}&prev=${prevCursors}`
+        `/list?cursor=${prevCursor}&page=${currentPage - 1}&prev=${prevCursors}` + prevFilters
         ) : (
-          `/list`
+          category || location || year ? `/list?` + prevFiltersLast : `/list`
         )
       }
       className={styles.prev}><IconChevronLeft /></a></li>
@@ -34,7 +39,7 @@ export default function ListEntryNav({cursor, hasMore, totalEntries, currentPage
     ) }
     {hasMore && nextCursor ? (
       <li>
-      <a aria-label="Go to the next page" href={`/list?cursor=${nextCursor}&page=${currentPage + 1}&prev=${nextPrevCursor}`} className={styles.next}><IconChevronRight /></a>
+      <a aria-label="Go to the next page" href={`/list?cursor=${nextCursor}&page=${currentPage + 1}&prev=${nextPrevCursor}` + nextFilters} className={styles.next}><IconChevronRight /></a>
       </li>
     ) : (
       <li aria-hidden="true" className={styles.disabled}><IconChevronRight /></li>

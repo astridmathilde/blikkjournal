@@ -12,7 +12,7 @@ import { getEntry } from './notion';
 export async function getEntryColor(pageId) {
   return unstable_cache(
     async () => {
-      const fallBack = "rgba(40, 40, 40, 0.2)";
+      const fallBack = "#28282833";
       try {
         const entry = await getEntry(pageId);
         const imgUrl = entry.properties.Image.files[0]?.file.url;

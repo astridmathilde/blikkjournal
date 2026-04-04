@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import { siteTitle, siteDescription } from "../layout";
 import { getEntries, getProperties, getAllEntries } from "@/src/lib/notion";
 import { getEntryColor } from "@/src/lib/colors.server";
@@ -14,10 +15,12 @@ export const metadata = {
 };
 
 export default async function List({ searchParams }) {
-  const { cursor, page, prev } = await searchParams;
-
+  await connection();
+  const { category, location, year, cursor, page, prev } = await searchParams;
+  const filters = { category, location, year };
+  
   const [{ results: entries, nextCursor, hasMore }, allEntries, properties] = await Promise.all([
-    getEntries(cursor),
+    getEntries(cursor, filters),
     getAllEntries(),
     getProperties(),
   ]);
@@ -43,13 +46,13 @@ export default async function List({ searchParams }) {
   const prevCursors = cursors.slice(0, -1).join(",");
   
   /* Get dominant color from images and use that as placeholder background color */ 
-  const colors = await Promise.all(
+  const colors = await Promise.allSettled(
     entries.map(entry => getEntryColor(entry.id))
   );
   
   const entriesWithColors = entries.map((entry, index) => ({
     ...entry,
-    dominantColor: colors[index]
+    dominantColor: colors[index].status === 'fulfilled' ? colors[index].value : null,
   }));
   
   return (
@@ -59,6 +62,7 @@ export default async function List({ searchParams }) {
     categories={categories}
     locations={locations}
     years={years}
+    activeFilters={filters}
     />
     <table className={styles.list}>
     <thead>
@@ -77,6 +81,7 @@ export default async function List({ searchParams }) {
     initialEntries={entriesWithColors}
     initialCursor={nextCursor}
     initialHasMore={hasMore}
+    filters={filters}
     />
     </table>
     
@@ -90,6 +95,7 @@ export default async function List({ searchParams }) {
     nextPrevCursor={nextPrevCursor}
     prevCursor={prevCursor}
     prevCursors={prevCursors}
+    filters={filters}
     />
     </>
   );

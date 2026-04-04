@@ -12,7 +12,7 @@ export async function loadMoreEntries(cursor = undefined, filters = {}) {
 
   const entriesWithColors = results.map((entry, i) => ({
     ...entry,
-    dominantColor: colors[i].status === 'fulfilled' ? colors[i].value : "#888888"
+    dominantColor: colors[i].status === 'fulfilled' ? colors[i].value : "#28282833"
   }));
 
   return { results: entriesWithColors, nextCursor, hasMore };

@@ -1,23 +1,35 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import styles from './style.module.scss';
 import utils from "@/src/assets/scss/utils.module.scss";
 
 export default function Filter({ categories, locations, years, activeFilters }) {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const searchParams = useSearchParams()
   
-  /* Written with help from Claude 🐑 */
-  const updateFilter = (key, value) => {
-    const params = new URLSearchParams(searchParams);
-    params.set(key, value);
-    params.delete('cursor'); // reset pagination when filter changes
-    params.delete('page');
-    params.delete('prev');
-    router.push(`?${params.toString()}`);
-  };
-  /* End of Claude */ 
+  const updateFilter = useCallback(
+    (key, value) => {
+      const params = new URLSearchParams(searchParams)
+      
+      const reset = {
+        category: "everything",
+        location: "everywhere",
+        year: "all-time",
+      }
+      
+      if (value === reset[key]) {
+        params.delete(key);
+      } else {
+        params.set(key, value);
+      }
+      
+      return params.toString()
+    },
+    [searchParams]
+  )
   
   return (
     <div className={styles.filter}>
@@ -28,7 +40,7 @@ export default function Filter({ categories, locations, years, activeFilters }) 
     name="filter-category"
     id="category-filter"
     value={searchParams.get('category') || 'everything'}
-    onChange={e => updateFilter('category', e.target.value)}
+    onChange={(e) => router.push(pathname + '?' + updateFilter('category', e.target.value))}
     >
     <option value="everything">everything</option>
     {categories.map((item) => (
@@ -42,7 +54,7 @@ export default function Filter({ categories, locations, years, activeFilters }) 
     name="filter-location"
     id="location-filter"
     value={searchParams.get('location') || 'everywhere'}
-    onChange={e => updateFilter('location', e.target.value)}
+    onChange={(e) => router.push(pathname + '?' + updateFilter('location', e.target.value))}
     >
     <option value="everywhere">everywhere</option>
     {locations.map((item) => (
@@ -56,7 +68,7 @@ export default function Filter({ categories, locations, years, activeFilters }) 
     name="filter-year"
     id="year-filter"
     value={searchParams.get('year') || 'all-time'}
-    onChange={e => updateFilter('year', e.target.value)}
+    onChange={(e) => router.push(pathname + '?' + updateFilter('year', e.target.value))}
     >
     <option value="all-time">all time</option>
     {years.map((year) => (

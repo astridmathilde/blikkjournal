@@ -21,15 +21,15 @@ export const getProperties = unstable_cache(
 function addFilter(filters = {}) {
   const { category, location, year } = filters;
   const conditions = [];
- 
+  
   if (category && category !== 'everything') {
     conditions.push({ property: "Category", select: { equals: category } });
   }
- 
+  
   if (location && location !== 'everywhere') {
     conditions.push({ property: "Country", select: { equals: location } });
   }
- 
+  
   if (year && year !== 'all-time') {
     conditions.push({
       property: "Time",
@@ -39,7 +39,7 @@ function addFilter(filters = {}) {
       }
     });
   }
- 
+  
   if (conditions.length === 0) return undefined;
   if (conditions.length === 1) return conditions[0];
   return { and: conditions };
@@ -48,13 +48,13 @@ function addFilter(filters = {}) {
 /* Get the first page of entries */
 export async function getEntries(cursor = undefined, filters = {}) {
   const filter = addFilter(filters);
-
+  
   const response = await notion.dataSources.query({
     data_source_id: dataSourceId,
     sorts: [{ property: "Time", direction: "descending" }],
     page_size: 12,
     ...(cursor && { start_cursor: cursor }),
-     ...(filter && { filter }),
+    ...(filter && { filter }),
   });
   
   return {
@@ -68,14 +68,21 @@ export async function getEntries(cursor = undefined, filters = {}) {
 export const getAllEntries = unstable_cache(
   async () => {
     const allResults = [];
+    const filters = {};
     let cursor = undefined;
     let hasMore = true;
+    let filter = addFilter(filters);
     
     while (hasMore) {
-      const { results, nextCursor, hasMore: more } = await getEntries(cursor);
-      allResults.push(...results);
-      cursor = nextCursor;
-      hasMore = more;
+      const response = await notion.dataSources.query({
+        data_source_id: dataSourceId,
+        sorts: [{ property: "Time", direction: "descending" }],
+        ...(cursor && { start_cursor: cursor }),
+        ...(filter && { filter }),
+      });
+      allResults.push(...response.results);
+      cursor = response.next_cursor;
+      hasMore = response.has_more;
     }
     
     return allResults;
@@ -83,7 +90,6 @@ export const getAllEntries = unstable_cache(
   ['allEntries'],
   { revalidate: 2592000, tags: ['allEntries'] }
 );
-
 /* Get single entry */
 export async function getEntry(pageId) {
   return unstable_cache(

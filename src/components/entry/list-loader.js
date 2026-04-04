@@ -18,6 +18,13 @@ export default function ListEntryLoader({ initialEntries, initialCursor, initial
   const {level} = useClutter();
   const hasLazyLoad = level <= -3 || level == 6;
   
+  /* Reset entries when filters change */
+  useEffect(() => {
+    setEntries(initialEntries);
+    setCursor(initialCursor);
+    setHasMore(initialHasMore);
+  }, [initialEntries, initialCursor, initialHasMore]);
+  
   /* Loading the entries */
   useEffect(() => {
     if (!hasLazyLoad) return; // exit when not in declutter mode
