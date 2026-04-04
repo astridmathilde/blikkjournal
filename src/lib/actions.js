@@ -1,3 +1,7 @@
+/**
+ * Function for lazy loading more entries on scroll
+ */
+
 "use server";
 
 import { getEntries } from "./notion";

@@ -84,6 +84,7 @@ export default function ListEntryLoader({ initialEntries, initialCursor, initial
         date={date}
         priority={index < 12}
         dominantColor={entry.dominantColor}
+        filters={filters}
         />
       );
     })}

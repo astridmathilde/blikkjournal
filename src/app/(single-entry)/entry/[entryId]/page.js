@@ -1,6 +1,6 @@
+import { connection } from "next/server";
 import { getEntry, getAllEntries } from "@/src/lib/notion";
 import { createPastelColor, getEntryColor } from "@/src/lib/colors.server";
-
 import { siteTitle, siteDescription } from "@/src/app/(entries)/layout";
 
 import SingleEntry from "@/src/components/entry/single/entry";
@@ -17,8 +17,10 @@ export const metadata = {
   description: siteDescription,
 };
 
-export default async function Post({ params }) {
+export default async function Post({ params, searchParams }) {
+  await connection();
   const { entryId } = await params;
+  const filters = await searchParams;
   const entry = await getEntry(entryId);
   
   const title = entry.properties?.Title?.title[0]?.plain_text || "";
@@ -40,7 +42,7 @@ export default async function Post({ params }) {
   const bgColor = createPastelColor(domColor);
   
   /* Get prev and next entries across full collection */
-  const entries = await getAllEntries();
+  const entries = await getAllEntries(filters);
   const currentIndex = entries.findIndex(e => e.id === entryId);
   
   const prevEntry = currentIndex > 0 ? entries[currentIndex - 1] : null;
@@ -59,7 +61,7 @@ export default async function Post({ params }) {
     
     </NavBack>
     
-    <SingleEntryNav entryId={entryId} prevEntry={prevEntry} nextEntry={nextEntry} />
+    <SingleEntryNav entryId={entryId} prevEntry={prevEntry} nextEntry={nextEntry} filters={filters} />
     </SingleEntry>
     
   );

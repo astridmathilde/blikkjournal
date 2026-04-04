@@ -3,22 +3,30 @@
 import { useRouter } from 'next/navigation';
 import { useReturnPath } from '@/src/hooks/use-return-path';
 import { useClutter } from '@/src/components/clutter/context';
+import { buildFilterParams } from '@/src/lib/utils';
 
 import EntryImage from '../../image';
 import styles from './style.module.scss';
 
-export default function ListEntry(entry) {
+export default function ListEntry({filters, ...entry}) {
   useReturnPath(); // storing current url 
-  const router = useRouter(); // for navigating to single post
+  const router = useRouter(); // for navigating to single entry
+  
+  const url = new URLSearchParams({
+    ...buildFilterParams(filters)
+  });
+  const hasFilter = url.toString();
+  const filterParams = `?${hasFilter}`; // adding the filter to single entry url
+
   
   const handleClick = () => {
-    router.push(`/entry/${entry.id}`)
+    router.push(`/entry/${entry.id}${hasFilter ? filterParams : ""}`);
   }
   
   const handleKeyEnter = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      router.push(`/entry/${entry.id}`)
+      router.push(`/entry/${entry.id}${hasFilter ? filterParams : ""}`);
     }
   }
   
