@@ -21,7 +21,7 @@ export default async function List({ searchParams }) {
   
   const [{ results: entries, nextCursor, hasMore }, allEntries, properties] = await Promise.all([
     getEntries(cursor, filters),
-    getAllEntries(),
+    getAllEntries(filters),
     getProperties(),
   ]);
   

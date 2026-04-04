@@ -47,7 +47,7 @@ export default function ListEntryLoader({ initialEntries, initialCursor, initial
     
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
-  }, [cursor, hasMore, hasLazyLoad]); 
+  }, [cursor, hasMore, hasLazyLoad, filters]); 
   
   
   return (
@@ -60,7 +60,7 @@ export default function ListEntryLoader({ initialEntries, initialCursor, initial
       const location = entry.properties?.Place?.select?.name || "";
       const city = entry.properties?.City?.select?.name || "";
       const country = entry.properties?.Country?.select?.name || "";
-      const time = entry.properties.Time.date?.start;
+      const time = entry.properties?.Time?.date?.start;
       const camera = entry.properties?.Camera?.select?.name || "";
       const category = entry.properties?.Category?.select?.name || "";
       

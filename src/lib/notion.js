@@ -65,31 +65,36 @@ export async function getEntries(cursor = undefined, filters = {}) {
 }
 
 /* Get all entries by looping through cursors (used for counting entries and pages) */ 
-export const getAllEntries = unstable_cache(
-  async () => {
-    const allResults = [];
-    const filters = {};
-    let cursor = undefined;
-    let hasMore = true;
-    let filter = addFilter(filters);
-    
-    while (hasMore) {
-      const response = await notion.dataSources.query({
-        data_source_id: dataSourceId,
-        sorts: [{ property: "Time", direction: "descending" }],
-        ...(cursor && { start_cursor: cursor }),
-        ...(filter && { filter }),
-      });
-      allResults.push(...response.results);
-      cursor = response.next_cursor;
-      hasMore = response.has_more;
-    }
-    
-    return allResults;
-  },
-  ['allEntries'],
-  { revalidate: 2592000, tags: ['allEntries'] }
-);
+export async function getAllEntries(filters = {}) {
+  const filter = addFilter(filters);
+  const cacheKey = `allEntries-${filters.category ?? 'all'}-${filters.location ?? 'all'}-${filters.year ?? 'all'}`;
+  
+  return unstable_cache(
+    async () => {
+      const allResults = [];
+      let cursor = undefined;
+      let hasMore = true;
+      
+      while (hasMore) {
+        const response = await notion.dataSources.query({
+          data_source_id: dataSourceId,
+          sorts: [{ property: "Time", direction: "descending" }],
+          page_size: 100,
+          ...(cursor && { start_cursor: cursor }),
+          ...(filter && { filter }),
+        });
+        allResults.push(...response.results);
+        cursor = response.next_cursor;
+        hasMore = response.has_more;
+      }
+      
+      return allResults;
+    },
+    [cacheKey],
+    { revalidate: 2592000, tags: ['allEntries'] }
+  )();
+}
+
 /* Get single entry */
 export async function getEntry(pageId) {
   return unstable_cache(
