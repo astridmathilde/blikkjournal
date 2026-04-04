@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import styles from './style.module.scss';
 import utils from "@/src/assets/scss/utils.module.scss";
@@ -9,14 +10,23 @@ export default function Filter({ categories, locations, years, startTransition }
   const pathname = usePathname();
   const searchParams = useSearchParams()
   
+  const [selected, setSelected] = useState({ // set local state
+    category: searchParams.get('category') || 'everything',
+    location: searchParams.get('location') || 'everywhere',
+    year: searchParams.get('year') || 'all-time',
+  });
+  
+  
   const updateFilter = (key, value) => {
-    const params = new URLSearchParams(searchParams);
-    
     const reset = {
       category: "everything",
       location: "everywhere",
       year: "all-time",
     }
+    
+    setSelected(prev => ({ ...prev, [key]: value })); // update local state
+    
+    const params = new URLSearchParams(searchParams);
     
     if (value === reset[key]) {
       params.delete(key);
@@ -37,7 +47,7 @@ export default function Filter({ categories, locations, years, startTransition }
     <select
     name="filter-category"
     id="category-filter"
-    value={searchParams.get('category') || 'everything'}
+    value={selected.category}
     onChange={(e) => updateFilter('category', e.target.value)}
     >
     <option value="everything">everything</option>
@@ -51,7 +61,7 @@ export default function Filter({ categories, locations, years, startTransition }
     <select
     name="filter-location"
     id="location-filter"
-    value={searchParams.get('location') || 'everywhere'}
+    value={selected.location}
     onChange={(e) => updateFilter('location', e.target.value)}
     >
     <option value="everywhere">everywhere</option>
@@ -65,7 +75,7 @@ export default function Filter({ categories, locations, years, startTransition }
     <select
     name="filter-year"
     id="year-filter"
-    value={searchParams.get('year') || 'all-time'}
+    value={selected.year}
     onChange={(e) => updateFilter('year', e.target.value)}
     >
     <option value="all-time">all time</option>
