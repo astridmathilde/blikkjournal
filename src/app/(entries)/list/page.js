@@ -1,10 +1,12 @@
 import { connection } from "next/server";
+
 import { siteTitle, siteDescription } from "../layout";
 import { getEntries, getProperties, getAllEntries } from "@/src/lib/notion";
 import { getEntryColor } from "@/src/lib/colors.server";
+
+import FilterWrapper from "@/src/components/filter/wrapper";
 import ListEntryLoader from "@/src/components/entry/list-loader";
 import ListEntryNav from "@/src/components/entry/list/nav";
-import Filter from "@/src/components/filter";
 import styles from "@/src/assets/scss/list.module.scss";
 import utils from "@/src/assets/scss/utils.module.scss";
 
@@ -58,12 +60,13 @@ export default async function List({ searchParams }) {
   return (
     <>
     <h2 className={utils.screen_reader_text}>List</h2>
-    <Filter
+
+    <FilterWrapper
     categories={categories}
     locations={locations}
     years={years}
-    activeFilters={filters}
-    />
+    >
+
     <table className={styles.list}>
     <thead>
     <tr>
@@ -97,6 +100,7 @@ export default async function List({ searchParams }) {
     prevCursors={prevCursors}
     filters={filters}
     />
+    </FilterWrapper>
     </>
   );
 }
