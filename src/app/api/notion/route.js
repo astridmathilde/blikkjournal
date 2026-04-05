@@ -16,8 +16,6 @@ export async function POST(request) {
       revalidateTag('properties');
       revalidateTag('entryColor');
       revalidateTag('allEntries');
-      revalidatePath('/');
-      revalidatePath('/list');
       console.log('cache revalidated for', parsedRequest.type);
     }
     

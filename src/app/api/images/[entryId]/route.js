@@ -18,7 +18,7 @@ export async function GET(request, { params }) {
     const headers = {
       'Content-Type': imageResponse.headers.get('content-type'),
       'Access-Control-Allow-Origin': '*',
-      'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400'
+      'Cache-Control': 'public, max-age=2592000, immutable'
     };
     
     return new NextResponse(imageResponse.body, { headers });
