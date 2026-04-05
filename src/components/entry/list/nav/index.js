@@ -7,7 +7,7 @@ import IconChevronRight from "@/src/components/icons/icon-chevron-right";
 import styles from './style.module.scss';
 import utils from "@/src/assets/scss/utils.module.scss";
 
-export default function ListEntryNav({ cursor, hasMore, totalEntries, currentPage, totalPages, prevCursor, prevCursors, nextCursor, nextPrevCursor, filters }) {
+export default function ListEntryNav({ cursor, hasMore, totalEntries, currentPage, totalPages, prevCursor, prevCursors, nextCursor, nextPrevCursor, filters, hasOnlyOne }) {
   
   const prevUrl = new URLSearchParams({
     cursor: prevCursor,
@@ -29,7 +29,7 @@ export default function ListEntryNav({ cursor, hasMore, totalEntries, currentPag
   if (level >= -2 && level !== 6) {
     return (
       <div className={styles.footer}>
-      <p className={styles.totalEntries}>{totalEntries} entries</p>
+      <p className={styles.totalEntries}>{hasOnlyOne ? "1 entry" : totalEntries + " entries"}</p>
       
       <div className={styles.pagination}>
       <p className={styles.currentPage}>page {currentPage}<span aria-hidden="true">/</span><span className={utils.screen_reader_text}>of </span>{totalPages}</p>

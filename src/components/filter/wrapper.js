@@ -9,7 +9,7 @@ import { useClutter } from "../clutter/context";
 import Loading from "../loading";
 import Filter from "./index";
 
-export default function FilterWrapper({ categories, locations, years, children }) {
+export default function FilterWrapper({ categories, locations, years, children, noEntries }) {
   const { level } = useClutter();
   
   if (level <= -6) {
@@ -28,6 +28,10 @@ export default function FilterWrapper({ categories, locations, years, children }
       {isPending  ? (
         <div style={{display: "flex", justifyContent: "center", flexDirection: "column", minHeight: "50vh", opacity: "0.7", filter: "alpha(opacity=70)"}}>
         <Loading />
+        </div>
+      ) : noEntries ? (
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", minHeight: "50vh", opacity: "0.7", filter: "alpha(opacity=70)"}}>
+        <p>( keep looking )</p>
         </div>
       ) : (
         children

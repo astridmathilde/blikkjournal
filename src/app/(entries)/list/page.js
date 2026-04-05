@@ -60,13 +60,14 @@ export default async function List({ searchParams }) {
   return (
     <>
     <h2 className={utils.screen_reader_text}>List</h2>
-
+    
     <FilterWrapper
     categories={categories}
     locations={locations}
     years={years}
+    noEntries={entries.length === 0}
     >
-
+    
     <table className={styles.list}>
     <thead>
     <tr>
@@ -99,6 +100,7 @@ export default async function List({ searchParams }) {
     prevCursor={prevCursor}
     prevCursors={prevCursors}
     filters={filters}
+    hasOnlyOne={entries.length === 1}
     />
     </FilterWrapper>
     </>
