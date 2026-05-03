@@ -1,20 +1,39 @@
 @use "../../assets/scss/base/variables";
 
 .filter {
+  z-index: 1000;
+  position: sticky;
+  top: variables.$margin-xs;
   text-align: right;
 
   select {
-    font-family:
-      "Ronzino",
-      system-ui,
-      -apple-system,
-      sans-serif;
     appearance: menulist-button;
-    margin-left: 0.5em;
+    margin: 0 0 0 variables.$padding-sm;
+    font-family: inherit;
     font-size: variables.$font-size-base;
+    /*background: variables.$background-color;
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0 0 0 variables.$padding-sm;
+    border: variables.$border-size solid variables.$text-color;
+    border-radius: variables.$border-radius-md;
+    padding: variables.$padding-sm;
+    font-size: 100%;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all variables.$transition-out;*/
 
     &:first-of-type {
       margin-left: 0;
     }
+    /*
+    &:hover {
+      background-color: variables.$background-hover;
+      transition: all variables.$transition-in;
+    }
+    
+    &:focus-visible {
+      outline: none;
+    }*/
   }
 }

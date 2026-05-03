@@ -8,7 +8,7 @@ import GalleryEntry from "./gallery";
 import Loading from "../loading";
 import styles from '@/src/assets/scss/gallery.module.scss';
 
-export default function EntryGalleryLoader({ initialEntries, initialCursor, initialHasMore }) {
+export default function EntryGalleryLoader({ initialEntries, initialCursor, initialHasMore, filters }) {
   const [entries, setEntries] = useState(initialEntries);
   const [cursor, setCursor] = useState(initialCursor);
   const [hasMore, setHasMore] = useState(initialHasMore);
@@ -16,13 +16,22 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
   const sentinelRef = useRef(null);
   const loadingRef = useRef(false);
   
+  /* Reset entries when filters change */
+  useEffect(() => {
+    setEntries(initialEntries);
+    setCursor(initialCursor);
+    setHasMore(initialHasMore);
+  }, [initialEntries, initialCursor, initialHasMore]);
+  
+  
+  /* Loading the entries */
   useEffect(() => {
     const observer = new IntersectionObserver(
       async ([sentinel]) => {
         if (sentinel.isIntersecting && hasMore && !loadingRef.current) {
           loadingRef.current = true;
           setLoading(true);
-          const data = await loadMoreEntries(cursor);
+          const data = await loadMoreEntries(cursor, filters);
           setEntries((prev) => [...prev, ...data.results]);
           setCursor(data.nextCursor);
           setHasMore(data.hasMore);
@@ -35,7 +44,7 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
     
     if (sentinelRef.current) observer.observe(sentinelRef.current);
     return () => observer.disconnect();
-  }, [cursor, hasMore]); 
+  }, [cursor, hasMore, filters]); 
   
   return (
     <>
@@ -64,6 +73,7 @@ export default function EntryGalleryLoader({ initialEntries, initialCursor, init
         camera={camera}
         priority={index < 10}
         dominantColor={entry.dominantColor}
+        filters={filters}
         />
       );
     })}

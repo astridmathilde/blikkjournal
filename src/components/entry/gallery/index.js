@@ -1,14 +1,30 @@
 "use client";
 
+import { useRouter } from 'next/navigation';
 import { useReturnPath } from '@/src/hooks/use-return-path';
 import { useClutter } from '../../clutter/context';
-import Link from 'next/link';
-import styles from './style.module.scss';
-import utils from '@/src/assets/scss/utils.module.scss';
+import { buildFilterParams } from '@/src/lib/utils';
+
 import EntryImage from '../image';
 
-export default function GalleryEntry(entry) {
+import styles from './style.module.scss';
+import utils from '@/src/assets/scss/utils.module.scss';
+
+export default function GalleryEntry({filters, ...entry}) {
   useReturnPath(); // storing current url
+  const router = useRouter(); // for navigating to single entry
+  
+  const url = new URLSearchParams({
+    ...buildFilterParams(filters)
+  });
+  const hasFilter = url.toString();
+  const filterParams = `?${hasFilter}`; // adding the filter to single entry url
+  
+  const handleClick = () => {
+    router.push(`/entry/${entry.id}${hasFilter ? filterParams : ""}`);
+  }
+  
+  const { level } = useClutter();
   
   const entryId = entry.id;
   const title = entry.title;
@@ -27,10 +43,6 @@ export default function GalleryEntry(entry) {
       year: 'numeric',
     },
   );
-  
-  const entryUrl = `/entry/${entryId}`;
-  
-  const { level } = useClutter();
   
   return (
     <article key={entryId} className={styles.galleryEntry}>
@@ -51,8 +63,7 @@ export default function GalleryEntry(entry) {
     { level >= 2 ? <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li> : "" }
     </ul>
     
-    <figure>
-    <Link href={entryUrl} style={{cursor: "zoom-in"}}>
+    <figure onClick={() => handleClick()} style={{cursor: "zoom-in"}}>
     <EntryImage
     alt={title}
     entryId={entryId}
@@ -63,7 +74,6 @@ export default function GalleryEntry(entry) {
     sizes="(max-width: 600px) 50vw, (max-width: 854px) 33vw, 25vw"
     placeholderColor={entry.dominantColor}
     />
-    </Link>
     </figure> 
     
     </article>
