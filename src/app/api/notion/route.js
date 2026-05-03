@@ -3,7 +3,7 @@
 * @url https://developers.notion.com/reference/webhooks
 */
 
-import { revalidateTag, revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {

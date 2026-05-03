@@ -91,7 +91,7 @@ export async function getAllEntries(filters = {}) {
       return allResults;
     },
     [cacheKey],
-    { revalidate: 2592000, tags: ['allEntries'] }
+    { tags: ['allEntries'] }
   )();
 }
 
@@ -101,7 +101,7 @@ export async function getEntry(pageId) {
     async () => {
       return notion.pages.retrieve({ page_id: pageId });
     },
-    [`singleEntry-${pageId}`],
-    { revalidate: 2592000, tags: ['singleEntry', `singleEntry-${pageId}`] }
+    [pageId],
+    { tags: ['singleEntry'] }
   )();
 }
