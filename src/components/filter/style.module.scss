@@ -8,7 +8,7 @@
 
   select {
     appearance: menulist-button;
-    margin: 0 0 0 variables.$padding-sm;
+    margin: 0 0 variables.$padding-sm variables.$padding-sm;
     font-family: inherit;
     font-size: variables.$font-size-base;
     /*background: variables.$background-color;

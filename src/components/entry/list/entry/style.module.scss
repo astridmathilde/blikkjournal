@@ -58,6 +58,12 @@
       align-items: center;
       gap: 0.5em;
       text-align: left;
+
+      .fileName {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 10vw;
+      }
     }
 
     &[headers="category"] {
@@ -81,16 +87,23 @@
 
     &[headers="date"] {
       max-width: 20vw;
+      white-space: nowrap;
       text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       @media all and (max-width: variables.$screen-xxs) {
         max-width: 60vw;
+      }
+
+      @media all and (mib-width: variables.$screen-lg) {
+        max-width: 10vw;
       }
     }
 
     &[headers="camera"],
     &[headers="category"] {
-      @media all and (max-width: variables.$screen-md) {
+      @media all and (max-width: variables.$screen-lg) {
         display: none;
       }
     }

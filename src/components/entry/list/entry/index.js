@@ -51,7 +51,7 @@ export default function ListEntry({filters, ...entry}) {
         </figure>
       ) : ""
     } {level == -1 || level >= 2 || level == 0 ? (
-      <span>{entry.fileName}</span>
+      <span className={styles.fileName}>{entry.fileName}</span>
     ) : ""
   }
   </td>

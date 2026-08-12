@@ -37,7 +37,7 @@
 
         &[id="camera"],
         &[id="category"] {
-          @media all and (max-width: variables.$screen-md) {
+          @media all and (max-width: variables.$screen-lg) {
             display: none;
           }
         }
