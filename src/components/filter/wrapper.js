@@ -12,7 +12,7 @@ import Filter from "./index";
 export default function FilterWrapper({ categories, locations, years, children, noEntries }) {
   const { level } = useClutter();
   
-  if (level <= -6) {
+  if (level <= -4) {
     return children;
   } else {
     const [isPending, startTransition] = useTransition();
