@@ -5,12 +5,14 @@
 "use client";
 
 import { useTransition } from "react";
+import { usePathname } from "next/navigation";
 import { useClutter } from "../clutter/context";
 import Loading from "../loading";
 import Filter from "./index";
 
 export default function FilterWrapper({ categories, locations, years, children, noEntries }) {
   const { level } = useClutter();
+   const pathname = usePathname();
   
   if (level <= -4) {
     return children;
@@ -18,7 +20,7 @@ export default function FilterWrapper({ categories, locations, years, children, 
     const [isPending, startTransition] = useTransition();
     
     return (
-      <>
+      <div className={pathname == "/list" ? "list" : "gallery"}>
       <Filter
       categories={categories}
       locations={locations}
@@ -37,7 +39,7 @@ export default function FilterWrapper({ categories, locations, years, children, 
         children
       )
     }
-    </>
+    </div>
   );
 }
 }
