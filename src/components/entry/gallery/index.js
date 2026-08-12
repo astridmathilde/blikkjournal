@@ -54,11 +54,11 @@ export default function GalleryEntry({filters, ...entry}) {
     
     <ul className={styles.metadata}>
     
-    { level >= 0 ? <li className={styles.caption}><span className={styles.label}>Description: </span>{title}</li> : "" }
+    { level >= 0 ? <li className={styles.caption}><span className={styles.label}>Description: </span>{title ? title : location}</li> : "" }
     
     {level >= 4 && camera ? <li className={styles.camera} key="camera"><span className={styles.label}>Camera: </span>{camera}</li> : "" }
     
-    {level >= 3 && location ? <li className={styles.location} key="location"><span className={styles.label}>Location: </span>{location}</li> : "" }
+    {level >= 3 && ! title && location || title && ! location || ! title && ! location ? "" : <li className={styles.location} key="location"><span className={styles.label}>Location: </span>{location}</li> }
     
     { level >= 2 ? <li className={styles.city} key="city-country"><span className={styles.label}>City, country: </span>{city}, {country}</li> : "" }
     </ul>

@@ -11,3 +11,9 @@
   width: 1px;
   word-wrap: normal !important;
 }
+
+.empty {
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  font-style: italic;
+}

@@ -7,6 +7,7 @@ import { buildFilterParams } from '@/src/lib/utils';
 
 import EntryImage from '../../image';
 import styles from './style.module.scss';
+import utils from '../../../../assets/scss/utils.module.scss';
 
 export default function ListEntry({filters, ...entry}) {
   useReturnPath(); // storing current url 
@@ -55,8 +56,8 @@ export default function ListEntry({filters, ...entry}) {
   }
   </td>
 ) : "" }
-<td headers="description">{entry.title}</td>
-<td headers="location">{entry.location}</td>
+<td headers="description">{entry.title ? entry.title : (<span className={utils.empty}>Untitled</span>)}</td>
+<td headers="location">{entry.location ? entry.location : (<span className={utils.empty}>Secret</span>)}</td>
 <td headers="city">{entry.city}, {entry.country}</td>
 <td headers="category">{entry.category}</td>
 {level >= 3 ? <td headers="camera">{entry.camera}</td> : ""}

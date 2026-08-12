@@ -48,7 +48,7 @@ export default async function Gallery({ searchParams }) {
   return (
     <>
     <h2 className={utils.screen_reader_text}>Gallery</h2>
-
+    
     <FilterWrapper
     categories={categories}
     locations={locations}
