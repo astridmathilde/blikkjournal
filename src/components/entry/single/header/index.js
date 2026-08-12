@@ -9,7 +9,7 @@ export default function SingleEntryHeader(entry) {
   
   return (
     <header className={styles.header}>
-    {level >= -2 ? (
+    {level >= -4 ? (
       <div className={styles.title}> 
       <h2 className={styles.entryTitle}>{entry.title}</h2>
       <p><span className={utils.screen_reader_text}>Date published: </span>{entry.date}</p>
@@ -20,7 +20,7 @@ export default function SingleEntryHeader(entry) {
       <p className={utils.screen_reader_text}>Date published: {entry.date}</p>
       </>
     )}
-    {level >= -2 ? (
+    {level >= -4 ? (
       <div className={styles.location}>
       <p><span className={utils.screen_reader_text}>Location: </span>{entry.location ? entry.location : ""}{entry.location ? <br /> : ""} {entry.city}, {entry.country}</p>
       </div>
